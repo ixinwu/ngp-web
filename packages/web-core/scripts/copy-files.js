@@ -1,8 +1,10 @@
 /* eslint-disable no-console */
 
-import path from 'path';
-import fse from 'fs-extra';
-import glob from 'glob';
+const path = require('path');
+const fse = require('fs-extra');
+const glob = require('glob');
+
+console.log(__dirname);
 
 async function copyFile(file) {
   const buildPath = path.resolve(__dirname, '../build/', path.basename(file));
@@ -55,7 +57,7 @@ async function addLicense(packageData) {
 }
 
 async function run() {
-  await Promise.all(['../README.md'].map(file => copyFile(file)));
+  await Promise.all([path.resolve(__dirname, '../README.md')].map(file => copyFile(file)));
   const packageData = await createPackageFile();
   await addLicense(packageData);
 

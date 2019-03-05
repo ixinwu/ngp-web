@@ -12,11 +12,11 @@
     "css-in-js",
     "jss"
   ],
-  "main": "index.js",
+  "main": "./src/index.js",
   "scripts": {
-    "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir build/lib",
-    "build:es": "babel src --out-dir build/es",
-    "build:copy-files": "babel-node ./scripts/copy-files.js",
+    "build:commonjs": "cross-env BABEL_ENV=commonjs babel --root-mode upward src --out-dir build",
+    "build:es": "babel --root-mode upward src --out-dir build/es",
+    "build:copy-files": "node ./scripts/copy-files.js",
     "clean": "rimraf build",
     "build": "npm run clean && npm run build:es && npm run build:commonjs && npm run build:copy-files",
     "release": "yarn build && yarn publish build"

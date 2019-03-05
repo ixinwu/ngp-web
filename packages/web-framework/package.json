@@ -11,15 +11,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "./lib/index.js",
-  "module": "./es/index.js",
-  "files": [
-    "lib",
-    "src",
-    "es",
-    "docs",
-    "STRUCTURE.md"
-  ],
+  "main": "./src/index.js",
+  "module": "./src/index.js",
   "keywords": [
     "react",
     "reactjs",
@@ -28,9 +21,9 @@
     "redux-saga"
   ],
   "scripts": {
-    "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir build/lib",
-    "build:es": "babel src --out-dir build/es",
-    "build:copy-files": "babel-node ./scripts/copy-files.js",
+    "build:commonjs": "cross-env BABEL_ENV=commonjs babel --root-mode upward src --out-dir build/lib",
+    "build:es": "babel --root-mode upward src --out-dir build/es",
+    "build:copy-files": "node ./scripts/copy-files.js",
     "clean": "rimraf build",
     "build": "npm run clean && npm run build:es && npm run build:commonjs && npm run build:copy-files",
     "release": "yarn build && yarn publish build"

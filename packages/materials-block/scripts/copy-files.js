@@ -1,8 +1,10 @@
 /* eslint-disable no-console */
 
-import path from 'path';
-import fse from 'fs-extra';
-import glob from 'glob';
+const path = require('path');
+const fse = require('fs-extra');
+const glob = require('glob');
+
+console.log(__dirname);
 
 async function copyFile(file) {
   const buildPath = path.resolve(__dirname, '../build/', path.basename(file));
@@ -23,7 +25,7 @@ async function createPackageFile() {
   );
   const newPackageData = {
     ...packageDataOther,
-    main: './lib/index.js',
+    main: './index.js',
     module: './es/index.js',
     private: false,
   };
@@ -48,21 +50,21 @@ async function addLicense(packageData) {
  */
 `;
   await Promise.all(
-    ['../build/lib/index.js', '../build/es/index.js'].map(file =>
+    ['../build/index.js', '../build/es/index.js'].map(file =>
       prepend(path.resolve(__dirname, file), license),
     ),
   );
 }
 
 async function run() {
-  await Promise.all(['../README.md'].map(file => copyFile(file)));
+  await Promise.all([path.resolve(__dirname, '../README.md')].map(file => copyFile(file)));
   const packageData = await createPackageFile();
   await addLicense(packageData);
 
   // TypeScript
   const from = path.resolve(__dirname, '../src');
   await Promise.all([
-    typescriptCopy(from, path.resolve(__dirname, '../build/lib')),
+    typescriptCopy(from, path.resolve(__dirname, '../build')),
     typescriptCopy(from, path.resolve(__dirname, '../build/es')),
   ]);
 }

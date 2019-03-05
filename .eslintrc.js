@@ -17,7 +17,13 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['babel', 'import', 'jsx-a11y', 'mocha'],
-  settings: {},
+  settings: {
+    'import/resolver': {
+      webpack: {
+        config: path.join(__dirname, './webpack_base_config.js'),
+      },
+    },
+  },
   rules: {
     'linebreak-style': 'off', // Don't play nicely with Windows
     'arrow-body-style': 'off', // Incompatible with prettier

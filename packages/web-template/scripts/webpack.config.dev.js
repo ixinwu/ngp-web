@@ -66,6 +66,7 @@ const config = {
         loader: 'babel-loader',
         options: {
           cacheDirectory: true,
+          rootMode: "upward",
         },
       },
       {
@@ -83,6 +84,7 @@ const config = {
             loader: 'babel-loader',
             options: {
               cacheDirectory: true,
+              rootMode: "upward",
             },
           },
         ],
@@ -133,6 +135,16 @@ const config = {
           reuseExistingChunk: true,
         },
       },
+    },
+  },
+  resolve: {
+    alias: {
+      '@ixinwu-ngp/materials-block': path.resolve(__dirname, '../../../packages/materials-block/src'),
+      '@ixinwu-ngp/materials-component': path.resolve(
+        __dirname,
+        '../../../packages/materials-component/src',
+      ),
+      '@ixinwu-ngp/materials-layout': path.resolve(__dirname, '../../../packages/materials-layoutf/src'),
     },
   },
 };
