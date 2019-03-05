@@ -6,7 +6,7 @@
     "name": "zhuoluo-hq",
     "email": "zhuoluo.hq@gmail.com"
   },
-  "homepage": "https://github.com/zhuoluo-hq/web-framework",
+  "homepage": "https://github.com/zhuoluo-hq/ngp-web/tree/master/packages/web-framework",
   "license": "MIT",
   "publishConfig": {
     "access": "public"

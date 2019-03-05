@@ -5,7 +5,7 @@
     "name": "zhuoluo-hq",
     "email": "zhuoluo.hq@gmail.com"
   },
-  "homepage": "https://github.com/zhuoluo-hq/fe-materials/tree/master/packages/ngp-materials-block",
+  "homepage": "https://github.com/zhuoluo-hq/ngp-web/tree/master/packages/materials-block",
   "license": "MIT",
   "main": "index.js",
   "scripts": {

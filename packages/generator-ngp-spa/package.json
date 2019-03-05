@@ -6,7 +6,7 @@
     "name": "zhuoluo-hq",
     "email": "zhuoluo.hq@gmail.com"
   },
-  "homepage": "https://github.com/zhuoluo-hq/web-scaffold/tree/master/packages/generator-ngp-spa",
+  "homepage": "https://github.com/zhuoluo-hq/ngp-web/tree/master/packages/generator-ngp-spa",
   "files": [
     "generators",
     "utils"
