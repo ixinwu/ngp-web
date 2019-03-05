@@ -1,0 +1,16 @@
+#.gitignore
+.idea
+.vscode
+
+*.log
+.DS_STORE
+/.eslintcache
+/.next
+/.nyc_output
+/coverage
+/docs/export
+/test/regressions/screenshots
+/test/selenium-output
+/tmp
+build
+node_modules
