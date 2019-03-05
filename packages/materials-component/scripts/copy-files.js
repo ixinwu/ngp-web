@@ -23,8 +23,8 @@ async function createPackageFile() {
   );
   const newPackageData = {
     ...packageDataOther,
-    main: './index.js',
-    module: './index.es.js',
+    main: './lib/index.js',
+    module: './es/index.js',
     private: false,
   };
   const buildPath = path.resolve(__dirname, '../build/package.json');
@@ -41,33 +41,28 @@ async function prepend(file, string) {
 }
 
 async function addLicense(packageData) {
-  const license = `/** @license ngp@ixinwu v${packageData.version}
+  const license = `/** @license @ixinwu-ngp v${packageData.version}
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
 `;
   await Promise.all(
-    [
-      '../build/index.js',
-      '../build/index.es.js',
-      // '../build/umd/ngp-materials-components.development.js',
-      // '../build/umd/ngp-materials-components.production.min.js',
-    ].map(file => prepend(path.resolve(__dirname, file), license)),
+    ['../build/lib/index.js', '../build/es/index.js'].map(file =>
+      prepend(path.resolve(__dirname, file), license),
+    ),
   );
 }
 
 async function run() {
-  await Promise.all(
-    ['../../README.md'].map(file => copyFile(file)),
-  );
+  await Promise.all(['../README.md'].map(file => copyFile(file)));
   const packageData = await createPackageFile();
   await addLicense(packageData);
 
   // TypeScript
   const from = path.resolve(__dirname, '../src');
   await Promise.all([
-    typescriptCopy(from, path.resolve(__dirname, '../build')),
+    typescriptCopy(from, path.resolve(__dirname, '../build/lib')),
     typescriptCopy(from, path.resolve(__dirname, '../build/es')),
   ]);
 }

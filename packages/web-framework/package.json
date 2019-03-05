@@ -28,10 +28,12 @@
     "redux-saga"
   ],
   "scripts": {
-    "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
-    "build:es": "babel src --out-dir es",
-    "clean": "rimraf lib dist es coverage",
-    "build": "yarn clean && yarn build:es && yarn build:commonjs"
+    "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir build/lib",
+    "build:es": "babel src --out-dir build/es",
+    "build:copy-files": "babel-node ./scripts/copy-files.js",
+    "clean": "rimraf build",
+    "build": "npm run clean && npm run build:es && npm run build:commonjs && npm run build:copy-files",
+    "release": "yarn build && yarn publish build"
   },
   "peerDependencies": {
     "@ixinwu-ngp/materials-block": "^1.0.0",
@@ -43,7 +45,6 @@
     "react-router-dom": "^4.3.1"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.0.0",
     "@ixinwu-ngp/web-core": "1.1.3",
     "isomorphic-fetch": "^2.2.1",
     "query-string": "^6.2.0",

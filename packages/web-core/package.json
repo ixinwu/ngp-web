@@ -26,10 +26,12 @@
     "redux-saga"
   ],
   "scripts": {
-    "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
-    "build:es": "babel src --out-dir es",
-    "clean": "rimraf lib dist es coverage",
-    "build": "npm run clean && npm run build:es && npm run build:commonjs"
+    "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir build/lib",
+    "build:es": "babel src --out-dir build/es",
+    "build:copy-files": "babel-node ./scripts/copy-files.js",
+    "clean": "rimraf build",
+    "build": "npm run clean && npm run build:es && npm run build:commonjs && npm run build:copy-files",
+    "release": "yarn build && yarn publish build"
   },
   "peerDependencies": {
     "react": "^16.6.1",

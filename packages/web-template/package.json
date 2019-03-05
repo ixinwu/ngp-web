@@ -7,6 +7,7 @@
     "build": "webpack --config scripts/webpack.config.build.js"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.2.5",
     "@ixinwu-ngp/materials-block": "^1.0.0",
     "@ixinwu-ngp/materials-component": "^1.0.0",
     "@ixinwu-ngp/web-framework": "^1.1.0",

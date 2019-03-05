@@ -1,4 +1,3 @@
-import '@babel/polyfill';
 import { configureStore } from '@ixinwu-ngp/web-core';
 import ngp from '../ref';
 import generateReducer from '../utils/generate_reducer';
