@@ -14,3 +14,11 @@
 /tmp
 build
 node_modules
+
+# !/templates/ngp-spa/dist
+# /templates/ngp-spa/dist/*
+# !/templates/ngp-spa/dist/config.js
+
+# !/templates/ngp-spa/dist
+# /templates/ngp-spa/dist/*
+# !/templates/ngp-spa/dist/config.js

@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "webpack-dev-server --config scripts/webpack.config.dev.js",
-    "build": "webpack --config scripts/webpack.config.build.js"
+    "dev": "cross-env BABEL_ENV=app webpack-dev-server --config scripts/webpack.config.dev.js",
+    "build": "cross-env BABEL_ENV=app webpack --config scripts/webpack.config.build.js"
   },
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
@@ -17,7 +17,7 @@
     "downloadjs": "^1.4.7",
     "js-cookie": "^2.2.0",
     "moment": "^2.23.0",
-    "number-format.js": "^2.0.7",
+    "numeral": "^2.0.6",
     "prop-types": "^15.6.2",
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
@@ -33,6 +33,7 @@
     "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/plugin-proposal-decorators": "^7.1.6",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-transform-runtime": "^7.3.4",
     "@babel/preset-env": "^7.1.6",
     "@babel/preset-react": "^7.0.0",

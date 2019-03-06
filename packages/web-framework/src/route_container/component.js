@@ -123,7 +123,6 @@ class RouteContainer extends Component {
           </PageComp>
         );
       }
-
       return (
         <React.Fragment>
           {content}

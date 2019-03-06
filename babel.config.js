@@ -12,4 +12,21 @@ module.exports = {
     ['@babel/transform-runtime', { useESModules: !cjs }],
     '@babel/transform-object-assign',
   ].filter(Boolean),
+  env: {
+    app: {
+      plugins: [
+        ['@babel/proposal-class-properties', { loose }],
+        ['@babel/proposal-decorators', { legacy: true }],
+        ['@babel/proposal-object-rest-spread', { loose }],
+        '@babel/transform-runtime',
+        [
+          'import',
+          {
+            libraryName: 'antd',
+            style: true,
+          },
+        ],
+      ],
+    },
+  },
 };

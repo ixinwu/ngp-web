@@ -19,14 +19,13 @@ import {
 function getPageBundle(loader) {
   return typeof loader === 'function'
     ? new Promise(resolve => {
-        loader(module => {
-          const bundle = {};
-          Object.keys(module.default).forEach(key => {
-            bundle[key] = module.default[key].default || module.default[key];
-          });
-
-          resolve(bundle);
+      loader(module => {
+        const bundle = {};
+        Object.keys(module.default).forEach(key => {
+          bundle[key] = module.default[key].default || module.default[key];
         });
+        resolve(bundle);
+      });
       })
     : Promise.resolve(loader);
 }
@@ -38,7 +37,6 @@ function* routeMount(action) {
       type: ROUTE_ENTER,
       payload: action.payload,
     });
-
     let childRouteConfigs = [];
     const { pages, pageBundleLoaders, pageConfigLoaders } = ngp.app;
     const pageCache = pages[pageKey] || {};

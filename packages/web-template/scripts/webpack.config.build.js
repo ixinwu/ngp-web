@@ -2,16 +2,16 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const srcPath = path.join(__dirname, '../src/');
 const distPath = path.join(__dirname, '../dist/');
 
 const config = {
-  mode: 'production',
+  // mode: 'production',
+  mode: 'development',
   entry: {
     index: path.join(srcPath, '/index.js'),
     login: path.join(srcPath, '/login.js'),
@@ -41,7 +41,7 @@ const config = {
       filename: '[name].[hash].css',
       chunkFilename: '[name].[chunkhash:8].css',
     }),
-    new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
   ],
   module: {
     rules: [
@@ -149,11 +149,6 @@ const config = {
       },
     },
     minimizer: [
-      // new UglifyJsPlugin({
-      //   cache: true,
-      //   parallel: true,
-      //   sourceMap: false,
-      // }),
       new TerserPlugin({
         cache: true,
         parallel: true,
@@ -161,6 +156,16 @@ const config = {
       }),
       new OptimizeCSSAssetsPlugin({}),
     ],
+  },
+  resolve: {
+    alias: {
+      '@ixinwu-ngp/materials-block': path.resolve(__dirname, '../../../packages/materials-block/src'),
+      '@ixinwu-ngp/materials-component': path.resolve(
+        __dirname,
+        '../../../packages/materials-component/src',
+      ),
+      '@ixinwu-ngp/materials-layout': path.resolve(__dirname, '../../../packages/materials-layoutf/src'),
+    },
   },
 };
 

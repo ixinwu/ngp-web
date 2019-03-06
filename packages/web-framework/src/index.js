@@ -1,4 +1,4 @@
-import { stringify, parse } from 'query-string';
+import { stringify, parse } from 'qs';
 import ngp from './ref';
 
 export { connect } from '@ixinwu-ngp/web-core';
