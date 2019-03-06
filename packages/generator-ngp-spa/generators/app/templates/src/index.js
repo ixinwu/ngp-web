@@ -1,3 +1,4 @@
+import '@babel/polyfill';
 import { createClient } from '@ixinwu-ngp/web-framework';
 import { pageBundleLoaders, pageConfigLoaders } from './pages';
 import appBundle from './app';

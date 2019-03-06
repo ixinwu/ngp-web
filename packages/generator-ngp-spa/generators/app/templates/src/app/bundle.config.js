@@ -5,6 +5,11 @@ export default {
     title: '<%= appName %>',
     menus: [
       {
+        key: 'test',
+        name: 'Test',
+        url: '/test',
+      },
+      {
         key: 'aaa_list',
         icon: 'ordered-list',
         name: 'AAA列表',

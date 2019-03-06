@@ -1,10 +1,10 @@
 {
-  "presets": ["@babel/preset-env", "@babel/preset-react"],
+  "presets": [["@babel/env", { "loose": true, "modules": false }], "@babel/react"],
   "plugins": [
-    "@babel/plugin-transform-runtime",
-    "@babel/plugin-proposal-object-rest-spread",
-    "@babel/plugin-proposal-class-properties",
-    ["@babel/plugin-proposal-decorators", { "decoratorsBeforeExport": true }],
+    ["@babel/proposal-class-properties", { "loose": true }],
+    ["@babel/proposal-decorators", { "legacy": true }],
+    ["@babel/proposal-object-rest-spread", { "loose": true }],
+    "@babel/transform-runtime",
     [
       "import",
       {

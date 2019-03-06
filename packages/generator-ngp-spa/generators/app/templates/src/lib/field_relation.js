@@ -19,12 +19,11 @@ function exceptFieldKeys(keys, exceptKeys) {
   return newKeys;
 }
 
-export function fieldRelation(fields = [], fieldRelations = {}, data = {}) {
+export default function fieldRelation(fields = [], relations = [], data = {}) {
   let hiddenFieldKeys = [];
-
   // 遍历字段是否满足字段关联配置
   fields.forEach(field => {
-    const fieldRelation = fieldRelations[field.key];
+    const fieldRelation = relations.find(relation => relation.masterFieldKey === field.key);
     // 没有配置直接返回
     if (!fieldRelation) return;
 
@@ -36,9 +35,10 @@ export function fieldRelation(fields = [], fieldRelations = {}, data = {}) {
     const fieldValue = !data[field.key] ? [] : data[field.key].split(',');
     // 检查字段当前值的关联配置
     let showFieldKeys = [];
-
     fieldValue.forEach(value => {
-      const relationConfig = fieldRelation.relationConfig[value];
+      const relationConfig = fieldRelation.relationConfig.find(
+        config => config.masterTypeKey === value,
+      );
       if (relationConfig) {
         showFieldKeys = addFieldKeys(showFieldKeys, relationConfig.slaveFieldKeys);
       }

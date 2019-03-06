@@ -112,6 +112,13 @@ export default {
         groupKey: 'statusGroup',
       },
       {
+        key: 'aaa__stage',
+        text: '阶段',
+        displayType: 'groupType',
+        visible: true,
+        groupKey: 'stageGroup',
+      },
+      {
         key: 'aaa__createTime',
         text: '创建时间',
         displayType: 'datetime',
@@ -119,27 +126,114 @@ export default {
         visible: true,
       },
       {
-        key: 'aaa__createByDept',
-        text: '创建人部门Id',
+        key: 'aaa__dept',
+        text: '所属部门Id',
         displayType: 'department',
-      },
-      {
-        key: 'aaa__createByDept__name',
-        text: '创建人部门',
-        displayType: 'department',
-        colspan: 2,
         visible: true,
       },
       {
-        key: 'aaa__createBy',
-        text: '创建人Id',
+        key: 'aaa__dept__name',
+        text: '所属部门',
+        displayType: 'department',
+      },
+      {
+        key: 'aaa__principal',
+        text: '负责人Id',
+        displayType: 'user',
+        visible: true,
+      },
+      {
+        key: 'aaa__principal__name',
+        text: '负责人',
         displayType: 'user',
       },
       {
-        key: 'aaa__createBy__name',
-        text: '创建人',
-        displayType: 'user',
+        key: 'aaa__type1Field1',
+        text: '类型1显示的字段1',
         visible: true,
+      },
+      {
+        key: 'aaa__type1Field2',
+        text: '类型1显示的字段2',
+        visible: true,
+      },
+      {
+        key: 'aaa__type2Field1',
+        text: '类型2显示的字段1',
+        visible: true,
+      },
+      {
+        key: 'aaa__type2Field2',
+        text: '类型2显示的字段2',
+        visible: true,
+      },
+    ],
+    fieldRelations: [
+      {
+        masterFieldKey: 'aaa__type',
+        slaveRangeFieldKeys: [
+          'aaa__type1Field1',
+          'aaa__type1Field2',
+          'aaa__type2Field1',
+          'aaa__type2Field2',
+        ],
+        relationConfig: [
+          {
+            masterTypeKey: 'type_1',
+            slaveFieldKeys: ['aaa__type1Field1', 'aaa__type1Field2'],
+          },
+          {
+            masterTypeKey: 'type_2',
+            slaveFieldKeys: ['aaa__type2Field1', 'aaa__type2Field2'],
+          },
+          {
+            masterTypeKey: 'type_3',
+            slaveFieldKeys: [],
+          },
+        ],
+      },
+    ],
+    groupCascades: [
+      {
+        masterGroupKey: 'typeGroup',
+        slaveGroupKey: 'stageGroup',
+        cascadeConfig: [
+          {
+            masterTypeKey: 'type_1',
+            slaveTypeKeys: [
+              'stage_1',
+              'stage_2',
+              'stage_3',
+            ],
+          },
+          {
+            masterTypeKey: 'type_1',
+            slaveTypeKeys: [
+              'stage_4',
+              'stage_5',
+              'stage_6',
+            ],
+          },
+        ],
+      },
+      {
+        masterGroupKey: 'stageGroup',
+        slaveGroupKey: 'statusGroup',
+        cascadeConfig: [
+          {
+            masterTypeKey: 'stage_1',
+            slaveTypeKeys: [
+              'status_1',
+              'status_2',
+            ],
+          },
+          {
+            masterTypeKey: 'stage_2',
+            slaveTypeKeys: [
+              'status_3',
+            ],
+          },
+        ],
       },
     ],
   },
@@ -159,6 +253,9 @@ export default {
         defaultValue: typeGroups, // 使用硬编码的方式初始化分类定义
       },
       statusGroup: {
+        defaultValue: [], // 在页面加载时使用接口初始化分类定义
+      },
+      stageGroup: {
         defaultValue: [], // 在页面加载时使用接口初始化分类定义
       },
     },

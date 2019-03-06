@@ -1,3 +1,4 @@
+import '@babel/polyfill';
 import { createClient } from '@ixinwu-ngp/web-framework';
 import loginBundle from './login/index';
 import loginConfig from './login/bundle.config';

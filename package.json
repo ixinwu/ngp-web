@@ -15,8 +15,7 @@
     "packages/materials-component",
     "packages/materials-layout",
     "packages/web-core",
-    "packages/web-framework",
-    "packages/web-template"
+    "packages/web-framework"
   ],
   "devDependencies": {
     "@babel/cli": "7.1.2",

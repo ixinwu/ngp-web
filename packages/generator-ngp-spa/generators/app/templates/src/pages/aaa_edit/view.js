@@ -28,7 +28,14 @@ class AAAEdit extends Component {
   };
 
   render() {
-    const { classes, title, fields: fieldConfigs, data } = this.props;
+    const {
+      classes,
+      title,
+      fields: fieldConfigs,
+      data,
+      fieldRelations,
+      groupCascades,
+    } = this.props;
 
     // 为大小分类（枚举）字段绑定选择数据
     const fields = fieldConfigs.map(fieldConfig => {
@@ -47,6 +54,8 @@ class AAAEdit extends Component {
         <div className={classes.body}>
           <FieldForm
             fields={fields}
+            fieldRelations={fieldRelations}
+            groupCascades={groupCascades}
             data={data}
             wrappedComponentRef={form => {
               this.form = form;

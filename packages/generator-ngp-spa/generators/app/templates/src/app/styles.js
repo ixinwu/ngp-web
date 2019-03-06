@@ -51,6 +51,7 @@ export default {
     flex: 1,
   },
   '@global': {
+    
     '.ngp-table-link': {
       color: themeVars['link-color'],
       cursor: 'pointer',

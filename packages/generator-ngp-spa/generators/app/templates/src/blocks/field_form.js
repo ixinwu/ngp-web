@@ -3,6 +3,7 @@ import moment from 'moment';
 import withStyles from '@ixinwu-ngp/materials-component/styles/with_styles';
 import { Form, Input, InputNumber, DatePicker, Select } from 'antd';
 import ObjectCascader from '../components/object_cascader';
+import fieldRelation from '../lib/field_relation';
 
 const { MonthPicker } = DatePicker;
 const { Option } = Select;
@@ -28,20 +29,25 @@ const styles = () => {
   };
 };
 
-class FieldComponent extends Component {
+class FieldForm extends Component {
+  componentDidUpdate() {
+    const { getFieldsValue } = this.props.form;
+    const values = getFieldsValue();
+  }
+
   getValidateFields = () => {
     return this.props.form.validateFields;
   };
 
   generateComponent = field => {
+    const data = this.props.data || {};
     let component;
     if (field.component) {
-      component = <field.component field={field} />;
+      component = <field.component field={field} data={data} />;
     }
 
     switch (field.displayType) {
       case 'object': {
-        const data = this.props.data || {};
         component = <ObjectCascader field={field} data={data} />;
         break;
       }
@@ -99,12 +105,15 @@ class FieldComponent extends Component {
   };
 
   render() {
-    const { fields } = this.props;
-    const { getFieldDecorator } = this.props.form;
+    const { fields, fieldRelations } = this.props;
+    const { getFieldDecorator, getFieldsValue } = this.props.form;
+    const values = getFieldsValue();
+    const displayFields = fieldRelation(fields, fieldRelations, values);
+    // const displayFields = fields;
     return (
       <Form layout="vertical">
         {this.props.render(
-          fields
+          displayFields
             .filter(field => field.visible)
             .map(field => ({
               ...field,
@@ -141,5 +150,5 @@ export default withStyles(styles)(
         });
       return formFields;
     },
-  })(FieldComponent),
+  })(FieldForm),
 );

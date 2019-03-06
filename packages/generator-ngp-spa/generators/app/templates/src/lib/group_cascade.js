@@ -1,36 +1,34 @@
-export function updateFieldBindData(fields, groupConfigs, groupConcatenations) {
+export function updateFieldBindData(fields = [], groupConfigs = {}, groupCascades = [], data = {}) {
   let groups = {
     ...groupConfigs,
   };
 
-  groupConcatenations.forEach(concatenation => {
+  groupCascades.forEach(cascade => {
     // 同一个类别在字段中最多出现一次
-    const groupField = fields.find(
-      field => field.categoryGroupKey === concatenation.masterGroupKey,
-    );
+    const groupField = fields.find(field => field.categoryGroupKey === cascade.masterGroupKey);
 
     // 没有主控制字段，则返回所有的类型
     if (!groupField) {
       return;
     }
 
-    let group = groups[concatenation.slaveGroupKey];
+    let group = groups[cascade.slaveGroupKey];
 
     if (groupField.value !== undefined && groupField.value !== null && groupField.value !== '') {
-      const masterTypeConcatenation = concatenation.concatenationConfig.find(
+      const masterTypeCascade = cascade.cascadeConfig.find(
         config => config.masterTypeKey === groupField.value,
       );
 
       // 匹配级联，slaveGroup的typeList使用配置的slaveTypeKeys过滤
-      if (masterTypeConcatenation) {
+      if (masterTypeCascade) {
         group = {
           ...group,
           appTypeList: group.appTypeList.filter(
-            type => masterTypeConcatenation.slaveTypeKeys.indexOf(type.typeKey) !== -1,
+            type => masterTypeCascade.slaveTypeKeys.indexOf(type.typeKey) !== -1,
           ),
         };
         groups = Object.assign(groups, {
-          [concatenation.slaveGroupKey]: group,
+          [cascade.slaveGroupKey]: group,
         });
       } else {
         // 不匹配级联时，slaveGroup的typeList为空
@@ -39,7 +37,7 @@ export function updateFieldBindData(fields, groupConfigs, groupConcatenations) {
           appTypeList: [],
         };
         groups = Object.assign(groups, {
-          [concatenation.slaveGroupKey]: group,
+          [cascade.slaveGroupKey]: group,
         });
       }
     }

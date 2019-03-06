@@ -9,7 +9,10 @@ import {
 const setDataLoading = (state, identity, value) => state[identity].dataLoading(value);
 const setParams = (state, identity, value) => state[identity].params(value);
 
-// 获取页面列表数据
+/**
+ * 业务handle
+ * @param {Object} props 与react组件中的this.props相同，是调用handle是的一个拷贝
+ */
 export function* getListData(props) {
   const { identity, dataSetKey, params, fields } = props;
   try {

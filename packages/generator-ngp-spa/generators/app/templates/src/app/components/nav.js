@@ -26,7 +26,7 @@ class Nav extends Component {
           key={menu.id}
           title={
             <span>
-              <Icon type={menu.icon} />
+              {menu.icon && <Icon type={menu.icon} />}
               <span>{menu.name}</span>
             </span>
           }
@@ -39,7 +39,7 @@ class Nav extends Component {
     return (
       <Menu.Item key={menu.id}>
         <span>
-          <Icon type={menu.icon} />
+          {menu.icon && <Icon type={menu.icon} />}
           <span>{menu.name}</span>
         </span>
       </Menu.Item>
@@ -61,7 +61,7 @@ class Nav extends Component {
           key={menu.id}
           title={
             <span>
-              <Icon type={menu.icon} />
+              {menu.icon && <Icon type={menu.icon} />}
               <span>{menu.name}</span>
             </span>
           }
@@ -75,7 +75,7 @@ class Nav extends Component {
     return (
       <Menu.Item key={menu.id} disabled={menu.disabled}>
         <span>
-          <Icon type={menu.icon} />
+          {menu.icon && <Icon type={menu.icon} />}
           <span>{menu.name}</span>
         </span>
       </Menu.Item>

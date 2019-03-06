@@ -6,6 +6,7 @@ import aaaDetail from './aaa_detail/bundle';
 import aaaDetailConfig from './aaa_detail/bundle.config';
 import aaaEdit from './aaa_edit/bundle';
 import aaaEditConfig from './aaa_edit/bundle.config';
+import test from './test/bundle';
 
 const createMockGetPageConfig = config => pageKey => {
   console.log(`获取[[${pageKey}]]的页面配置`);
@@ -27,6 +28,7 @@ export const pageBundleLoaders = {
   aaa_add: aaaAdd,
   aaa_detail: aaaDetail,
   aaa_edit: aaaEdit,
+  test,
 };
 
 export const pageConfigLoaders = {
