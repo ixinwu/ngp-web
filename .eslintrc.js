@@ -1,3 +1,5 @@
+const path  = require('path');
+
 module.exports = {
   // So parent files don't get applied
   root: true,

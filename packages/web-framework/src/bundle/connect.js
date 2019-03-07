@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 const getDisplayName = name => `NgpConnectBundle(${name})`;
 
-export default function connectBundle(config) {
+export default function connectBundle (config) {
   return WrappedComponent => {
     const wrappedComponentName =
       WrappedComponent.displayName || WrappedComponent.name || 'Component';
