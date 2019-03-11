@@ -1,5 +1,5 @@
 import warning from 'warning';
-import { takeEvery, takeLatest, put, call } from '@ixinwu-ngp/web-core';
+import { takeEvery, takeLatest, put, call, select } from '@ixinwu-ngp/web-core';
 import { withRouter } from 'react-router-dom';
 import ngp from '../ref';
 import mountBundle from '../bundle/mount';
@@ -19,16 +19,18 @@ import {
 function getPageBundle(loader) {
   return typeof loader === 'function'
     ? new Promise(resolve => {
-      loader(module => {
-        const bundle = {};
-        Object.keys(module.default).forEach(key => {
-          bundle[key] = module.default[key].default || module.default[key];
+        loader(module => {
+          const bundle = {};
+          Object.keys(module.default).forEach(key => {
+            bundle[key] = module.default[key].default || module.default[key];
+          });
+          resolve(bundle);
         });
-        resolve(bundle);
-      });
       })
     : Promise.resolve(loader);
 }
+
+const getState = state => state;
 
 function* routeMount(action) {
   const { pathname, pageKey } = action.payload;
@@ -54,7 +56,8 @@ function* routeMount(action) {
     let pageConfig = pageCache.config;
     const configLoader = pageConfigLoaders[pageKey];
     if (!pageConfig && configLoader) {
-      pageConfig = yield configLoader(pageKey);
+      const state = yield select(getState);
+      pageConfig = yield configLoader(pageKey, state);
     }
     // 添加子路由
     if (pageConfig && pageConfig.routes) {
