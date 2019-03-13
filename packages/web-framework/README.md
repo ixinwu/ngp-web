@@ -2,6 +2,8 @@
 
 前端开发框架，快速构建 SPA 应用，封装应用 App/页面 Page/区块 block/bundle 代码层级
 
+_框架提供了路由的一个实现方式，但菜单的交互实现是完全交由用户去实现的_
+
 <!-- TOC -->
 
 - [前端框架](#前端框架)
@@ -18,7 +20,7 @@
   - [应用启动](#应用启动)
   - [路由配置](#路由配置)
     - [单项路由定义](#单项路由定义)
-    - [菜单定义实践](#菜单定义实践)
+    - [菜单与路由定义实践](#菜单与路由定义实践)
   - [页面加载](#页面加载)
   - [服务调用](#服务调用)
     - [统一管理 API 接口](#统一管理-api-接口)
@@ -346,9 +348,16 @@ export function* initApp(props) {
 
 > 路由定义中的`pageKey`需要与[页面加载](#页面加载)中的露出对应
 
-### 菜单定义实践
+### 菜单与路由定义实践
 
-_建议使用拉平的数组定义，如果是需要展示为嵌套的树结构，在每项中增加 parentId 来维护，这样方便编码的实现和维护_
+_菜单建议使用拉平的数组定义，如果是需要展示为嵌套的树结构，在每项中增加 parentId 来维护，这样方便编码的实现和维护_
+
+_路由在逻辑上与菜单是可以分离的，只是在使用的时候通过业务结合（通过菜单激活路由），所以建议以低耦合的方式实现这两个概念，这一点要有认识_
+
+_对于业务框架来说一般只有两个概念——加载应用和加载页面，页面展示在应用的什么位置应该由应用结合业务决定，尽量不要将业务框架的逻辑侵入到页面中，页面需要保持基本的完备性和独立性（页面是业务层面最大的组件）_
+
+_路由一般由两种定义方式——集中式和分散式，贴合实现（react-router）是分散式的，集中式又比较便于管理，具体实现的时候可以考虑优劣_
+
 
 ## 页面加载
 
@@ -362,7 +371,12 @@ import page1Code from './page1/bundle';
 import page1Config from './page1/bundle.config';
 import page2Code from './page2/bundle';
 
-const createMockGetPageConfig = config => pageKey => {
+/**
+ * 页面config加载器，可以是返回promise的函数或者是generator函数
+ * @param {String} pageKey 页面Key
+ * @param {object} state 当前store状态的拷贝
+ */
+const createMockGetPageConfig = config => (pageKey, state) => {
   console.log(`获取[[${pageKey}]]的页面配置`);
 
   return new Promise(resolve => resolve(config));
