@@ -6,13 +6,12 @@ import JssProvider from 'react-jss/lib/JssProvider';
 import { withRouter, BrowserRouter as Router } from 'react-router-dom';
 import { mount, unmount } from '@ixinwu-ngp/web-core';
 import { SheetsRegistry } from 'jss';
-import NgpThemeProvider from '@ixinwu-ngp/materials-component/styles/ngp_theme_provider';
-import createGenerateClassName from '@ixinwu-ngp/materials-component/styles/create_generate_class_name';
+import NgpThemeProvider from '../styles/ngp_theme_provider';
+import createGenerateClassName from '../styles/create_generate_class_name';
 import CssBaseLine from '@ixinwu-ngp/materials-component/css_base_line';
 import mountBundle from '../bundle/mount';
 import mountBlock from '../block/mount';
 import generateReducer from '../utils/generate_reducer';
-import ShellApp from './shell';
 
 function getContent({
   sheetsRegistry,
@@ -55,6 +54,7 @@ export default class Client {
   }
 
   render(container, bundle, config) {
+    warning(bundle, 'Can not start an empty bundle!');
     warning(!this.initialized, 'App has been initialized!');
 
     const sheetsRegistry = new SheetsRegistry();
@@ -82,27 +82,12 @@ export default class Client {
         }),
         this.container,
       );
-    } else if (bundle && !config) {
+    }
+
+    if (bundle && !config) {
       // custom app
       const AppComp = withRouter(mountBundle(bundle));
 
-      render(
-        getContent({
-          sheetsRegistry,
-          generateClassName,
-          theme,
-          sheetsManager,
-          store: this.store,
-          basename: this.basename,
-          appKey: this.appKey,
-          getAppConfig: this.getAppConfig,
-          AppComp,
-        }),
-        this.container,
-      );
-    } else {
-      // shell app
-      const AppComp = withRouter(ShellApp);
       render(
         getContent({
           sheetsRegistry,
@@ -123,6 +108,7 @@ export default class Client {
   }
 
   hydrate(container, bundle, config) {
+    warning(bundle, 'Can not start an empty bundle!');
     warning(!this.initialized, 'App has been initialized!');
 
     const sheetsRegistry = new SheetsRegistry();
@@ -150,27 +136,11 @@ export default class Client {
         }),
         this.container,
       );
-    } else if (bundle && !config) {
+    }
+    if (bundle && !config) {
       // custom app
       const AppComp = withRouter(mountBundle(bundle));
 
-      hydrate(
-        getContent({
-          sheetsRegistry,
-          generateClassName,
-          theme,
-          sheetsManager,
-          store: this.store,
-          basename: this.basename,
-          appKey: this.appKey,
-          getAppConfig: this.getAppConfig,
-          AppComp,
-        }),
-        this.container,
-      );
-    } else {
-      // shell app
-      const AppComp = withRouter(ShellApp);
       hydrate(
         getContent({
           sheetsRegistry,

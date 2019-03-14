@@ -6,10 +6,11 @@ export { default as mountBlock } from './block/mount';
 export { default as connectBundle } from './bundle/connect';
 export { default as mountBundle } from './bundle/mount';
 
-export { createClient, ShellApp } from './client';
 export { default as RouteContainer } from './route_container';
 export { default as RouteLayout } from './route_layout';
+export * from './client';
 export * from './utils';
+export * from './styles';
 export { default as createServer } from './server/create_server';
 export { Switch, Route } from 'react-router-dom';
 
