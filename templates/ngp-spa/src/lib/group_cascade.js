@@ -1,84 +1,81 @@
-export function updateFieldBindData(fields = [], groupConfigs = {}, groupCascades = [], data = {}) {
+export function groupCascade(fields = [], groupConfigs = {}, groupCascades = [], data = {}) {
+  console.log('-------------------groupCascade');
   let groups = {
     ...groupConfigs,
   };
 
   groupCascades.forEach(cascade => {
     // 同一个类别在字段中最多出现一次
-    const groupField = fields.find(field => field.categoryGroupKey === cascade.masterGroupKey);
+    const groupField = fields.find(field => field.groupKey === cascade.masterGroupKey);
 
     // 没有主控制字段，则返回所有的类型
     if (!groupField) {
       return;
     }
 
-    let group = groups[cascade.slaveGroupKey];
+    let group = groups[cascade.slaveGroupKey] || [];
 
-    if (groupField.value !== undefined && groupField.value !== null && groupField.value !== '') {
-      const masterTypeCascade = cascade.cascadeConfig.find(
-        config => config.masterTypeKey === groupField.value,
-      );
+    const fieldValue = data[groupField.key];
+    const masterTypeCascade = cascade.cascadeConfig.find(
+      config => config.masterTypeKey === fieldValue,
+    );
 
-      // 匹配级联，slaveGroup的typeList使用配置的slaveTypeKeys过滤
-      if (masterTypeCascade) {
-        group = {
-          ...group,
-          appTypeList: group.appTypeList.filter(
-            type => masterTypeCascade.slaveTypeKeys.indexOf(type.typeKey) !== -1,
-          ),
-        };
-        groups = Object.assign(groups, {
-          [cascade.slaveGroupKey]: group,
-        });
-      } else {
-        // 不匹配级联时，slaveGroup的typeList为空
-        group = {
-          ...group,
-          appTypeList: [],
-        };
-        groups = Object.assign(groups, {
-          [cascade.slaveGroupKey]: group,
-        });
-      }
+    // 匹配级联，slaveGroup的typeList使用配置的slaveTypeKeys过滤
+    if (masterTypeCascade) {
+      group = group.filter(type => masterTypeCascade.slaveTypeKeys.indexOf(type.key) !== -1);
+      groups = Object.assign(groups, {
+        [cascade.slaveGroupKey]: group,
+      });
+    } else {
+      // 不匹配级联时，slaveGroup的typeList为空
+      group = [];
+      groups = Object.assign(groups, {
+        [cascade.slaveGroupKey]: group,
+      });
     }
   });
 
   return fields.map(field => {
-    if (field.fieldType === 'CategoryGroupType') {
+    if (field.groupKey) {
       return {
         ...field,
-        bindData: groups[field.categoryGroupKey] ? groups[field.categoryGroupKey].appTypeList : [],
+        types: groups[field.groupKey] ? groups[field.groupKey] : [],
       };
     }
     return field;
   });
 }
 
-export function getChangedData(fields) {
-  const changedFieldValues = {};
+// TODO 考虑多选的情况
+export function getChangedValues(fields, data) {
+  console.log('-------------------getChangedValues');
+  const changedValues = [];
 
   fields.forEach(field => {
-    if (field.fieldType === 'CategoryGroupType' && field.value) {
+    const value = data[field.key];
+    if (field.groupKey && value) {
+      let oldValue = value;
       let newValue = [];
-      const newText = [];
-      (field.value.value || field.value).split(',').forEach(value => {
-        const type = field.bindData.find(type => type.typeKey === value);
+      if (!Array.isArray(oldValue)) {
+        oldValue = oldValue.split(',');
+      }
+      oldValue.forEach(item => {
+        const type = field.types.find(type => type.key === item);
         if (type) {
-          newValue.push(type.typeKey);
-          newText.push(type.typeValue);
+          newValue.push(type.key);
         }
       });
 
-      newValue = newValue.join(',');
+      newValue = newValue.length > 0 ? newValue.join(',') : undefined;
 
-      if ((field.value.value || field.value) !== newValue) {
-        changedFieldValues[field.fieldKey] = {
+      if (value !== newValue) {
+        changedValues.push({
+          key: field.key,
           value: newValue,
-          text: newText.join(','),
-        };
+        });
       }
     }
   });
 
-  return changedFieldValues;
+  return changedValues;
 }

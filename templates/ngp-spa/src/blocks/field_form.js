@@ -3,7 +3,8 @@ import moment from 'moment';
 import withStyles from '@ixinwu-ngp/materials-component/styles/with_styles';
 import { Form, Input, InputNumber, DatePicker, Select } from 'antd';
 import ObjectCascader from '../components/object_cascader';
-import fieldRelation from '../lib/field_relation';
+import { fieldRelation } from '../lib/field_relation';
+import { groupCascade, getChangedValues } from '../lib/group_cascade';
 
 const { MonthPicker } = DatePicker;
 const { Option } = Select;
@@ -31,8 +32,17 @@ const styles = () => {
 
 class FieldForm extends Component {
   componentDidUpdate() {
-    const { getFieldsValue } = this.props.form;
+    const { getFieldsValue, setFieldsValue } = this.props.form;
     const values = getFieldsValue();
+    const changedGroupValues = getChangedValues(this.fields, values);
+
+    if (changedGroupValues.length > 0) {
+      const groupValues = {};
+      changedGroupValues.forEach(item => {
+        groupValues[item.key] = item.value;
+      });
+      setFieldsValue(groupValues);
+    }
   }
 
   getValidateFields = () => {
@@ -105,10 +115,15 @@ class FieldForm extends Component {
   };
 
   render() {
-    const { fields, fieldRelations } = this.props;
+    const { fields, groups, fieldRelations, groupCascades } = this.props;
     const { getFieldDecorator, getFieldsValue } = this.props.form;
     const values = getFieldsValue();
-    const displayFields = fieldRelation(fields, fieldRelations, values);
+    this.fields = groupCascade(fields, groups, groupCascades, values);
+    const displayFields = fieldRelation(
+      this.fields,
+      fieldRelations,
+      values,
+    );
     // const displayFields = fields;
     return (
       <Form layout="vertical">

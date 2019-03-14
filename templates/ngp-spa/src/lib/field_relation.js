@@ -19,7 +19,8 @@ function exceptFieldKeys(keys, exceptKeys) {
   return newKeys;
 }
 
-export default function fieldRelation(fields = [], relations = [], data = {}) {
+export function fieldRelation(fields = [], relations = [], data = {}) {
+  console.log('-------------------fieldRelation');
   let hiddenFieldKeys = [];
   // 遍历字段是否满足字段关联配置
   fields.forEach(field => {

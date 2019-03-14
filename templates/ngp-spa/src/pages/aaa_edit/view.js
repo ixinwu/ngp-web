@@ -48,6 +48,14 @@ class AAAEdit extends Component {
       return fieldConfig;
     });
 
+    // 获取字段涉及的类别组
+    const groups = {};
+    fieldConfigs.forEach(fieldConfig => {
+      if (fieldConfig.displayType === 'groupType') {
+        groups[fieldConfig.groupKey] = this.props[fieldConfig.groupKey];
+      }
+    });
+
     return (
       <div className={classes.container}>
         <div className={classes.header}>{title}</div>
@@ -56,6 +64,7 @@ class AAAEdit extends Component {
             fields={fields}
             fieldRelations={fieldRelations}
             groupCascades={groupCascades}
+            groups={groups}
             data={data}
             wrappedComponentRef={form => {
               this.form = form;

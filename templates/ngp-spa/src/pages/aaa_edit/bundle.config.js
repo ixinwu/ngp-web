@@ -207,7 +207,7 @@ export default {
             ],
           },
           {
-            masterTypeKey: 'type_1',
+            masterTypeKey: 'type_2',
             slaveTypeKeys: [
               'stage_4',
               'stage_5',
