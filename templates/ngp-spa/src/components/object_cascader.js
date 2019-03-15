@@ -53,40 +53,39 @@ const generateSelectors = (field, data) => {
 
 class ObjectCascader extends Component {
   static getDerivedStateFromProps(props, state) {
-    let newSelectors = generateSelectors(props.field || {}, props.data || {});
-    const oldSelectors = state.selectors;
+    if (props.field !== state.field || props.data !== state.data) {
+      const newSelectors = generateSelectors(props.field || {}, props.data || {});
+      const oldSelectors = state.selectors;
 
-    let changed = false;
+      let changed = false;
 
-    newSelectors = newSelectors.map(newSelector => {
-      const oldSelector = oldSelectors.find(selector => selector.key === newSelector.key);
+      // 判断外部属性是否变化
+      newSelectors.forEach(newSelector => {
+        const oldSelector = oldSelectors.find(selector => selector.key === newSelector.key);
 
-      if (!oldSelector) {
-        changed = true;
-      }
-
-      if (oldSelector) {
-        if (
-          oldSelector.value.key !== newSelector.value.key ||
-          oldSelector.value.label !== newSelector.value.label
-        ) {
+        if (!oldSelector) {
           changed = true;
         }
+
+        if (oldSelector) {
+          if (
+            oldSelector.value.key !== newSelector.value.key ||
+            oldSelector.value.label !== newSelector.value.label
+          ) {
+            changed = true;
+          }
+        }
+      });
+
+      if (changed) {
         return {
-          ...oldSelector,
-          items: newSelector.items.length > 0 ? newSelector.items : oldSelector.items,
-          value: {
-            key: newSelector.value.key || oldSelector.value.key,
-            label: newSelector.value.label || oldSelector.value.label,
-          },
+          field: props.field,
+          data: props.data,
+          selectors: newSelectors,
         };
       }
-
-      return newSelector;
-    });
-
-    if (changed) {
       return {
+        data: props.data,
         selectors: newSelectors,
       };
     }
@@ -97,6 +96,8 @@ class ObjectCascader extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      field: props.field,
+      data: props.data,
       selectors: generateSelectors(props.field || {}, props.data || {}),
     };
 

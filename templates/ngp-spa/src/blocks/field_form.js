@@ -54,6 +54,7 @@ class FieldForm extends Component {
     let component;
     if (field.component) {
       component = <field.component field={field} data={data} />;
+      return component;
     }
 
     switch (field.displayType) {
