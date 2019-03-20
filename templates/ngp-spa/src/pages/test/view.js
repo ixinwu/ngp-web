@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from '@ixinwu-ngp/web-core';
-import withStyles from '@ixinwu-ngp/materials-component/styles/with_styles';
+import { withStyles } from '@ixinwu-ngp/web-framework';
 import styles from './styles';
 
 class XXXX extends Component {

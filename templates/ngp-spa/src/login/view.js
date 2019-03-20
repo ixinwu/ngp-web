@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Cookies from 'js-cookie';
 import { Form, Icon, Input, Button, Checkbox, Row, Col } from 'antd';
 import { connect } from '@ixinwu-ngp/web-core';
-import withStyles from '@ixinwu-ngp/materials-component/styles/with_styles';
+import { withStyles } from '@ixinwu-ngp/web-framework';
 import styles from './styles';
 
 const FormItem = Form.Item;

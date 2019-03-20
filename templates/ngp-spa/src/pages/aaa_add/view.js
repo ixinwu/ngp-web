@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import withStyles from '@ixinwu-ngp/materials-component/styles/with_styles';
+import { withStyles } from '@ixinwu-ngp/web-framework';
 import { Button } from 'antd';
 import FieldForm from '../../blocks/field_form';
 import FieldGrid from '../../blocks/field_grid';

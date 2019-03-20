@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, generateRouteContent } from '@ixinwu-ngp/web-framework';
-import withStyles from '@ixinwu-ngp/materials-component/styles/with_styles';
+import { Switch, generateRouteContent, withStyles } from '@ixinwu-ngp/web-framework';
 import Error from '@ixinwu-ngp/materials-component/error';
 import Loading from '@ixinwu-ngp/materials-component/loading';
 import { Layout, Menu, Icon, Dropdown, Button } from 'antd';

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { qsStringify } from '@ixinwu-ngp/web-framework';
-import withStyles from '@ixinwu-ngp/materials-component/styles/with_styles';
+import { qsStringify, withStyles } from '@ixinwu-ngp/web-framework';
 import FieldDisplay from '../../blocks/field_display';
 import FieldGrid from '../../blocks/field_grid';
 import styles from './styles';

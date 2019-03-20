@@ -1,4 +1,4 @@
-import withStyles from '@ixinwu-ngp/materials-component/styles/with_styles';
+import { withStyles } from '@ixinwu-ngp/web-framework';
 
 const styles = {};
 

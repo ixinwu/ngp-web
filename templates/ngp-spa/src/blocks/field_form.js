@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import withStyles from '@ixinwu-ngp/materials-component/styles/with_styles';
+import { withStyles } from '@ixinwu-ngp/web-framework';
 import { Form, Input, InputNumber, DatePicker, Select } from 'antd';
 import ObjectCascader from '../components/object_cascader';
 import { fieldRelation } from '../lib/field_relation';

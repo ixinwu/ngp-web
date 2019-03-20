@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Input, InputNumber, Col } from 'antd';
-import withStyles from '@ixinwu-ngp/materials-component/styles/with_styles';
+import { withStyles } from '@ixinwu-ngp/web-framework';
 
 const styles = {};
 

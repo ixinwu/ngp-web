@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import withStyles from '@ixinwu-ngp/materials-component/styles/with_styles';
+import moment from 'moment';
+import { withStyles } from '@ixinwu-ngp/web-framework';
 import { Form, Row, Col, Input, DatePicker, Select } from 'antd';
 import NumberRangePicker from '../components/number_range_picker';
 import ObjectCascader from '../components/object_cascader';
@@ -121,8 +122,12 @@ export default withStyles(styles)(
 
       const formFields = {};
       fields.forEach(field => {
+        let value = data[field.key];
+        if (field.displayType === 'datetime' && value !== null && value !== undefined) {
+          value = moment(value);
+        }
         formFields[field.key] = Form.createFormField({
-          value: data[field.key],
+          value,
         });
       });
       return formFields;

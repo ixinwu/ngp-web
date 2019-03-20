@@ -781,16 +781,40 @@
   resolved "https://registry.yarnpkg.com/@ixinwu-ngp/web-core/-/web-core-1.1.4.tgz#b86883301eae9d9fe7ef1ee79e2961b8e873674e"
   integrity sha512-i6yuZGpbeS8kKM+8oPv32NGd2HkbT08IaSiV4kqxJBF/zEU9DL4kSoQJqffQBGOllflKihfdTj8QyVXAaoMIFg==
 
-"@ixinwu-ngp/web-framework@1.2.3":
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/@ixinwu-ngp/web-framework/-/web-framework-1.2.3.tgz#15dd33070522f747568ca1ec676950327158d4fb"
-  integrity sha512-UoKvn2GAHzGMk9ZCKxc/1KFwRd+s/vEKluHQmXn7HYGj3vAvQwfQPoT8flZusXrvxRoVLyoxJQapywLaLvAB2Q==
+"@ixinwu-ngp/web-framework@1.2.4":
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/@ixinwu-ngp/web-framework/-/web-framework-1.2.4.tgz#fd4f54754828520126c914ad065fc6a30720323b"
+  integrity sha512-9nkLUTcdyRWm43ZabzLNRXm7/ggXvxBn5vcLSRPNt2NY8vXngmn9WeOFGYQ8Ejh0uiNdzC+zhNqJ2knKbjhTPg==
   dependencies:
+    "@babel/runtime" "7.1.2"
     "@ixinwu-ngp/web-core" "1.1.4"
+    "@types/jss" "^9.5.6"
+    "@types/react-transition-group" "^2.0.8"
+    brcast "^3.0.1"
+    csstype "^2.5.2"
+    debounce "^1.1.0"
+    deepmerge "^2.0.1"
+    dom-helpers "^3.2.1"
+    hoist-non-react-statics "^2.5.0"
+    is-plain-object "^2.0.4"
     isomorphic-fetch "^2.2.1"
+    jss "^9.3.3"
+    jss-camel-case "^6.0.0"
+    jss-default-unit "^8.0.2"
+    jss-global "^3.0.0"
+    jss-nested "^6.0.1"
+    jss-props-sort "^6.0.0"
+    jss-vendor-prefixer "^7.0.0"
+    keycode "^2.1.9"
+    normalize-scroll-left "^0.1.2"
+    popper.js "^1.14.1"
+    prop-types "^15.6.0"
     qs "^6.6.0"
     react-click-outside "^3.0.1"
+    react-event-listener "^0.6.2"
     react-jss "^8.6.1"
+    react-transition-group "^2.2.1"
+    recompose "0.28.0 - 0.30.0"
     warning "^4.0.1"
 
 "@types/jss@^9.5.6":
