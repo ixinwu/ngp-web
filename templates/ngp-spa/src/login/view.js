@@ -11,15 +11,9 @@ const FormItem = Form.Item;
 class Login extends Component {
   static propTypes = {
     classes: PropTypes.object,
-    init: PropTypes.func.isRequired,
     login: PropTypes.func.isRequired,
     logStatus: PropTypes.bool,
   };
-
-  componentDidMount() {
-    const { init } = this.props;
-    init();
-  }
 
   handleSubmit = e => {
     e.preventDefault();

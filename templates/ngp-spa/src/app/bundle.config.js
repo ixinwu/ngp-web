@@ -20,8 +20,6 @@ export default {
   data: {
     mapState: (state, ownProps) => ({
       ...state[ownProps.identity],
-      apiConfig: state.apiConfig,
-      routeHistory: state.routeHistory,
       menus: ownProps.menus.map(item => ({
         ...item,
         id: item.key,

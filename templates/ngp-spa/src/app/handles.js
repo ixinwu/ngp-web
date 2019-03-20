@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 import { call, delay, modify } from '@ixinwu-ngp/web-core';
-import apiService from '../lib/api_service';
+import ngp from '@ixinwu-ngp/web-framework';
 import { treeToList } from '../lib/utils';
 import { generateRouteConfigs, findMenuByPathname } from './helpers';
 import { fetchGetCurrentUserInfo } from '../services';
@@ -13,15 +13,14 @@ const setSelectedMenuIds = (setters, identity, value) => setters[identity].selec
 const setOpenMenuIds = (setters, identity, value) => setters[identity].openMenuIds(value);
 
 export function* initApp(props) {
-  const { identity, history, location, apiConfig, menus } = props;
+  const { identity, history, location, menus } = props;
   try {
-    apiService.setApiConfig(apiConfig);
     // 检查token
     const token = Cookies.get('token');
     if (!token) {
       window.location.href = `${window.location.origin}/login.html`;
     }
-    apiService.setToken(token);
+    ngp.apiService.setToken(token);
     // 开始应用初始化
     yield modify(setStatusTip, identity, '应用初始化开始');
 
@@ -91,6 +90,6 @@ export function menuClick({ menus, history }, menuId) {
 
 export function logout() {
   Cookies.remove('token');
-  apiService.setToken(null);
+  ngp.apiService.setToken(null);
   window.location.href = `${window.location.origin}/login.html`;
 }
