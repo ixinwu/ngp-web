@@ -245,9 +245,22 @@ export default {
 - bundle 方式，将 app 通过 bundle 的形式实现
 
 ```javascript
-import { createClient } from '@ixinwu-ngp/web-framework';
+import ngp, { createClient } from '@ixinwu-ngp/web-framework';
+// 使用扩展的服务调用示例
+import apiService from './lib/api_service';
 import { pageBundleLoaders } from './pages';
 import appCode from './app';
+
+const apiConfig = {
+  HOST: window.HOST,
+  APP_HOST: window.APP_HOST,
+  AUTH_HOST: window.AUTH_HOST,
+};
+
+// 配置api服务
+apiService.setApiConfig(apiConfig);
+// 将其绑定到ngp上，方便引用
+ngp.apiService = apiService;
 
 // 初始化应用
 const client = createClient({
@@ -256,10 +269,7 @@ const client = createClient({
   pageBundleLoaders,
   // 初始state
   config: {
-    apiConfig: {
-      HOST: window.HOST,
-      AUTH_HOST: window.AUTH_HOST,
-    },
+    apiConfig,
   },
 });
 
@@ -269,23 +279,31 @@ client.render(document.getElementById('root'), appCode);
 - block 方式，将 app 通过 block 的形式实现
 
 ```javascript
-import { createClient } from '@ixinwu-ngp/web-framework';
+import '@babel/polyfill';
+import ngp, { createClient } from '@ixinwu-ngp/web-framework';
+// 使用扩展的服务调用示例
+import apiService from './lib/api_service';
 import { pageBundleLoaders, pageConfigLoaders } from './pages';
 import appCode from './app';
-import appConfig from './app/bundle.config.js';
+import appConfig from './app/bundle.config';
+
+const apiConfig = {
+  HOST: window.HOST,
+  APP_HOST: window.APP_HOST,
+  AUTH_HOST: window.AUTH_HOST,
+};
+
+// 配置api服务
+apiService.setApiConfig(apiConfig);
+// 将其绑定到ngp上，方便引用
+ngp.apiService = apiService;
 
 // 初始化应用
 const client = createClient({
-  // 应用key
-  appKey: 'xxxApp',
   pageBundleLoaders,
   pageConfigLoaders,
-  // 初始state
   config: {
-    apiConfig: {
-      HOST: window.HOST,
-      AUTH_HOST: window.AUTH_HOST,
-    },
+    apiConfig,
   },
 });
 
