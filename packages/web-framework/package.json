@@ -1,6 +1,6 @@
 {
   "name": "@ixinwu-ngp/web-framework",
-  "version": "1.2.9",
+  "version": "1.2.12",
   "author": {
     "name": "zhuoluo-hq",
     "email": "zhuoluo.hq@gmail.com"
@@ -29,7 +29,6 @@
   },
   "peerDependencies": {
     "@ixinwu-ngp/materials-component": "^1.0.0",
-    "js-cookie": "^2.2.0",
     "prop-types": "^15.6.2",
     "react": "^16.6.1",
     "react-dom": "^16.6.1",

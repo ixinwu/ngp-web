@@ -691,13 +691,6 @@
     "@babel/plugin-transform-react-jsx-self" "^7.0.0"
     "@babel/plugin-transform-react-jsx-source" "^7.0.0"
 
-"@babel/runtime@7.1.2":
-  version "7.1.2"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.1.2.tgz#81c89935f4647706fc54541145e6b4ecfef4b8e3"
-  integrity sha512-Y3SCjmhSupzFB6wcv1KmmFucH6gDVnI30WjOcicV10ju0cZjak3Jcs67YLIXBrmZYw1xCrVeJPbycFwrqNyxpg==
-  dependencies:
-    regenerator-runtime "^0.12.0"
-
 "@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.2.0":
   version "7.3.4"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.3.4.tgz#73d12ba819e365fcf7fd152aed56d6df97d21c83"
@@ -738,21 +731,19 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@ixinwu-ngp/materials-block@1.1.5":
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/@ixinwu-ngp/materials-block/-/materials-block-1.1.5.tgz#d50b59bc69235e8cd26023bc39dc7a2eb4785dac"
-  integrity sha512-RkXuD8M5tY/pvMPtCMfOeHMBMZMkBRV4nvKN/xFIAnMZeKsdvlSsGyr/SeaeXOhW6+HjPHJuwB/23UCthkYgBw==
+"@ixinwu-ngp/materials-block@1.1.6":
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/@ixinwu-ngp/materials-block/-/materials-block-1.1.6.tgz#2f639dcd9c4050c7c96e823e74af61dc3b0113d6"
+  integrity sha512-V0PTvUhxbVk++Fr4iOOP7O1o4monRIEuAHNwdVSbmInHOmWRzYedHRVkO5RvmCKKDht68AplQFpNH6frEms4oA==
   dependencies:
     warning "^4.0.1"
 
-"@ixinwu-ngp/materials-component@1.1.2":
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/@ixinwu-ngp/materials-component/-/materials-component-1.1.2.tgz#57cd33a3c93a5d87f5d57cd55ce4431d5e4f543f"
-  integrity sha512-NDaS+rE2hrglxUdikm7pNqmr8em/nO+bPvntEqUukuH/qiCtcMAVL2yOythPCHOO1lmXCao0+CUWZPaO8J7PCw==
+"@ixinwu-ngp/materials-component@1.1.3":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@ixinwu-ngp/materials-component/-/materials-component-1.1.3.tgz#de22db5ac18601ada0c2829397a6636429b881fa"
+  integrity sha512-sRfvS0TC/R39jziX1KZ/qa9nls7/OM5JkEkPup3seWckxu7J3+MGYE2B7aIztl3CwyHFyUzkedktyq98uIsWrQ==
   dependencies:
-    "@babel/runtime" "7.1.2"
-    "@types/jss" "^9.5.6"
-    "@types/react-transition-group" "^2.0.8"
+    "@ixinwu-ngp/web-styles" "^1.0.0"
     brcast "^3.0.1"
     csstype "^2.5.2"
     debounce "^1.1.0"
@@ -781,13 +772,13 @@
   resolved "https://registry.yarnpkg.com/@ixinwu-ngp/web-core/-/web-core-1.1.4.tgz#b86883301eae9d9fe7ef1ee79e2961b8e873674e"
   integrity sha512-i6yuZGpbeS8kKM+8oPv32NGd2HkbT08IaSiV4kqxJBF/zEU9DL4kSoQJqffQBGOllflKihfdTj8QyVXAaoMIFg==
 
-"@ixinwu-ngp/web-framework@1.2.9":
-  version "1.2.9"
-  resolved "https://registry.yarnpkg.com/@ixinwu-ngp/web-framework/-/web-framework-1.2.9.tgz#52bec8ee4318702aa1e3db3f2b88801132950150"
-  integrity sha512-4bPefGgKe4eGRMyvhfRHHZh/+P/hSyFtST30rf3RppsHFH3E2zdFDneY67S8d6SGKD1NA/zblHo+HsxS1j4gYQ==
+"@ixinwu-ngp/web-framework@1.2.12":
+  version "1.2.12"
+  resolved "https://registry.yarnpkg.com/@ixinwu-ngp/web-framework/-/web-framework-1.2.12.tgz#55f02a90def1d556ea9f71b561f5c75fc26c91aa"
+  integrity sha512-YJgLZkJdz0o33uT/23vMS6Eg+wWnsQS8Um06Sg7Q/RQvXKC6czI25wF+5j8EJgyjA1a4WsoqreWjB7361S1oug==
   dependencies:
-    "@babel/runtime" "7.1.2"
     "@ixinwu-ngp/web-core" "1.1.4"
+    "@ixinwu-ngp/web-styles" "^1.0.0"
     "@types/jss" "^9.5.6"
     "@types/react-transition-group" "^2.0.8"
     brcast "^3.0.1"
@@ -816,6 +807,30 @@
     react-transition-group "^2.2.1"
     recompose "0.28.0 - 0.30.0"
     warning "^4.0.1"
+
+"@ixinwu-ngp/web-styles@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@ixinwu-ngp/web-styles/-/web-styles-1.0.0.tgz#ddffaed2d3f3cd636596274270ed3a6b4769348d"
+  integrity sha512-w7lFz3UlhmyRAHhJSkIxsbEDCmn8UVro43rZYRJop+yOC7A6WdJvZnl+UzCfjm+T+Lau15m8IYF5sH8pQw9Jng==
+  dependencies:
+    "@ixinwu-ngp/web-utils" "^1.0.0"
+    brcast "^3.0.1"
+    deepmerge "^2.0.1"
+    hoist-non-react-statics "^2.5.0"
+    jss "^9.3.3"
+    jss-camel-case "^6.0.0"
+    jss-default-unit "^8.0.2"
+    jss-global "^3.0.0"
+    jss-nested "^6.0.1"
+    jss-props-sort "^6.0.0"
+    jss-vendor-prefixer "^7.0.0"
+    prop-types "^15.6.0"
+    warning "^4.0.1"
+
+"@ixinwu-ngp/web-utils@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@ixinwu-ngp/web-utils/-/web-utils-1.0.0.tgz#c44121d5d2f80825f3bbf37e92707df770caea53"
+  integrity sha512-4zHhO92WE3ROG23x0l2cKxIVyRDs3CC/rU9wsnGehZS7EW0htYITqzkcjYwY6D/MM/4A/5Jouqk9WjMBd+a2sQ==
 
 "@types/jss@^9.5.6":
   version "9.5.8"

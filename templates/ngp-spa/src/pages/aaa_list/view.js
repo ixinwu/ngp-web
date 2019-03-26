@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { qsStringify, withStyles } from '@ixinwu-ngp/web-framework';
+import { qsStringify } from '@ixinwu-ngp/web-framework';
+import { withStyles } from '@ixinwu-ngp/web-styles';
 import debounce from 'debounce';
 import { Button } from 'antd';
 import ListSearch from '@ixinwu-ngp/materials-component/list_search';

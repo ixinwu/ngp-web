@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import debounce from 'debounce';
 import { Select, message } from 'antd';
-import { withStyles } from '@ixinwu-ngp/web-framework';
+import { withStyles } from '@ixinwu-ngp/web-styles';
 import { fetchGetDataSetListData } from '../services';
 
 const styles = {
