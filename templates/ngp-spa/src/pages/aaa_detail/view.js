@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { qsStringify, withStyles } from '@ixinwu-ngp/web-framework';
-import FieldDisplay from '../../blocks/field_display';
+import FieldDisplay from '@ixinwu-ngp/materials-component/field_display';
 import styles from './styles';
 
 class AAADetail extends Component {

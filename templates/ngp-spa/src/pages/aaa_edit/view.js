@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withStyles } from '@ixinwu-ngp/web-framework';
 import { Button } from 'antd';
-import FieldForm from '../../blocks/field_form';
+import FieldForm from '@ixinwu-ngp/materials-component/field_form';
 import styles from './styles';
 
 class AAAEdit extends Component {

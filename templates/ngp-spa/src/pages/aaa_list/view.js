@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { qsStringify, withStyles } from '@ixinwu-ngp/web-framework';
 import debounce from 'debounce';
 import { Button } from 'antd';
-import ListSearch from '../../blocks/list_search';
-import ListTable from '../../blocks/list_table';
+import ListSearch from '@ixinwu-ngp/materials-component/list_search';
+import ListTable from '@ixinwu-ngp/materials-component/list_table';
 import styles from './styles';
 
 class AaaList extends Component {
