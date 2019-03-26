@@ -15,6 +15,7 @@
  * @property {object} props
  */
 import typeGroups from '../../constants/type_group';
+import ObjectCascader from '../../components/object_cascader';
 
 const cConfig = {
   dataSetKey: 'dataSet1', // 数据源配置
@@ -80,7 +81,7 @@ export default {
       {
         key: 'bbb__id',
         text: 'BBBId',
-        displayType: 'object',
+        component: ObjectCascader,
         // colspan: 2,
         // searchable: true,
         config: bConfig,
@@ -93,7 +94,7 @@ export default {
       {
         key: 'ccc__id',
         text: 'CCCId',
-        displayType: 'object',
+        component: ObjectCascader,
         // searchable: true,
         config: cConfig,
       },

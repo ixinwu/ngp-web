@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import { withStyles } from '@ixinwu-ngp/web-framework';
-import { Form, Input, InputNumber, DatePicker, Select } from 'antd';
-import { fieldRelation } from '../lib/field_relation';
-import { groupCascade, getChangedValues } from '../lib/group_cascade';
-import FieldGrid from './field_grid';
+import Form from 'antd/lib/form';
+import 'antd/lib/form/style';
+import Input from 'antd/lib/input';
+import 'antd/lib/input/style';
+import InputNumber from 'antd/lib/input-number';
+import 'antd/lib/input-number/style';
+import DatePicker from 'antd/lib/date-picker';
+import 'antd/lib/date-picker/style';
+import Select from 'antd/lib/select';
+import 'antd/lib/select/style';
+import { fieldRelation } from '../utils/field_relation';
+import { groupCascade, getChangedValues } from '../utils/group_cascade';
+import FieldGrid from '../field_grid';
 
 const { MonthPicker } = DatePicker;
 const { Option } = Select;

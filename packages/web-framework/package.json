@@ -1,6 +1,6 @@
 {
   "name": "@ixinwu-ngp/web-framework",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "repository": "git@github.com:zhuoluo-hq/web-framework.git",
   "author": {
     "name": "zhuoluo-hq",
@@ -29,7 +29,6 @@
     "release": "yarn build && yarn publish build"
   },
   "peerDependencies": {
-    "@ixinwu-ngp/materials-block": "^1.0.0",
     "@ixinwu-ngp/materials-component": "^1.0.0",
     "js-cookie": "^2.2.0",
     "prop-types": "^15.6.2",

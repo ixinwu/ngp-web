@@ -4,15 +4,26 @@ import generateReducer from '../utils/generate_reducer';
 import connect from './connect';
 
 export default function mount(blockConfig, bundle) {
-  const { identity, data = {}, config = {}, handles = {} } = blockConfig;
+  const {
+    identity,
+    data = {},
+    config = {},
+    settings = {},
+    handles = {},
+    models = {},
+    mapState,
+  } = blockConfig;
 
-  const { mapState, models = {} } = data;
+  const { models: dataModels = {} } = data;
 
   warning(identity, 'block config need identity');
   warning(bundle.view, 'block bundle need view');
 
   const modelReducers = {};
-  Object.keys(models).forEach(key => {
+  Object.keys({
+    ...models,
+    ...dataModels,
+  }).forEach(key => {
     modelReducers[key] = generateReducer({
       key,
       defaultValue: models[key].defaultValue,
@@ -31,8 +42,9 @@ export default function mount(blockConfig, bundle) {
   return connect({
     identity,
     handleTriggers,
-    mapState,
+    mapState: mapState || data.mapState,
     config,
+    settings,
     handleConfigs: handles,
     dataConfigs: models,
   })(bundle.view);

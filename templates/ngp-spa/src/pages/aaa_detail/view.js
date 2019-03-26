@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { qsStringify, withStyles } from '@ixinwu-ngp/web-framework';
 import FieldDisplay from '../../blocks/field_display';
-import FieldGrid from '../../blocks/field_grid';
 import styles from './styles';
 
 class AAADetail extends Component {
@@ -41,7 +40,6 @@ class AAADetail extends Component {
             fields={fields}
             data={data}
             onFieldClick={this.handleFieldClick}
-            render={items => <FieldGrid fields={items} />}
           />
         </div>
       </div>

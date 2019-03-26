@@ -1,10 +1,12 @@
 import ngp from './ref';
 
-export { connect } from '@ixinwu-ngp/web-core';
+export { connect, mount, unmount } from '@ixinwu-ngp/web-core';
 export { default as connectBlock } from './block/connect';
 export { default as mountBlock } from './block/mount';
+export { default as unmountBlock } from './block/unmount';
 export { default as connectBundle } from './bundle/connect';
 export { default as mountBundle } from './bundle/mount';
+export { default as unmountBundle } from './bundle/unmount';
 
 export { default as RouteContainer } from './route_container';
 export { default as RouteLayout } from './route_layout';

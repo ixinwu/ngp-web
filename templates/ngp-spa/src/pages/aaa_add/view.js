@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { withStyles } from '@ixinwu-ngp/web-framework';
 import { Button } from 'antd';
 import FieldForm from '../../blocks/field_form';
-import FieldGrid from '../../blocks/field_grid';
 import styles from './styles';
 
 class AAAAdd extends Component {
@@ -51,7 +50,6 @@ class AAAAdd extends Component {
             wrappedComponentRef={form => {
               this.form = form;
             }}
-            render={items => <FieldGrid fields={items} />}
           />
         </div>
         <div className={classes.footer}>

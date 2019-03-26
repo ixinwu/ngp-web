@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import { withStyles } from '@ixinwu-ngp/web-framework';
-import { Form, Row, Col, Input, DatePicker, Select } from 'antd';
-import NumberRangePicker from '../components/number_range_picker';
+import Form from 'antd/lib/form';
+import 'antd/lib/form/style';
+import Row from 'antd/lib/row';
+import 'antd/lib/row/style';
+import Col from 'antd/lib/col';
+import 'antd/lib/col/style';
+import Input from 'antd/lib/input';
+import 'antd/lib/input/style';
+import DatePicker from 'antd/lib/date-picker';
+import 'antd/lib/date-picker/style';
+import Select from 'antd/lib/select';
+import 'antd/lib/select/style';
+import NumberRangePicker from '../number_range_picker';
 
 const { RangePicker } = DatePicker;
 const { Option } = Select;

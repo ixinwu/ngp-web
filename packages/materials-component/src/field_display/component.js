@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { withStyles } from '@ixinwu-ngp/web-framework';
-import DatetimeFormat from '../components/datetime_format';
-import NumberFormat from '../components/number_format';
-import TextFormat from '../components/text_format';
-import TypeFormat from '../components/type_format';
-import FieldGrid from './field_grid';
+import DatetimeFormat from '../datetime_format';
+import NumberFormat from '../number_format';
+import TextFormat from '../text_format';
+import TypeFormat from '../type_format';
+import FieldGrid from '../field_grid';
 
 const styles = theme => {
   const t = {

@@ -1,6 +1,6 @@
 {
   "name": "@ixinwu-ngp/materials-component",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "author": {
     "name": "zhuoluo-hq",
     "email": "zhuoluo.hq@gmail.com"
@@ -22,6 +22,7 @@
     "release": "yarn build && yarn publish build"
   },
   "peerDependencies": {
+    "@ixinwu-ngp/web-framework": "^1.0.0",
     "antd": "^3.10.8",
     "classnames": "^2.2.5",
     "react": "^16.3.0",
