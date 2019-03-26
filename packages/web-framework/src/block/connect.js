@@ -12,7 +12,15 @@ function initMapStateToProps(mapState) {
 }
 
 export default function connectBlock(blockConfig) {
-  const { config, dataConfigs, handleConfigs, mapState, identity, handleTriggers } = blockConfig;
+  const {
+    config,
+    settings,
+    dataConfigs,
+    handleConfigs,
+    mapState,
+    identity,
+    handleTriggers,
+  } = blockConfig;
 
   const mapStateToProps = initMapStateToProps(mapState);
 
@@ -20,6 +28,7 @@ export default function connectBlock(blockConfig) {
     identity,
     ...handleTriggers,
     ...config,
+    ...settings,
     dataConfigs,
     handleConfigs,
   };

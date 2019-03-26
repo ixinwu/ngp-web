@@ -23,5 +23,5 @@ const client = createClient({
 
 client.render(document.getElementById('root'), loginBlock.bundle, {
   ...loginBlock.config,
-  config: { ...loginBlock.config.config, fetchAuth },
+  settings: { ...loginBlock.config.settings, fetchAuth },
 });

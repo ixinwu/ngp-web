@@ -738,17 +738,17 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@ixinwu-ngp/materials-block@1.1.4":
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/@ixinwu-ngp/materials-block/-/materials-block-1.1.4.tgz#cd680bfc99fff5a5c49045f3b44fa51070eba9ec"
-  integrity sha512-Tny7SH25J0cjB+0NJanLMb6kkGUwPUHjQtOhfksnY+7meUyAKwTEY5DvvNeEwNUsbvXeJr+shWCaJ2rUDYFsQA==
+"@ixinwu-ngp/materials-block@1.1.5":
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/@ixinwu-ngp/materials-block/-/materials-block-1.1.5.tgz#d50b59bc69235e8cd26023bc39dc7a2eb4785dac"
+  integrity sha512-RkXuD8M5tY/pvMPtCMfOeHMBMZMkBRV4nvKN/xFIAnMZeKsdvlSsGyr/SeaeXOhW6+HjPHJuwB/23UCthkYgBw==
   dependencies:
     warning "^4.0.1"
 
-"@ixinwu-ngp/materials-component@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@ixinwu-ngp/materials-component/-/materials-component-1.1.1.tgz#528350986c2d121da8ec09188a0f87a382d79487"
-  integrity sha512-gRQTVPV5XyNj3ubS3mnu9vN1clbiH1xyfHicc7WWeKlp8KD4rM0h9jxCV0DlorUAFT+OjmBCvDI7qKgIKq1bLg==
+"@ixinwu-ngp/materials-component@1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@ixinwu-ngp/materials-component/-/materials-component-1.1.2.tgz#57cd33a3c93a5d87f5d57cd55ce4431d5e4f543f"
+  integrity sha512-NDaS+rE2hrglxUdikm7pNqmr8em/nO+bPvntEqUukuH/qiCtcMAVL2yOythPCHOO1lmXCao0+CUWZPaO8J7PCw==
   dependencies:
     "@babel/runtime" "7.1.2"
     "@types/jss" "^9.5.6"
@@ -781,10 +781,10 @@
   resolved "https://registry.yarnpkg.com/@ixinwu-ngp/web-core/-/web-core-1.1.4.tgz#b86883301eae9d9fe7ef1ee79e2961b8e873674e"
   integrity sha512-i6yuZGpbeS8kKM+8oPv32NGd2HkbT08IaSiV4kqxJBF/zEU9DL4kSoQJqffQBGOllflKihfdTj8QyVXAaoMIFg==
 
-"@ixinwu-ngp/web-framework@1.2.4":
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/@ixinwu-ngp/web-framework/-/web-framework-1.2.4.tgz#fd4f54754828520126c914ad065fc6a30720323b"
-  integrity sha512-9nkLUTcdyRWm43ZabzLNRXm7/ggXvxBn5vcLSRPNt2NY8vXngmn9WeOFGYQ8Ejh0uiNdzC+zhNqJ2knKbjhTPg==
+"@ixinwu-ngp/web-framework@1.2.9":
+  version "1.2.9"
+  resolved "https://registry.yarnpkg.com/@ixinwu-ngp/web-framework/-/web-framework-1.2.9.tgz#52bec8ee4318702aa1e3db3f2b88801132950150"
+  integrity sha512-4bPefGgKe4eGRMyvhfRHHZh/+P/hSyFtST30rf3RppsHFH3E2zdFDneY67S8d6SGKD1NA/zblHo+HsxS1j4gYQ==
   dependencies:
     "@babel/runtime" "7.1.2"
     "@ixinwu-ngp/web-core" "1.1.4"

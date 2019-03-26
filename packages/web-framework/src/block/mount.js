@@ -20,13 +20,14 @@ export default function mount(blockConfig, bundle) {
   warning(bundle.view, 'block bundle need view');
 
   const modelReducers = {};
-  Object.keys({
+  const lastModels = {
     ...models,
     ...dataModels,
-  }).forEach(key => {
+  };
+  Object.keys(lastModels).forEach(key => {
     modelReducers[key] = generateReducer({
       key,
-      defaultValue: models[key].defaultValue,
+      defaultValue: lastModels[key].defaultValue,
     });
   });
 
