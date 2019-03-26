@@ -1,7 +1,6 @@
 {
   "name": "@ixinwu-ngp/web-framework",
-  "version": "1.2.5",
-  "repository": "git@github.com:zhuoluo-hq/web-framework.git",
+  "version": "1.2.7",
   "author": {
     "name": "zhuoluo-hq",
     "email": "zhuoluo.hq@gmail.com"
