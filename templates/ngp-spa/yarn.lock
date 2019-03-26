@@ -738,10 +738,10 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@ixinwu-ngp/materials-block@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@ixinwu-ngp/materials-block/-/materials-block-1.1.1.tgz#003c8d18e4774ceba71edee84d862c172ee0aa61"
-  integrity sha512-7ukAMBxaxb7wEYpd1dV1wRt/7pBNaARFY9tleczdx6P9+xHPTPL7rcMP7gL+FsqW1KNriHEYQKJa9qxJGi57zQ==
+"@ixinwu-ngp/materials-block@1.1.4":
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/@ixinwu-ngp/materials-block/-/materials-block-1.1.4.tgz#cd680bfc99fff5a5c49045f3b44fa51070eba9ec"
+  integrity sha512-Tny7SH25J0cjB+0NJanLMb6kkGUwPUHjQtOhfksnY+7meUyAKwTEY5DvvNeEwNUsbvXeJr+shWCaJ2rUDYFsQA==
   dependencies:
     warning "^4.0.1"
 

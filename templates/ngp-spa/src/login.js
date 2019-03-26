@@ -1,8 +1,8 @@
 import '@babel/polyfill';
 import ngp, { createClient } from '@ixinwu-ngp/web-framework';
+import loginBlock from '@ixinwu-ngp/materials-block/login';
 import apiService from './lib/api_service';
-import loginBundle from './login/index';
-import loginConfig from './login/bundle.config';
+import { fetchAuth } from './services';
 
 const apiConfig = {
   HOST: window.HOST,
@@ -21,4 +21,7 @@ const client = createClient({
   },
 });
 
-client.render(document.getElementById('root'), loginBundle, loginConfig);
+client.render(document.getElementById('root'), loginBlock.bundle, {
+  ...loginBlock.config,
+  config: { ...loginBlock.config.config, fetchAuth },
+});

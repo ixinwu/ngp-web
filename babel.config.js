@@ -13,12 +13,14 @@ module.exports = {
     '@babel/transform-object-assign',
   ].filter(Boolean),
   env: {
-    app: {
+    block: {
       plugins: [
         ['@babel/proposal-class-properties', { loose }],
         ['@babel/proposal-decorators', { legacy: true }],
         ['@babel/proposal-object-rest-spread', { loose }],
-        '@babel/transform-runtime',
+        cjs && ['@babel/transform-modules-commonjs', { loose }],
+        ['@babel/transform-runtime', { useESModules: !cjs }],
+        '@babel/transform-object-assign',
         [
           'import',
           {
@@ -26,7 +28,24 @@ module.exports = {
             style: true,
           },
         ],
-      ],
+      ].filter(Boolean),
+    },
+    component: {
+      plugins: [
+        ['@babel/proposal-class-properties', { loose }],
+        ['@babel/proposal-decorators', { legacy: true }],
+        ['@babel/proposal-object-rest-spread', { loose }],
+        cjs && ['@babel/transform-modules-commonjs', { loose }],
+        ['@babel/transform-runtime', { useESModules: !cjs }],
+        '@babel/transform-object-assign',
+        [
+          'import',
+          {
+            libraryName: 'antd',
+            style: true,
+          },
+        ],
+      ].filter(Boolean),
     },
   },
 };

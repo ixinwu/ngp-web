@@ -3,11 +3,11 @@ import 'antd/lib/message/style';
 import Cookies from 'js-cookie';
 import { call, modify } from '@ixinwu-ngp/web-core';
 import ngp from '@ixinwu-ngp/web-framework';
-import { fetchAuth } from '../services';
 
 const setLogStatus = (setters, status) => setters.login.logStatus(status);
 
 export function* login(props, userName, password) {
+  const { fetchAuth } = props;
   try {
     yield modify(setLogStatus, true);
     const token = yield call(fetchAuth, userName, password);
