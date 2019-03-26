@@ -6,7 +6,7 @@ import Row from 'antd/lib/row';
 import 'antd/lib/row/style';
 import Col from 'antd/lib/col';
 import 'antd/lib/col/style';
-import withStyles from '../styles/with_styles';
+import { withStyles } from '@ixinwu-ngp/web-styles';
 
 const styles = {
   container: {

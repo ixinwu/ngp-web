@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import warning from 'warning';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import { create } from 'jss';
+import { getDisplayName } from '@ixinwu-ngp/web-utils';
 import ns from './react_jss_context';
 import jssPreset from './js_preset';
 import mergeClasses from './merge_classes';
@@ -11,7 +12,6 @@ import createTheme from './create_theme';
 import themeListener from './theme_listener';
 import createGenerateClassName from './create_generate_class_name';
 import getStylesCreator from './get_styles_creator';
-import getDisplayName from '../utils/get_display_name';
 import getThemeProps from './get_theme_props';
 
 // Default JSS instance.

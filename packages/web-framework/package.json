@@ -31,13 +31,14 @@
     "@ixinwu-ngp/materials-component": "^1.0.0",
     "js-cookie": "^2.2.0",
     "prop-types": "^15.6.2",
+    "react": "^16.6.1",
     "react-dom": "^16.6.1",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1"
   },
   "dependencies": {
-    "@babel/runtime": "7.1.2",
     "@ixinwu-ngp/web-core": "1.1.4",
+    "@ixinwu-ngp/web-styles": "^1.0.0",
     "@types/jss": "^9.5.6",
     "@types/react-transition-group": "^2.0.8",
     "brcast": "^3.0.1",

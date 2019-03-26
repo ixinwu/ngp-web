@@ -5,7 +5,7 @@ import InputNumber from 'antd/lib/input-number';
 import 'antd/lib/input-number/style';
 import Col from 'antd/lib/col';
 import 'antd/lib/col/style';
-import { withStyles } from '@ixinwu-ngp/web-framework';
+import { withStyles } from '@ixinwu-ngp/web-styles';
 
 const styles = {};
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Table from 'antd/lib/table';
 import 'antd/lib/table/style';
-import { withStyles } from '@ixinwu-ngp/web-framework';
+import { withStyles } from '@ixinwu-ngp/web-styles';
 import DatetimeFormat from '../datetime_format';
 import NumberFormat from '../number_format';
 import TextFormat from '../text_format';

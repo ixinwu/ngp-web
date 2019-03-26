@@ -17,7 +17,7 @@ import 'antd/lib/row/style';
 import Col from 'antd/lib/col';
 import 'antd/lib/col/style';
 import { connect } from '@ixinwu-ngp/web-core';
-import { withStyles } from '@ixinwu-ngp/web-framework';
+import { withStyles } from '@ixinwu-ngp/web-styles';
 import styles from './styles';
 
 const FormItem = Form.Item;

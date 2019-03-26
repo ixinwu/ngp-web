@@ -24,7 +24,6 @@ _框架提供了路由的一个实现方式，但菜单的交互实现是完全�
   - [页面加载](#页面加载)
   - [服务调用](#服务调用)
     - [统一管理 API 接口](#统一管理-api-接口)
-  - [样式方案](#样式方案)
   - [典型应用目录结构说明](#典型应用目录结构说明)
   - [API](#api)
     - [ngp](#ngp)
@@ -38,9 +37,6 @@ _框架提供了路由的一个实现方式，但菜单的交互实现是完全�
     - [qsParse](#qsparse)
     - [mountBlock](#mountblock)
     - [mountBundle](#mountbundle)
-    - [Styles](#styles)
-      - [NgpThemeProvider](#ngpthemeprovider)
-      - [withStyles](#withstyles)
 
 <!-- /TOC -->
 
@@ -475,12 +471,6 @@ export default apiService;
 
 在[典型应用目录结构说明](#典型应用目录结构说明)中使用`services`目录统一管理 API 接口，这种方式推荐在中小型应用中使用，同时结合 apiService 提供的 mockFetch 来实现一套简单轻量的纯前端虚拟数据层，方便前后端并行开发等
 
-## 样式方案
-
-基本思路是使用[JSS](https://github.com/cssinjs/jss)，提供 withStyles 将`classes`属性提供给组件使用
-
-**参考借鉴[Material-UI 的样式解决方案](https://material-ui.com/css-in-js/basics/)，实现源码中也多有参考，在此感谢[Material-UI 团队以及项目的贡献者](https://github.com/mui-org/material-ui/graphs/contributors)**
-
 ## 典型应用目录结构说明
 
 参考[STRUCTURE.md](./STRUCTURE.md)
@@ -744,45 +734,4 @@ import { mountBundle } from '@ixinwu-ngp/web-framework';
  * @param {Object} code 代码（具体参考）
  */
 mountBundle(code);
-```
-
-### Styles
-
-提供一些样式的基本功能
-
-#### NgpThemeProvider
-
-| Name          | Type            | Default | Description                                                                          |
-| :------------ | :-------------- | :------ | :----------------------------------------------------------------------------------- |
-| children      | node            |         | react 的功能                                                                         |
-| sheetsManager | map             |         | 管理页面中加载的样式，避免重复。在使用 ssr 是应该为每一个页面提供一个全新的 Map 对象 |
-| theme         | object/function |         | 主题对象，可以使用空对象{}；或者是主体对象的生成方法                                 |
-
-#### withStyles
-
-利用 higher-order component 的模式，为 Wrap 的组件增加`classes`和`innerRef`属性
-
-参数：
-
-- `styles` (_Function | Object_): 样式定义，如果需要使用主题变量使用(theme) => {return {...}}签名的函数
-
-示例：
-
-```javascript
-import React from 'react';
-import { withStyles } from '@ixinwu-ngp/web-framework';
-
-const styles = {
-  root: {
-    backgroundColor: 'red',
-  },
-};
-
-class MyComponent extends React.Component {
-  render () {
-    return <div className={this.props.classes.root} />;
-  }
-}
-
-export default withStyles(styles)(MyComponent);
 ```

@@ -1,5 +1,5 @@
 import warning from 'warning';
-import getDisplayName from '../utils/get_display_name';
+import { getDisplayName } from '@ixinwu-ngp/web-utils';
 
 function mergeClasses(options = {}) {
   const { baseClasses, newClasses, Component } = options;

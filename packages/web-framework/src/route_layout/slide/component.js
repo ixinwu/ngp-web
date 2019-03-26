@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import enhanceWithClickOutside from 'react-click-outside';
-import withStyles from '../../styles/with_styles';
+import { withStyles } from '@ixinwu-ngp/web-styles';
 
 const styles = {
   container: {

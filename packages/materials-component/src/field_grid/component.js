@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withStyles } from '@ixinwu-ngp/web-framework';
+import { withStyles } from '@ixinwu-ngp/web-styles';
 import Row from 'antd/lib/row';
 import 'antd/lib/row/style';
 import Col from 'antd/lib/col';

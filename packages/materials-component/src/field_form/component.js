@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import { withStyles } from '@ixinwu-ngp/web-framework';
+import { withStyles } from '@ixinwu-ngp/web-styles';
 import Form from 'antd/lib/form';
 import 'antd/lib/form/style';
 import Input from 'antd/lib/input';

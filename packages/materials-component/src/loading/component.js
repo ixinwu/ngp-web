@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Spin from 'antd/lib/spin';
 import 'antd/lib/spin/style';
-import withStyles from '../styles/with_styles';
+import { withStyles } from '@ixinwu-ngp/web-styles';
 
 const styles = {
   container: {

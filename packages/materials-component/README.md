@@ -1,6 +1,6 @@
 # NGP 组件库
 
-> 样式解决方案已经迁移到[@ixinwu-ngp/web-framework](../packages/web-framework/README.md)，这里的API依旧可以使用
+> 样式解决方案已经迁移到[@ixinwu-ngp/web-styles](../packages/web-styles/README.md)，这里的API依旧可以使用
 
 ## 风格
 

@@ -1,20 +1,26 @@
 {
-  "name": "@ixinwu-ngp/materials-component",
-  "version": "1.1.2",
+  "name": "@ixinwu-ngp/web-styles",
+  "version": "1.0.0",
   "author": {
     "name": "zhuoluo-hq",
     "email": "zhuoluo.hq@gmail.com"
   },
-  "homepage": "https://github.com/zhuoluo-hq/ngp-web/tree/master/packages/materials-component",
+  "homepage": "https://github.com/zhuoluo-hq/ngp-web/tree/master/packages/web-framework",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./src/index.js",
+  "module": "./src/index.js",
   "keywords": [
     "react",
-    "css-in-js",
-    "jss"
+    "reactjs",
+    "react-redux",
+    "redux",
+    "redux-saga"
   ],
-  "main": "./src/index.js",
   "scripts": {
-    "build:commonjs": "cross-env BABEL_ENV=commonjs babel --root-mode upward src --out-dir build",
+    "build:commonjs": "cross-env BABEL_ENV=commonjs babel --root-mode upward src --out-dir build/lib",
     "build:es": "babel --root-mode upward src --out-dir build/es",
     "build:copy-files": "node ./scripts/copy-files.js",
     "clean": "rimraf build",
@@ -22,20 +28,13 @@
     "release": "yarn build && yarn publish build"
   },
   "peerDependencies": {
-    "antd": "^3.10.8",
-    "classnames": "^2.2.5",
-    "react": "^16.3.0",
-    "react-dom": "^16.3.0"
+    "react": "^16.6.1"
   },
   "dependencies": {
-    "@ixinwu-ngp/web-styles": "^1.0.0",
+    "@ixinwu-ngp/web-utils": "^1.0.0",
     "brcast": "^3.0.1",
-    "csstype": "^2.5.2",
-    "debounce": "^1.1.0",
     "deepmerge": "^2.0.1",
-    "dom-helpers": "^3.2.1",
     "hoist-non-react-statics": "^2.5.0",
-    "is-plain-object": "^2.0.4",
     "jss": "^9.3.3",
     "jss-camel-case": "^6.0.0",
     "jss-default-unit": "^8.0.2",
@@ -43,16 +42,7 @@
     "jss-nested": "^6.0.1",
     "jss-props-sort": "^6.0.0",
     "jss-vendor-prefixer": "^7.0.0",
-    "keycode": "^2.1.9",
-    "normalize-scroll-left": "^0.1.2",
-    "popper.js": "^1.14.1",
     "prop-types": "^15.6.0",
-    "react-event-listener": "^0.6.2",
-    "react-transition-group": "^2.2.1",
-    "recompose": "0.28.0 - 0.30.0",
     "warning": "^4.0.1"
-  },
-  "publishConfig": {
-    "access": "public"
   }
 }

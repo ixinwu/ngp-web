@@ -2,8 +2,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '../styles';
-import exactProp from '../utils/exact_prop';
+import { withStyles } from '@ixinwu-ngp/web-styles';
+import { exactProp } from '@ixinwu-ngp/web-utils';
 
 const styles = () => ({
   '@global': {

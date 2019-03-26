@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import createBroadcast from 'brcast';
+import { exactProp } from '@ixinwu-ngp/web-utils';
 import themeListener, { CHANNEL } from './theme_listener';
-import exactProp from '../utils/exact_prop';
+
 
 /**
  * This component takes a `theme` property.
