@@ -11,6 +11,7 @@ module.exports = {
     cjs && ['@babel/transform-modules-commonjs', { loose }],
     ['@babel/transform-runtime', { useESModules: !cjs }],
     '@babel/transform-object-assign',
+    '@babel/plugin-syntax-dynamic-import',
   ].filter(Boolean),
   env: {
     block: {
