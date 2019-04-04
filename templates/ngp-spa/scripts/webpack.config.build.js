@@ -10,15 +10,15 @@ const srcPath = path.join(__dirname, '../src/');
 const distPath = path.join(__dirname, '../dist/');
 
 const config = {
-  // mode: 'production',
-  mode: 'development',
+  mode: 'production',
+  // mode: 'development',
   entry: {
     index: path.join(srcPath, '/index.js'),
     login: path.join(srcPath, '/login.js'),
   },
   output: {
     path: distPath,
-    filename: '[name].js',
+    filename: '[name].[chunkhash:8].js',
     chunkFilename: '[name].[chunkhash:8].js',
     publicPath: '/',
   },
@@ -131,7 +131,7 @@ const config = {
       name: true,
       cacheGroups: {
         // rc: {
-        //   test: /rc.*/,
+        //   test: /^rc.*/,
         //   chunks: 'all',
         //   name: 'rc',
         // },
