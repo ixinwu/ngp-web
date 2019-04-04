@@ -9,7 +9,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
     "@ixinwu-ngp/materials-block": "1.1.6",
-    "@ixinwu-ngp/materials-component": "1.1.3",
+    "@ixinwu-ngp/materials-component": "1.1.4",
     "@ixinwu-ngp/web-framework": "1.2.12",
     "antd": "^3.10.8",
     "classnames": "^2.2.5",

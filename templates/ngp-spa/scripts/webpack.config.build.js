@@ -4,7 +4,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const srcPath = path.join(__dirname, '../src/');
 const distPath = path.join(__dirname, '../dist/');
@@ -41,7 +41,7 @@ const config = {
       filename: '[name].[hash].css',
       chunkFilename: '[name].[chunkhash:8].css',
     }),
-    // new BundleAnalyzerPlugin(),
+    new BundleAnalyzerPlugin(),
   ],
   module: {
     rules: [
@@ -130,6 +130,11 @@ const config = {
       automaticNameDelimiter: '~',
       name: true,
       cacheGroups: {
+        // rc: {
+        //   test: /rc.*/,
+        //   chunks: 'all',
+        //   name: 'rc',
+        // },
         antd: {
           test: /antd/,
           chunks: 'all',

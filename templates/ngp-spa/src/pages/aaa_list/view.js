@@ -3,8 +3,7 @@ import { qsStringify } from '@ixinwu-ngp/web-framework';
 import { withStyles } from '@ixinwu-ngp/web-styles';
 import debounce from 'debounce';
 import { Button } from 'antd';
-import ListSearch from '@ixinwu-ngp/materials-component/list_search';
-import ListTable from '@ixinwu-ngp/materials-component/list_table';
+import { ListSearch, ListTable } from '@ixinwu-ngp/materials-component';
 import styles from './styles';
 
 class AaaList extends Component {

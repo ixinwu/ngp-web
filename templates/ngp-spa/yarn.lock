@@ -738,12 +738,13 @@
   dependencies:
     warning "^4.0.1"
 
-"@ixinwu-ngp/materials-component@1.1.3":
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/@ixinwu-ngp/materials-component/-/materials-component-1.1.3.tgz#de22db5ac18601ada0c2829397a6636429b881fa"
-  integrity sha512-sRfvS0TC/R39jziX1KZ/qa9nls7/OM5JkEkPup3seWckxu7J3+MGYE2B7aIztl3CwyHFyUzkedktyq98uIsWrQ==
+"@ixinwu-ngp/materials-component@1.1.4":
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/@ixinwu-ngp/materials-component/-/materials-component-1.1.4.tgz#7f30b0f1282e982bbef0b8a929d5133007bf834f"
+  integrity sha512-ZpPzLfsYkZwSDCzYwEmmaPoEykU7UVMCh79bzgeFOCuSh0cNmshbg2X3ZLuH6TDGj2kaUqTevM+CUV/Rtxqkxg==
   dependencies:
     "@ixinwu-ngp/web-styles" "^1.0.0"
+    "@loadable/component" "^5.7.0"
     brcast "^3.0.1"
     csstype "^2.5.2"
     debounce "^1.1.0"
@@ -831,6 +832,13 @@
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@ixinwu-ngp/web-utils/-/web-utils-1.0.0.tgz#c44121d5d2f80825f3bbf37e92707df770caea53"
   integrity sha512-4zHhO92WE3ROG23x0l2cKxIVyRDs3CC/rU9wsnGehZS7EW0htYITqzkcjYwY6D/MM/4A/5Jouqk9WjMBd+a2sQ==
+
+"@loadable/component@^5.7.0":
+  version "5.7.0"
+  resolved "https://registry.yarnpkg.com/@loadable/component/-/component-5.7.0.tgz#6d6b5afc2c18b9bbcb2adf1b581621e5291feecf"
+  integrity sha512-yHe2WrqUqw2zyS5MnHziVfhMONFe7Pd8oMO2UB/G9XxkXLZkSvFZQIpNouHNNE1Kc29asIYXnR42vMD5IjruSQ==
+  dependencies:
+    hoist-non-react-statics "^3.3.0"
 
 "@types/jss@^9.5.6":
   version "9.5.8"
