@@ -15,6 +15,7 @@
     "classnames": "^2.2.5",
     "debounce": "^1.2.0",
     "downloadjs": "^1.4.7",
+    "fetch-mock": "^7.3.3",
     "js-cookie": "^2.2.0",
     "moment": "^2.23.0",
     "numeral": "^2.0.6",

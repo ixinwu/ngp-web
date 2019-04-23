@@ -15,6 +15,7 @@
     "packages/materials-component",
     "packages/materials-layout",
     "packages/web-core",
+    "packages/web-fetch",
     "packages/web-framework",
     "packages/web-styles",
     "packages/web-utils"
