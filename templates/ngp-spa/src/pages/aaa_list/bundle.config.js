@@ -187,7 +187,7 @@ export default {
         defaultValue: {
           pageNumber: 1,
           pageSize: 20,
-          sortColumn: 'name',
+          sortField: 'name',
           sortDirection: 'asc',
           likeValue: null, // 数据源模糊匹配的参数，如果config中fuzzy为false则不会传递
           searchFields: [], // 字段查询条件

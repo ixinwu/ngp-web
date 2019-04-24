@@ -34,7 +34,7 @@ class AaaList extends Component {
       ...params,
       pageNumber: current,
       pageSize,
-      sortColumn: field,
+      sortField: field,
       sortDirection: order === 'ascend' ? 'asc' : 'desc',
     });
   };

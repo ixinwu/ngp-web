@@ -1,4 +1,5 @@
 import apiService from '../lib/api_service';
+import { paramConverter } from '../lib/dynamic';
 import { sliceListData, createDataSetListMockData, formatDataSetData } from './utils';
 import groups from './mock_data/groups';
 
@@ -7,13 +8,13 @@ const SCOPE_MOCK = true;
 export function fetchGetDataSetListData(dataSetKey, params, fields) {
   const fetchOptions = {
     method: 'POST',
-    url: '/dataSet/list',
-    params: {
+    url: '/api/DynamicData/queryDynamicListPageData',
+    params: paramConverter.toDsl({
       dataSetKey,
-      ...params,
-      fields: fields.map(field => field.key),
-    },
-    mock: SCOPE_MOCK,
+      params,
+      fields,
+    }),
+    // mock: SCOPE_MOCK,
     mockData: () => {
       const data = createDataSetListMockData(fields);
 
@@ -26,7 +27,7 @@ export function fetchGetDataSetListData(dataSetKey, params, fields) {
 
   return apiService.fetchJsonApi(fetchOptions).then(data => ({
     ...data,
-    list: data.list.map(item => formatDataSetData(item)),
+    list: data.data,
   }));
 }
 
@@ -49,7 +50,7 @@ export function fetchGetDataSetData(dataSetKey, id, fields) {
 export function fetchAddDataSetData(params) {
   const fetchOptions = {
     method: 'POST',
-    url: '/xxx/yyyy',
+    url: '/api/DynamicData/insertDynamicData',
     params,
     mock: SCOPE_MOCK,
     mockData: {},
@@ -61,7 +62,7 @@ export function fetchAddDataSetData(params) {
 export function fetchEditDataSetData(params) {
   const fetchOptions = {
     method: 'POST',
-    url: '/xxx/yyyy',
+    url: '/api/DynamicData/updateDynamicData',
     params,
     mock: SCOPE_MOCK,
     mockData: {},
@@ -73,7 +74,7 @@ export function fetchEditDataSetData(params) {
 export function fetchDeleteDataSetData(dataSetKey, keys) {
   const fetchOptions = {
     method: 'POST',
-    url: '/xxx/yyyy',
+    url: '/api/DynamicData/deleteDynamicData',
     params: {
       dataSetKey,
       keys,
@@ -88,7 +89,7 @@ export function fetchDeleteDataSetData(dataSetKey, keys) {
 export function fetchGetGroupTypeData(groupKey) {
   const fetchOptions = {
     method: 'POST',
-    url: '/xxx/yyyy',
+    url: '/group/groupTypes',
     params: {
       groupKey,
     },

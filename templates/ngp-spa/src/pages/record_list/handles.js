@@ -32,9 +32,9 @@ export function* getListData(props) {
       },
     };
   } catch (e) {
-    console.log(e);
+    console.error(e);
     yield modify(setDataLoading, identity, false);
-    message.error(e.message || 'AAA数据获取失败！');
+    message.error(e.message || '履历数据获取失败！');
   }
 }
 
