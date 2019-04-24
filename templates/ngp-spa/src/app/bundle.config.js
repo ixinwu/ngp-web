@@ -5,6 +5,12 @@ export default {
     title: 'Template App',
     menus: [
       {
+        key: 'record_list',
+        icon: 'ordered-list',
+        name: '履历列表',
+        url: '/record_list',
+      },
+      {
         key: 'test',
         name: 'Test',
         url: '/test',

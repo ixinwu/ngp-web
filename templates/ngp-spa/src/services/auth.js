@@ -7,14 +7,15 @@ export function fetchAuth(userName, password) {
   const fetchOptions = {
     method: 'POST',
     url: '/OAuth/token',
-    params: { userName, password },
-    mock: SCOPE_MOCK,
+    params: { loginName: userName, password },
+    // mock: SCOPE_MOCK,
     mockData: {
-      token: `${userName}__${password}`,
+      accessToken: `${userName}__${password}`,
+      tokenType: 'Bearer',
     },
   };
 
-  return apiService.fetchJsonApi(fetchOptions);
+  return apiService.fetchJsonApi(fetchOptions).then(data => data.accessToken);
 }
 
 export function fetchGetCurrentUserInfo() {
