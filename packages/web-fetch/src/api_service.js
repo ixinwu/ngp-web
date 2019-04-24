@@ -82,56 +82,59 @@ export class ApiService {
 
     // 处理请求参数
     let body;
-    if (method.toLocaleUpperCase() === 'GET') {
+    if (method.toLocaleUpperCase() === 'GET' && params) {
       const search = stringify(params);
       if (search) {
         url += `?${search}`;
       }
-    } else {
+    } else if (params) {
       body = JSON.stringify(params);
     }
 
-    let request;
+    let fetchOptions = {};
     if (credentials) {
-      request = this.fetch(url, {
+      fetchOptions = {
         method,
         headers,
         body,
         credentials,
-      });
+      };
     } else {
-      request = this.fetch(url, {
+      fetchOptions = {
         method,
         headers,
         body,
+      };
+    }
+
+    if (this.isMock(config.mock)) {
+      let mockData = config.mockData;
+
+      if (typeof config.mockData === 'function') {
+        mockData = config.mockData();
+      }
+
+      return new Promise(resolve => {
+        setTimeout(() => {
+          console.groupCollapsed(`mock request:${config.url}`);
+          console.info('fetch options:', fetchOptions);
+          console.info('mock data:', mockData);
+          console.groupEnd(`mock request:${config.url}`);
+          resolve(mockData);
+        }, 100);
       });
     }
 
-    return request
+    return this.fetch(url, fetchOptions)
       .then(this.fetchChecker)
       .then(this.streamParser)
       .then(this.dataParser)
       .catch(this.errorHandler);
   }
 
-  mockFetch(params, mockData) {
-    return new Promise(resolve => {
-      console.log({
-        token: this.token,
-        params,
-      });
-      setTimeout(() => {
-        resolve(mockData);
-      }, 500);
-    });
-  }
-
-  isMock(scopeMock, mock) {
+  isMock(mock) {
     if (mock === undefined || mock === null) {
-      if (scopeMock === undefined || scopeMock === null) {
-        return this.mock;
-      }
-      return scopeMock;
+      return this.mock;
     }
     return mock;
   }
