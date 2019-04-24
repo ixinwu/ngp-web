@@ -45,6 +45,7 @@ export class ApiService {
   constructor(config) {
     this.apiConfig = config || {};
 
+    this.mock = false;
     this.fetch = fetch;
     this.fetchChecker = fetchChecker;
     this.streamParser = streamParser;
@@ -53,33 +54,25 @@ export class ApiService {
   }
 
   fetchJsonApi(config) {
-    const currentConfig = Object.assign({}, this.apiConfig, config);
+    const { HOST } = this.apiConfig;
+
     const {
       url: fetchUrl,
-      data: fetchData,
-      params: fetchParams,
-      HOST,
-      method: fetchMethod,
-      headers: fetchHeaders,
-    } = currentConfig;
+      params,
+      method = 'POST',
+      headers = {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${this.token}`,
+      },
+      credentials,
+    } = config;
 
     warning(fetchUrl, '请求url错误');
-    const method = fetchMethod.toUpperCase();
     warning(
       ['GET', 'DELETE', 'POST', 'PUT'].indexOf(method) !== -1,
       `${fetchUrl}请求方式错误，必须使用GET/POST/PUT/DELETE`,
     );
-    warning(!(fetchData && fetchParams), `${fetchUrl}请求参数错误，data和params只能使用一个`);
-
-    let params;
-    let data;
-    if (['GET', 'DELETE'].indexOf(method) !== -1) {
-      params = fetchParams || fetchData;
-    }
-    if (['POST', 'PUT'].indexOf(method) !== -1) {
-      data = fetchData;
-      params = fetchParams;
-    }
 
     // 补全请求路径
     let url = fetchUrl;
@@ -87,33 +80,34 @@ export class ApiService {
       url = HOST + url;
     }
 
-    // 设置请求头
-    const headers = Object.assign(
-      {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${this.token}`,
-      },
-      fetchHeaders,
-    );
-
     // 处理请求参数
     let body;
-    if (params) {
+    if (method.toLocaleUpperCase() === 'GET') {
       const search = stringify(params);
       if (search) {
         url += `?${search}`;
       }
-    } else if (data) {
-      body = JSON.stringify(data);
+    } else {
+      body = JSON.stringify(params);
     }
 
-    return this.fetch(url, {
-      method,
-      headers,
-      body,
-      // credentials: 'include'
-    })
+    let request;
+    if (credentials) {
+      request = this.fetch(url, {
+        method,
+        headers,
+        body,
+        credentials,
+      });
+    } else {
+      request = this.fetch(url, {
+        method,
+        headers,
+        body,
+      });
+    }
+
+    return request
       .then(this.fetchChecker)
       .then(this.streamParser)
       .then(this.dataParser)
@@ -130,6 +124,20 @@ export class ApiService {
         resolve(mockData);
       }, 500);
     });
+  }
+
+  isMock(scopeMock, mock) {
+    if (mock === undefined || mock === null) {
+      if (scopeMock === undefined || scopeMock === null) {
+        return this.mock;
+      }
+      return scopeMock;
+    }
+    return mock;
+  }
+
+  setMock(mock) {
+    this.mock = mock;
   }
 
   setFetchChecker(fetchChecker) {
@@ -160,6 +168,6 @@ export class ApiService {
   }
 }
 
-// 返回一个实例，结合es6的im/export实现单例模式
 const apiService = new ApiService();
+
 export default apiService;
