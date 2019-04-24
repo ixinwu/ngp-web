@@ -5,123 +5,96 @@ import groups from './mock_data/groups';
 const SCOPE_MOCK = true;
 
 export function fetchGetDataSetListData(dataSetKey, params, fields) {
-  const MOCK = undefined;
-  if (apiService.isMock(SCOPE_MOCK, MOCK)) {
-    const data = createDataSetListMockData(fields);
-    return apiService
-      .mockFetch(
-        {
-          dataSetKey,
-          ...params,
-          fields: fields.map(field => field.key),
-        },
-        {
-          count: data.length,
-          list: sliceListData(data, params),
-        },
-      )
-      .then(data => ({
-        ...data,
-        list: data.list.map(item => formatDataSetData(item)),
-      }));
-  }
+  const fetchOptions = {
+    method: 'POST',
+    url: '/dataSet/list',
+    params: {
+      dataSetKey,
+      ...params,
+      fields: fields.map(field => field.key),
+    },
+    mock: SCOPE_MOCK,
+    mockData: () => {
+      const data = createDataSetListMockData(fields);
 
-  return apiService
-    .fetchAppJsonApi({
-      method: 'POST',
-      url: '/dataSet/list',
-      data: {
-        dataSetKey,
-        ...params,
-        fields: fields.map(field => field.key),
-      },
-    })
-    .then(data => ({
-      ...data,
-      list: data.list.map(item => formatDataSetData(item)),
-    }));
+      return {
+        count: data.length,
+        list: sliceListData(data, params),
+      };
+    },
+  };
+
+  return apiService.fetchJsonApi(fetchOptions).then(data => ({
+    ...data,
+    list: data.list.map(item => formatDataSetData(item)),
+  }));
 }
 
 export function fetchGetDataSetData(dataSetKey, id, fields) {
-  const MOCK = undefined;
-  if (apiService.isMock(SCOPE_MOCK, MOCK)) {
-    const data = createDataSetListMockData(fields)[0];
-    return apiService
-      .mockFetch({ dataSetKey, id, fields }, data)
-      .then(data => formatDataSetData(data));
-  }
+  const fetchOptions = {
+    method: 'POST',
+    url: '/xxx/yyyy',
+    params: { dataSetKey, id, fields },
+    mock: SCOPE_MOCK,
+    mockData: () => {
+      const data = createDataSetListMockData(fields)[0];
 
-  return apiService
-    .fetchAppJsonApi({
-      method: 'POST',
-      url: '/xxx/yyyy',
-      data: { dataSetKey, id, fields },
-    })
-    .then(data => formatDataSetData(data));
+      return data;
+    },
+  };
+
+  return apiService.fetchJsonApi(fetchOptions).then(data => formatDataSetData(data));
 }
 
 export function fetchAddDataSetData(params) {
-  const MOCK = undefined;
-  if (apiService.isMock(SCOPE_MOCK, MOCK)) {
-    return apiService.mockFetch(params, {});
-  }
-
-  return apiService.fetchAppJsonApi({
+  const fetchOptions = {
     method: 'POST',
     url: '/xxx/yyyy',
-    data: params,
-  });
+    params,
+    mock: SCOPE_MOCK,
+    mockData: {},
+  };
+
+  return apiService.fetchJsonApi(fetchOptions);
 }
 
 export function fetchEditDataSetData(params) {
-  const MOCK = undefined;
-  if (apiService.isMock(SCOPE_MOCK, MOCK)) {
-    return apiService.mockFetch(params, {});
-  }
-
-  return apiService.fetchAppJsonApi({
+  const fetchOptions = {
     method: 'POST',
-    url: '/user/editUserInfo',
-    data: params,
-  });
+    url: '/xxx/yyyy',
+    params,
+    mock: SCOPE_MOCK,
+    mockData: {},
+  };
+
+  return apiService.fetchJsonApi(fetchOptions);
 }
 
 export function fetchDeleteDataSetData(dataSetKey, keys) {
-  const MOCK = undefined;
-  if (apiService.isMock(SCOPE_MOCK, MOCK)) {
-    return apiService.mockFetch(
-      {
-        dataSetKey,
-        keys,
-      },
-      {},
-    );
-  }
-
-  return apiService.fetchAppJsonApi({
+  const fetchOptions = {
     method: 'POST',
-    url: '/dataSet/delete',
-    data: {
+    url: '/xxx/yyyy',
+    params: {
       dataSetKey,
       keys,
     },
-  });
+    mock: SCOPE_MOCK,
+    mockData: {},
+  };
+
+  return apiService.fetchJsonApi(fetchOptions);
 }
 
 export function fetchGetGroupTypeData(groupKey) {
-  const MOCK = undefined;
-  if (apiService.isMock(SCOPE_MOCK, MOCK)) {
-    return apiService.mockFetch(
-      {
-        groupKey,
-      },
-      groups[groupKey],
-    );
-  }
-
-  return apiService.fetchAppJsonApi({
+  const fetchOptions = {
     method: 'POST',
-    url: '/user/editUserInfo',
-    data: { groupKey },
-  });
+    url: '/xxx/yyyy',
+    params: {
+      groupKey,
+    },
+    mock: SCOPE_MOCK,
+    mockData: groups[groupKey],
+  };
+
+  return apiService.fetchJsonApi(fetchOptions);
 }

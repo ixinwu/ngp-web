@@ -774,9 +774,9 @@
   integrity sha512-i6yuZGpbeS8kKM+8oPv32NGd2HkbT08IaSiV4kqxJBF/zEU9DL4kSoQJqffQBGOllflKihfdTj8QyVXAaoMIFg==
 
 "@ixinwu-ngp/web-fetch@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@ixinwu-ngp/web-fetch/-/web-fetch-1.0.0.tgz#08b91cf7b7fc7098e9961e0b52581de052834622"
-  integrity sha512-gnTOLIE7QnehVl49uNNaPe2N+DPKtRKHn2MgaPOv934++xeGplkgKHf8nK9aGIuQfpH3BpqAZjDjLtQn6Gp1JQ==
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@ixinwu-ngp/web-fetch/-/web-fetch-1.0.3.tgz#57d0a2dcdfd2a505e4b5720663c18b5459c372ca"
+  integrity sha512-iJ8FSjieyWiGw66B8dOCvno6yyPGVSGV43Ma315beLBKVTQcausQ2MA2yjC3pJ8Ntuq9EmPTYHNU6aGHH9VS9A==
   dependencies:
     isomorphic-fetch "^2.2.1"
     qs "^6.6.0"
@@ -6431,9 +6431,9 @@ qs@6.5.2, qs@~6.5.2:
   integrity sha512-N5ZAX4/LxJmF+7wN74pUD6qAh9/wnvdQcjq9TZjevvXzSUo7bfmw91saqMjzGS2xq91/odN2dW/WOl7qQHNDGA==
 
 qs@^6.6.0:
-  version "6.6.0"
-  resolved "https://registry.yarnpkg.com/qs/-/qs-6.6.0.tgz#a99c0f69a8d26bf7ef012f871cdabb0aee4424c2"
-  integrity sha512-KIJqT9jQJDQx5h5uAVPimw6yVg2SekOKu959OCtktD3FjzbpvaPr8i4zzg07DOMz+igA4W/aNM7OV8H37pFYfA==
+  version "6.7.0"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
+  integrity sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
 
 querystring-es3@^0.2.0:
   version "0.2.1"
