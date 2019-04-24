@@ -3,7 +3,7 @@ import { call, delay, modify } from '@ixinwu-ngp/web-core';
 import ngp from '@ixinwu-ngp/web-framework';
 import { treeToList } from '../lib/utils';
 import { generateRouteConfigs, findMenuByPathname } from './helpers';
-import { fetchGetCurrentUserInfo } from '../services';
+import { fetchGetCurrentUserInfo } from '../services/auth';
 
 const setStatus = (setters, identity, value) => setters[identity].status(value);
 const setStatusTip = (setters, identity, value) => setters[identity].statusTip(value);

@@ -2,7 +2,11 @@ import { message } from 'antd';
 import moment from 'moment';
 import { call, all, modify } from '@ixinwu-ngp/web-core';
 import { qsParse } from '@ixinwu-ngp/web-framework';
-import { fetchGetDataSetData, fetchGetGroupTypeData, fetchEditDataSetData } from '../../services';
+import {
+  fetchGetDataSetData,
+  fetchGetGroupTypeData,
+  fetchEditDataSetData,
+} from '../../services/common';
 
 // 获取页面列表数据
 export function* getData(props) {

@@ -4,7 +4,7 @@ import {
   fetchGetDataSetListData,
   fetchDeleteDataSetData,
   fetchGetGroupTypeData,
-} from '../../services';
+} from '../../services/common';
 
 const setDataLoading = (state, identity, value) => state[identity].dataLoading(value);
 const setParams = (state, identity, value) => state[identity].params(value);

@@ -2,7 +2,7 @@ import '@babel/polyfill';
 import ngp, { createClient } from '@ixinwu-ngp/web-framework';
 import loginBlock from '@ixinwu-ngp/materials-block/login';
 import apiService from './lib/api_service';
-import { fetchAuth } from './services';
+import { fetchAuth } from './services/auth';
 
 const apiConfig = {
   HOST: window.HOST,

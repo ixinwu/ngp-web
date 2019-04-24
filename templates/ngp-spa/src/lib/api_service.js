@@ -1,8 +1,8 @@
-import { ApiService } from '@ixinwu-ngp/web-framework';
+import { ApiService } from '@ixinwu-ngp/web-fetch';
 
 const apiService = new ApiService();
 
-const errorHandle = error => {
+const errorHandler = error => {
   if (error.status === 403) {
     const redirect = window.location.href.replace(window.location.origin, '');
     window.location.href = `${window.location.origin}/login.html?redirect=${redirect}`;
@@ -10,6 +10,6 @@ const errorHandle = error => {
   return Promise.reject(error);
 };
 
-apiService.setErrorHandle(errorHandle);
+apiService.setErrorHandler(errorHandler);
 
 export default apiService;

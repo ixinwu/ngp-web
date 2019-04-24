@@ -1,7 +1,7 @@
 import { message } from 'antd';
 import { call, all } from '@ixinwu-ngp/web-core';
 import { qsParse } from '@ixinwu-ngp/web-framework';
-import { fetchGetDataSetData, fetchGetGroupTypeData } from '../../services';
+import { fetchGetDataSetData, fetchGetGroupTypeData } from '../../services/common';
 
 // 获取页面列表数据
 export function* getData(props) {

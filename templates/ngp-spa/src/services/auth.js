@@ -1,12 +1,11 @@
 import apiService from '../lib/api_service';
-import { isMock } from './utils';
 import currentUser from './mock_data/current_user';
 
 const SCOPE_MOCK = true;
 
 export function fetchAuth(userName, password) {
   const MOCK = undefined;
-  if (isMock(SCOPE_MOCK, MOCK)) {
+  if (apiService.isMock(SCOPE_MOCK, MOCK)) {
     return apiService.mockFetch(
       { userName, password },
       {
@@ -22,7 +21,7 @@ export function fetchAuth(userName, password) {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
-    data: {
+    params: {
       userName,
       password,
     },
@@ -31,7 +30,7 @@ export function fetchAuth(userName, password) {
 
 export function fetchGetCurrentUserInfo() {
   const MOCK = undefined;
-  if (isMock(SCOPE_MOCK, MOCK)) {
+  if (apiService.isMock(SCOPE_MOCK, MOCK)) {
     return apiService.mockFetch(null, currentUser);
   }
 

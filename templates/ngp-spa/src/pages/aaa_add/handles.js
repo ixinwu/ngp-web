@@ -1,7 +1,7 @@
 import { message } from 'antd';
 import moment from 'moment';
 import { call, all, modify } from '@ixinwu-ngp/web-core';
-import { fetchGetGroupTypeData, fetchAddDataSetData } from '../../services';
+import { fetchGetGroupTypeData, fetchAddDataSetData } from '../../services/common';
 
 // 初始化页面数据
 export function* initPage(props) {

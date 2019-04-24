@@ -10,18 +10,6 @@ export function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-export const GLOBAL_MOCK = false;
-
-export function isMock(scopeMock, mock) {
-  if (mock === undefined || mock === null) {
-    if (scopeMock === undefined || scopeMock === null) {
-      return GLOBAL_MOCK;
-    }
-    return scopeMock;
-  }
-  return mock;
-}
-
 export function sliceListData(list, { pageNumber, pageSize }) {
   const start = (pageNumber - 1) * pageSize;
   const end = Math.min(list.length, start + pageSize);
