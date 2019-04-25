@@ -11,15 +11,15 @@ export function* getData(props) {
     location: { search },
   } = props;
   try {
-    const { aaaId } = qsParse(search) || {};
-    const data = yield call(fetchGetDataSetData, dataSetKey, aaaId, fields);
+    const { recordId } = qsParse(search) || {};
+    const data = yield call(fetchGetDataSetData, dataSetKey, fields, recordId);
 
     return {
       data,
     };
   } catch (e) {
-    console.log(e);
-    message.error(e.message || 'AAA数据获取失败！');
+    console.error(e);
+    message.error(e.message || '履历数据获取失败！');
   }
 }
 

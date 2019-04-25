@@ -5,7 +5,7 @@ import groups from './mock_data/groups';
 
 const SCOPE_MOCK = true;
 
-export function fetchGetDataSetListData(dataSetKey, params, fields) {
+export function fetchGetDataSetListData(dataSetKey, fields, params) {
   const fetchOptions = {
     method: 'POST',
     url: '/api/DynamicData/queryDynamicListPageData',
@@ -31,7 +31,7 @@ export function fetchGetDataSetListData(dataSetKey, params, fields) {
   }));
 }
 
-export function fetchGetDataSetData(dataSetKey, id, fields) {
+export function fetchGetDataSetData(dataSetKey, fields, id) {
   const fetchOptions = {
     method: 'POST',
     url: '/xxx/yyyy',

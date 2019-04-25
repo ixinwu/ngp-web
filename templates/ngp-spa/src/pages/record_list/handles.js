@@ -18,7 +18,7 @@ export function* getListData(props) {
   try {
     yield modify(setDataLoading, identity, true);
     const { pageSize, pageNumber } = params;
-    const data = yield call(fetchGetDataSetListData, dataSetKey, params, fields);
+    const data = yield call(fetchGetDataSetListData, dataSetKey, fields, params);
 
     return {
       dataLoading: false,
