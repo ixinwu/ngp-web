@@ -4,7 +4,7 @@
  * @property {string} text 字段的展示文本
  * @property {string} groupKey 字段的关联的group标识
  * @property {string} displayType 字段的展示类型
- * @default text datetime number boolean department user groupType
+ * @default text datetime number boolean department employee groupType
  * @property {primary} searchable 是否可搜索 @default false
  * @property {boolean} searchable 是否可搜索 @default false
  * @property {boolean} visible 是否展示 @default false
@@ -27,6 +27,7 @@ export default [
   {
     key: 'TMPM_Record_Name',
     text: '履历名称',
+    fuzzy: true,
     clickable: true,
     searchable: true,
     visible: true,
@@ -42,6 +43,7 @@ export default [
   {
     key: 'TMPM_Project_Name',
     text: '项目名称',
+    fuzzy: true,
     visible: true,
   },
   {
@@ -54,6 +56,7 @@ export default [
   {
     key: 'TMPM_Task_Name',
     text: '任务名称',
+    fuzzy: true,
     visible: true,
   },
   {
@@ -66,13 +69,13 @@ export default [
   {
     key: 'TMPM_Record_CreatedBy',
     text: '创建者',
-    displayType: 'user',
+    displayType: 'employee',
     searchable: true,
   },
   {
     key: 'TMPM_Record_CreatedBy__Name',
     text: '创建者',
-    displayType: 'user',
+    displayType: 'employee',
     visible: true,
   },
   {
@@ -97,12 +100,12 @@ export default [
   {
     key: 'TMPM_Project_DutyPersons',
     text: '项目__报警责任人',
-    displayType: 'user',
+    displayType: 'employee',
   },
   {
     key: 'TMPM_Project_DutyPersons__Name',
     text: '项目__报警责任人',
-    displayType: 'user',
+    displayType: 'employee',
     visible: true,
   },
 ];

@@ -130,12 +130,12 @@ export default {
       {
         key: 'aaa__createBy',
         text: '创建人Id',
-        displayType: 'user',
+        displayType: 'employee',
       },
       {
         key: 'aaa__createBy__name',
         text: '创建人',
-        displayType: 'user',
+        displayType: 'employee',
         visible: true,
       },
     ],

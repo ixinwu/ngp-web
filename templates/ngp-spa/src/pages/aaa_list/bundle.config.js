@@ -4,7 +4,7 @@
  * @property {string} text 字段的展示文本
  * @property {string} groupKey 字段的关联的group标识
  * @property {string} displayType 字段的展示类型
- * @default text datetime number boolean department user groupType
+ * @default text datetime number boolean department employee groupType
  * @property {primary} searchable 是否可搜索 @default false
  * @property {boolean} searchable 是否可搜索 @default false
  * @property {boolean} visible 是否展示 @default false
@@ -149,12 +149,12 @@ export default {
       {
         key: 'aaa__createBy',
         text: '创建人Id',
-        displayType: 'user',
+        displayType: 'employee',
       },
       {
         key: 'aaa__createBy__name',
         text: '创建人',
-        displayType: 'user',
+        displayType: 'employee',
         visible: true,
       },
     ],

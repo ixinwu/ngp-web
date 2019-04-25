@@ -1,7 +1,7 @@
-import { generateWhereDsl } from './helpers';
+import { generateListWhereDsl } from './helpers';
 
 export const paramConverter = {
-  toDsl: ({ dataSetKey, params, fields, resourceKey }) => {
+  toListPramas: ({ dataSetKey, params, fields, resourceKey }) => {
     const result = {
       pageSize: params.pageSize,
       pageNumber: params.pageNumber,
@@ -21,7 +21,7 @@ export const paramConverter = {
         .map(item => item.key),
     };
 
-    const whereExpression = generateWhereDsl(fields, params);
+    const whereExpression = generateListWhereDsl(fields, params);
 
     if (resourceKey) {
       requestData.resourceKey = resourceKey;

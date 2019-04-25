@@ -140,13 +140,13 @@ export default {
       {
         key: 'aaa__principal',
         text: '负责人Id',
-        displayType: 'user',
+        displayType: 'employee',
         visible: true,
       },
       {
         key: 'aaa__principal__name',
         text: '负责人',
-        displayType: 'user',
+        displayType: 'employee',
       },
       {
         key: 'aaa__type1Field1',

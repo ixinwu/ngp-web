@@ -738,10 +738,10 @@
   dependencies:
     warning "^4.0.1"
 
-"@ixinwu-ngp/materials-component@1.1.4":
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/@ixinwu-ngp/materials-component/-/materials-component-1.1.4.tgz#7f30b0f1282e982bbef0b8a929d5133007bf834f"
-  integrity sha512-ZpPzLfsYkZwSDCzYwEmmaPoEykU7UVMCh79bzgeFOCuSh0cNmshbg2X3ZLuH6TDGj2kaUqTevM+CUV/Rtxqkxg==
+"@ixinwu-ngp/materials-component@1.1.5":
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/@ixinwu-ngp/materials-component/-/materials-component-1.1.5.tgz#bb29b91cef6c19f0b267c902883b2be0f7899c1a"
+  integrity sha512-6Yl+sVT3LYeS6ffRUcM4vDpMx9x+fkGJvUMHtYEPm/Q6V6lMpysp8DG31/hwwKEVYMqWJxbYBEeBLFLv2ypgPQ==
   dependencies:
     "@ixinwu-ngp/web-styles" "^1.0.0"
     "@loadable/component" "^5.7.0"

@@ -1,3 +1,6 @@
-export function generateWhereDsl(fields, values) {
+export function generateListWhereDsl(fields, values) {
+  console.log('fields', fields);
+  console.log('values', values);
+
   return '';
 }

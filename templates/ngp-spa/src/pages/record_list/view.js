@@ -104,7 +104,7 @@ class AaaList extends Component {
     const searchFields = [
       ...fields,
       {
-        key: 'likeValue',
+        key: 'fuzzySearch',
         searchable: true,
         text: '模糊搜索',
         placeholder: '模糊搜索',

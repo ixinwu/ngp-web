@@ -39,7 +39,6 @@ export default {
           pageSize: 20,
           sortField: '',
           sortDirection: '',
-          likeValue: null, // 数据源模糊匹配的参数，如果config中fuzzy为false则不会传递
         },
       },
       selectedPrimaryKeys: {

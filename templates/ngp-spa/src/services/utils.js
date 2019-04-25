@@ -61,7 +61,7 @@ export function createDataSetListMockData(fields) {
         }
         case 'text':
         case 'department':
-        case 'user':
+        case 'employee':
           item.push({
             key: field.key,
             value: `${field.key}_${i + 1}`,

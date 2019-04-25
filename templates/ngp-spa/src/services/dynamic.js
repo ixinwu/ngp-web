@@ -9,7 +9,7 @@ export function fetchGetDataSetListData(dataSetKey, params, fields) {
   const fetchOptions = {
     method: 'POST',
     url: '/api/DynamicData/queryDynamicListPageData',
-    params: paramConverter.toDsl({
+    params: paramConverter.toListPramas({
       dataSetKey,
       params,
       fields,

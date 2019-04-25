@@ -129,8 +129,25 @@ export default withStyles(styles)(
       const formFields = {};
       fields.forEach(field => {
         let value = data[field.key];
-        if (field.displayType === 'datetime' && value !== null && value !== undefined) {
-          value = moment(value);
+        if (field.displayType === 'datetime') {
+          if (value === null || value === undefined) {
+            value = [];
+          } else if (!Array.isArray(value)) {
+            value = [value];
+          }
+
+          if (value[0]) {
+            value[0] = moment(value[0]);
+          }
+          if (value[1]) {
+            value[1] = moment(value[1]);
+          }
+        } else if (field.displayType === 'number') {
+          if (value === null || value === undefined) {
+            value = [];
+          } else if (!Array.isArray(value)) {
+            value = [value];
+          }
         }
         formFields[field.key] = Form.createFormField({
           value,
