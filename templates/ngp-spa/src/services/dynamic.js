@@ -47,12 +47,16 @@ export function fetchGetDataSetData(dataSetKey, id, fields) {
   return apiService.fetchJsonApi(fetchOptions).then(data => formatDataSetData(data));
 }
 
-export function fetchAddDataSetData(params) {
+export function fetchAddDataSetData(dataSetKey, fields, values) {
   const fetchOptions = {
     method: 'POST',
     url: '/api/DynamicData/insertDynamicData',
-    params,
-    mock: SCOPE_MOCK,
+    params: paramConverter.toAddParams({
+      dataSetKey,
+      values,
+      fields,
+    }),
+    // mock: SCOPE_MOCK,
     mockData: {},
   };
 

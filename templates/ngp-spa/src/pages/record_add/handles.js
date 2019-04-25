@@ -1,5 +1,4 @@
 import { message } from 'antd';
-import moment from 'moment';
 import { call, all, modify } from '@ixinwu-ngp/web-core';
 import { fetchGetGroupTypeData, fetchAddDataSetData } from '../../services/dynamic';
 
@@ -36,26 +35,7 @@ export function* submit(props, values) {
   try {
     yield modify(setData, identity, values);
 
-    const params = {
-      dataSetKey,
-      fields: fields
-        .filter(
-          field => field.visible && values[field.key] !== null && values[field.key] !== undefined,
-        )
-        .map(field => {
-          let value = values[field.key];
-          if (moment.isMoment(value)) {
-            value = value.format('YYYY-MM-DDTmm:hh:ss');
-          }
-
-          return {
-            fieldKey: field.key,
-            value,
-          };
-        }),
-    };
-
-    yield call(fetchAddDataSetData, params);
+    yield call(fetchAddDataSetData, dataSetKey, fields, values);
 
     message.success('操作成功！');
   } catch (e) {

@@ -2,7 +2,7 @@ import typeGroups from '../../../constants/type_group';
 import fields from './fields';
 
 export default {
-  identity: 'record_list',
+  identity: 'record_add',
   config: {
     title: '履历列表',
     dataSetKey: 'TMPM_FullSet', // 数据源配置

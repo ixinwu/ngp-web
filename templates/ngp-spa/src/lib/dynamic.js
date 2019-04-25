@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { generateListWhereDsl } from './helpers';
 
 export const paramConverter = {
@@ -5,7 +6,6 @@ export const paramConverter = {
     const result = {
       pageSize: params.pageSize,
       pageNumber: params.pageNumber,
-      likeValue: params.likeValue,
     };
 
     const requestData = {
@@ -38,6 +38,33 @@ export const paramConverter = {
     }
 
     result.requestData = requestData;
+
+    return result;
+  },
+  toAddParams: ({ dataSetKey, fields, values, resourceKey }) => {
+    const result = {
+      dataSetKey,
+    };
+
+    result.operateFields = fields
+      .filter(
+        field => field.visible && values[field.key] !== null && values[field.key] !== undefined,
+      )
+      .map(field => {
+        let value = values[field.key];
+        if (moment.isMoment(value)) {
+          value = value.format('YYYY-MM-DDTmm:hh:ss');
+        }
+
+        return {
+          fieldKey: field.key,
+          value,
+        };
+      });
+
+    if (resourceKey) {
+      result.resourceKey = resourceKey;
+    }
 
     return result;
   },
