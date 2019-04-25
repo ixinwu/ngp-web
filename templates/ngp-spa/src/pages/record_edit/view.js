@@ -10,8 +10,7 @@ class AAAEdit extends Component {
   }
 
   handleOk = () => {
-    const validateFields = this.form.getValidateFields();
-    validateFields((err, values) => {
+    this.form.getValidateFields((err, values) => {
       if (!err) {
         const { submit, onBackToParent } = this.props;
         submit(values).then(() => {

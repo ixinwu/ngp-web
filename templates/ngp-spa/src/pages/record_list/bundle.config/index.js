@@ -19,7 +19,7 @@ export default {
     {
       key: 'record_edit',
       name: '履历编辑',
-      type: 'SlideIn',
+      // type: 'SlideIn',
       url: '/record_edit',
     },
     {

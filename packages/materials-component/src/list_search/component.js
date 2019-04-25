@@ -123,7 +123,7 @@ class ListSearch extends Component {
 export default withStyles(styles)(
   Form.create({
     mapPropsToFields(props) {
-      const fields = props.fields || {};
+      const fields = props.fields || [];
       const data = props.data || {};
 
       const formFields = {};

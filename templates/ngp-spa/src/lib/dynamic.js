@@ -71,6 +71,7 @@ export const paramConverter = {
   toDetailParams: ({ dataSetKey, fields, primaryFieldKey, primaryFieldValue, resourceKey }) => {
     const result = {
       dataSetKey,
+      whereExpression: `${primaryFieldKey} = '${primaryFieldValue}'`,
     };
 
     result.queryFieldKeys = fields
@@ -82,7 +83,42 @@ export const paramConverter = {
       })
       .map(item => item.key);
 
-    result.whereExpression = `${primaryFieldKey} = '${primaryFieldValue}'`;
+    if (resourceKey) {
+      result.resourceKey = resourceKey;
+    }
+
+    return result;
+  },
+  toEditParams: ({
+    dataSetKey,
+    fields,
+    values,
+    originalData,
+    primaryFieldKey,
+    primaryFieldValue,
+    resourceKey,
+  }) => {
+    const result = {
+      dataSetKey,
+      whereExpressions: [`${primaryFieldKey} = '${primaryFieldValue}'`],
+    };
+
+    result.operateFields = fields
+      .filter(
+        field => field.visible && values[field.key] !== null && values[field.key] !== undefined,
+      )
+      .map(field => {
+        let value = values[field.key];
+        if (moment.isMoment(value)) {
+          value = value.format('YYYY-MM-DDTmm:hh:ss');
+        }
+
+        return {
+          fieldKey: field.key,
+          value,
+          originalValue: originalData[field.key],
+        };
+      });
 
     if (resourceKey) {
       result.resourceKey = resourceKey;

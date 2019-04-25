@@ -12,20 +12,21 @@ import {
 export function* getData(props) {
   const {
     dataSetKey,
+    primaryFieldKey,
     fields,
     location: { search },
   } = props;
   try {
-    const { aaaId } = qsParse(search) || {};
-    const data = yield call(fetchGetDataSetData, dataSetKey, aaaId, fields);
+    const { recordId } = qsParse(search) || {};
+    const data = yield call(fetchGetDataSetData, dataSetKey, fields, primaryFieldKey, recordId);
 
     return {
       originalData: { ...data },
       data,
     };
   } catch (e) {
-    console.log(e);
-    message.error(e.message || 'AAA数据获取失败！');
+    console.error(e);
+    message.error(e.message || '履历数据获取失败！');
   }
 }
 
@@ -58,20 +59,21 @@ export function* submit(props, values) {
   const {
     identity,
     dataSetKey,
+    primaryFieldKey,
     fields,
     originalData,
     location: { search },
   } = props;
   try {
     yield modify(setData, identity, values);
-    const { aaaId } = qsParse(search) || {};
+    const { recordId } = qsParse(search) || {};
 
     const changedFields = fields
       .filter(field => field.visible)
       .filter(field => {
         const value = values[field.key];
         if (moment.isMoment(value)) {
-          return !value.isSame(originalData[field.key]);
+          return !value.isSame(moment(originalData[field.key]));
         }
 
         return originalData[field.key] !== values[field.key];
@@ -82,24 +84,32 @@ export function* submit(props, values) {
       return;
     }
 
-    const params = {
+    // const params = {
+    //   dataSetKey,
+    //   primaryKey: recordId,
+    //   fields: changedFields.map(field => {
+    //     let value = values[field.key];
+    //     if (moment.isMoment(value)) {
+    //       value = value.format('YYYY-MM-DDTmm:hh:ss');
+    //     }
+
+    //     return {
+    //       fieldKey: field.key,
+    //       value,
+    //       originalValue: originalData[field.key],
+    //     };
+    //   }),
+    // };
+
+    yield call(
+      fetchEditDataSetData,
       dataSetKey,
-      primaryKey: aaaId,
-      fields: changedFields.map(field => {
-        let value = values[field.key];
-        if (moment.isMoment(value)) {
-          value = value.format('YYYY-MM-DDTmm:hh:ss');
-        }
-
-        return {
-          fieldKey: field.key,
-          value,
-          originalValue: originalData[field.key],
-        };
-      }),
-    };
-
-    yield call(fetchEditDataSetData, params);
+      changedFields,
+      values,
+      originalData,
+      primaryFieldKey,
+      recordId,
+    );
 
     message.success('操作成功！');
   } catch (e) {

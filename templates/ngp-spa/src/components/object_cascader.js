@@ -122,7 +122,7 @@ class ObjectCascader extends Component {
       }),
     }));
 
-    fetchGetDataSetListData(selector.config.dataSetKey, params, selector.config.fields)
+    fetchGetDataSetListData(selector.config.dataSetKey, selector.config.fields, params)
       .then(data => {
         const list = data.list || [];
         this.setState(prevState => ({

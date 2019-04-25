@@ -54,8 +54,25 @@ class FieldForm extends Component {
     }
   }
 
-  getValidateFields = () => {
-    return this.props.form.validateFields;
+  getValidateFields = callback => {
+    const { data = {} } = this.props;
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        const v = {};
+        this.displayFields
+          .filter(field => field.visible)
+          .forEach(field => {
+            let value = values[field.key];
+            if (moment.isMoment(value)) {
+              value = value.format('YYYY-MM-DDTHH:mm:ss');
+            }
+            v[field.key] = value;
+          });
+        callback(err, { ...data, ...v });
+      } else {
+        callback(err, {});
+      }
+    });
   };
 
   generateComponent = field => {
@@ -126,6 +143,7 @@ class FieldForm extends Component {
     const values = getFieldsValue();
     this.fields = groupCascade(fields, groups, groupCascades, values);
     const displayFields = fieldRelation(this.fields, fieldRelations, values);
+    this.displayFields = displayFields;
     // const displayFields = fields;
     const items = displayFields
       .filter(field => field.visible)
@@ -150,7 +168,7 @@ class FieldForm extends Component {
 export default withStyles(styles)(
   Form.create({
     mapPropsToFields(props) {
-      const fields = props.fields || {};
+      const fields = props.fields || [];
       const data = props.data || {};
 
       const formFields = {};

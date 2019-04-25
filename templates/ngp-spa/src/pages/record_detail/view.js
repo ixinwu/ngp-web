@@ -10,11 +10,11 @@ class AAADetail extends Component {
   }
 
   handleFieldClick = field => {
-    if (field.key === 'aaa__name') {
-      const { history, pagePath, data } = this.props;
+    if (field.key === 'TMPM_Record_Name') {
+      const { history, pagePath, data, primaryFieldKey } = this.props;
       history.push({
-        pathname: `${pagePath}/aaa_edit`,
-        search: qsStringify({ aaaId: data.aaa__id }),
+        pathname: `${pagePath}/record_edit`,
+        search: qsStringify({ recordId: data[primaryFieldKey] }),
       });
     }
   };
