@@ -46,28 +46,28 @@ class AaaList extends Component {
   handleAdd = () => {
     const { history, pagePath } = this.props;
     history.push({
-      pathname: `${pagePath}/aaa_add`,
+      pathname: `${pagePath}/record_add`,
     });
   };
 
   handleEdit = record => {
     const { history, pagePath } = this.props;
     history.push({
-      pathname: `${pagePath}/aaa_edit`,
-      search: qsStringify({ aaaId: record.aaa__id }),
+      pathname: `${pagePath}/record_edit`,
+      search: qsStringify({ recordId: record[this.props.primaryFieldKey] }),
     });
   };
 
   handleDelete = record => {
-    this.props.deleteData([record.aaa__id]);
+    this.props.deleteData([record[this.props.primaryFieldKey]]);
   };
 
   handleCellClick = (field, value, record) => {
     const { history, pagePath } = this.props;
-    if (field.key === 'aaa__name') {
+    if (field.key === 'TMPM_Record_Name') {
       history.push({
-        pathname: `${pagePath}/aaa_detail`,
-        search: qsStringify({ aaaId: record.aaa__id }),
+        pathname: `${pagePath}/record_detail`,
+        search: qsStringify({ recordId: record[this.props.primaryFieldKey] }),
       });
     }
   };
@@ -101,15 +101,7 @@ class AaaList extends Component {
       return fieldConfig;
     });
 
-    const searchFields = [
-      ...fields,
-      {
-        key: 'fuzzySearch',
-        searchable: true,
-        text: '模糊搜索',
-        placeholder: '模糊搜索',
-      },
-    ];
+    const searchFields = [...fields];
 
     const tableFields = [
       ...fields,

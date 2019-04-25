@@ -13,7 +13,7 @@ export default {
     {
       key: 'record_add',
       name: '履历新建',
-      type: 'Popup',
+      // type: 'Popup',
       url: '/record_add',
     },
     {

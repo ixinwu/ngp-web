@@ -21,10 +21,6 @@ import taskConfig from './task_config';
 
 export default [
   {
-    key: 'TMPM_Record_Id',
-    text: 'Id',
-  },
-  {
     key: 'TMPM_Record_Name',
     text: '履历名称',
     clickable: true,
@@ -32,77 +28,18 @@ export default [
     visible: true,
   },
   {
-    key: 'TMPM_Project_Id',
-    text: '项目Id',
+    key: 'TMPM_Record_TaskId',
+    text: '履历任务Id',
     component: ObjectCascader,
-    // colspan: 2,
-    // searchable: true,
-    config: projectConfig,
-  },
-  {
-    key: 'TMPM_Project_Name',
-    text: '项目名称',
-    visible: true,
-  },
-  {
-    key: 'TMPM_Task_Id',
-    text: '任务Id',
-    component: ObjectCascader,
-    // searchable: true,
+    colspan: 2,
     config: taskConfig,
-  },
-  {
-    key: 'TMPM_Task_Name',
-    text: '任务名称',
     visible: true,
   },
   {
-    key: 'TMPM_Record_CreatedTime',
-    text: '创建时间',
-    displayType: 'datetime',
-    searchable: true,
-    visible: true,
-  },
-  {
-    key: 'TMPM_Record_CreatedBy',
-    text: '创建者',
-    displayType: 'employee',
-    searchable: true,
-  },
-  {
-    key: 'TMPM_Record_CreatedBy__Name',
-    text: '创建者',
-    displayType: 'employee',
-    visible: true,
-  },
-  {
-    key: 'TMPM_Record_CreatedDept',
-    text: '创建部门',
-    displayType: 'department',
-    searchable: true,
-  },
-  {
-    key: 'TMPM_Record_CreatedDept__Name',
-    text: '创建部门',
-    displayType: 'department',
-    visible: true,
-  },
-  {
-    key: 'TMPM_Task_IsInvolve',
-    text: '任务__是否涉及',
-    displayType: 'bool',
-    searchable: true,
-    visible: true,
-  },
-  {
-    key: 'TMPM_Project_DutyPersons',
-    text: '项目__报警责任人',
-    displayType: 'employee',
-  },
-  {
-    key: 'TMPM_Project_DutyPersons__Name',
-    text: '项目__报警责任人',
-    displayType: 'employee',
+    key: 'TMPM_Record_ProjectId',
+    text: '履历项目Id',
+    component: ObjectCascader,
+    config: projectConfig,
     visible: true,
   },
 ];
