@@ -7,12 +7,13 @@ import { fetchGetDataSetData, fetchGetGroupTypeData } from '../../services/dynam
 export function* getData(props) {
   const {
     dataSetKey,
+    primaryFieldKey,
     fields,
     location: { search },
   } = props;
   try {
     const { recordId } = qsParse(search) || {};
-    const data = yield call(fetchGetDataSetData, dataSetKey, fields, recordId);
+    const data = yield call(fetchGetDataSetData, dataSetKey, fields, primaryFieldKey, recordId);
 
     return {
       data,

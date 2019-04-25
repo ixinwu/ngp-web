@@ -31,20 +31,25 @@ export function fetchGetDataSetListData(dataSetKey, fields, params) {
   }));
 }
 
-export function fetchGetDataSetData(dataSetKey, fields, id) {
+export function fetchGetDataSetData(dataSetKey, fields, primaryFieldKey, primaryFieldValue) {
   const fetchOptions = {
     method: 'POST',
-    url: '/xxx/yyyy',
-    params: { dataSetKey, id, fields },
-    mock: SCOPE_MOCK,
+    url: '/api/DynamicData/queryDynamicSingleData',
+    params: paramConverter.toDetailParams({
+      dataSetKey,
+      fields,
+      primaryFieldKey,
+      primaryFieldValue,
+    }),
+    // mock: SCOPE_MOCK,
     mockData: () => {
       const data = createDataSetListMockData(fields)[0];
 
-      return data;
+      return formatDataSetData(data);
     },
   };
 
-  return apiService.fetchJsonApi(fetchOptions).then(data => formatDataSetData(data));
+  return apiService.fetchJsonApi(fetchOptions);
 }
 
 export function fetchAddDataSetData(dataSetKey, fields, values) {

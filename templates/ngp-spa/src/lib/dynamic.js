@@ -68,4 +68,26 @@ export const paramConverter = {
 
     return result;
   },
+  toDetailParams: ({ dataSetKey, fields, primaryFieldKey, primaryFieldValue, resourceKey }) => {
+    const result = {
+      dataSetKey,
+    };
+
+    result.queryFieldKeys = fields
+      .filter(item => {
+        const nameRegx = /__Name$/g;
+        const d = !nameRegx.test(item.key);
+
+        return d;
+      })
+      .map(item => item.key);
+
+    result.whereExpression = `${primaryFieldKey} = '${primaryFieldValue}'`;
+
+    if (resourceKey) {
+      result.resourceKey = resourceKey;
+    }
+
+    return result;
+  },
 };
