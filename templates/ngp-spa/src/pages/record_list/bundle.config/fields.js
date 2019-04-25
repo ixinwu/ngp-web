@@ -70,24 +70,22 @@ export default [
     key: 'TMPM_Record_CreatedBy',
     text: '创建者',
     displayType: 'employee',
-    searchable: true,
   },
   {
     key: 'TMPM_Record_CreatedBy__Name',
     text: '创建者',
-    displayType: 'employee',
+    displayType: 'text',
     visible: true,
   },
   {
     key: 'TMPM_Record_CreatedDept',
     text: '创建部门',
     displayType: 'department',
-    searchable: true,
   },
   {
     key: 'TMPM_Record_CreatedDept__Name',
     text: '创建部门',
-    displayType: 'department',
+    displayType: 'text',
     visible: true,
   },
   {
@@ -105,7 +103,7 @@ export default [
   {
     key: 'TMPM_Project_DutyPersons__Name',
     text: '项目__报警责任人',
-    displayType: 'employee',
+    displayType: 'text',
     visible: true,
   },
 ];
