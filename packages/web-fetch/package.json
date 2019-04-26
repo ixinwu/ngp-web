@@ -1,6 +1,6 @@
 {
   "name": "@ixinwu-ngp/web-fetch",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": {
     "name": "zhuoluo-hq",
     "email": "zhuoluo.hq@gmail.com"
@@ -27,5 +27,8 @@
     "isomorphic-fetch": "^2.2.1",
     "qs": "^6.6.0",
     "warning": "^4.0.1"
+  },
+  "peerDependencies": {
+    "moment": "^2.23.0"
   }
 }

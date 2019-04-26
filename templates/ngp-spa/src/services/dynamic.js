@@ -1,5 +1,5 @@
 import apiService from '../lib/api_service';
-import { paramConverter } from '../lib/dynamic';
+import { paramConverter } from '@ixinwu-ngp/web-fetch';
 import { sliceListData, createDataSetListMockData, formatDataSetData } from './utils';
 import groups from './mock_data/groups';
 

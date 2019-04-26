@@ -773,10 +773,10 @@
   resolved "https://registry.yarnpkg.com/@ixinwu-ngp/web-core/-/web-core-1.1.4.tgz#b86883301eae9d9fe7ef1ee79e2961b8e873674e"
   integrity sha512-i6yuZGpbeS8kKM+8oPv32NGd2HkbT08IaSiV4kqxJBF/zEU9DL4kSoQJqffQBGOllflKihfdTj8QyVXAaoMIFg==
 
-"@ixinwu-ngp/web-fetch@^1.0.0":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@ixinwu-ngp/web-fetch/-/web-fetch-1.0.3.tgz#57d0a2dcdfd2a505e4b5720663c18b5459c372ca"
-  integrity sha512-iJ8FSjieyWiGw66B8dOCvno6yyPGVSGV43Ma315beLBKVTQcausQ2MA2yjC3pJ8Ntuq9EmPTYHNU6aGHH9VS9A==
+"@ixinwu-ngp/web-fetch@1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@ixinwu-ngp/web-fetch/-/web-fetch-1.0.4.tgz#40cb47529e87d1c90d8f3b42e67de307b24f40e0"
+  integrity sha512-DomiBlmYSDNqlwBQwNqrWMq7Vh4IEnmVGECAPo+DjPlZjmqy4Io8PpT6EYWcZWe2FvoFZCddvllnIHU/Nm2cjw==
   dependencies:
     isomorphic-fetch "^2.2.1"
     qs "^6.6.0"
