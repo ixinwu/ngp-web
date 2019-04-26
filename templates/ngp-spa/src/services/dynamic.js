@@ -9,7 +9,7 @@ export function fetchGetDataSetListData(dataSetKey, fields, params) {
   const fetchOptions = {
     method: 'POST',
     url: '/api/DynamicData/queryDynamicListPageData',
-    params: paramConverter.toListPramas({
+    params: paramConverter.toPagingListPramas({
       dataSetKey,
       params,
       fields,
@@ -35,7 +35,7 @@ export function fetchGetDataSetData(dataSetKey, fields, primaryFieldKey, primary
   const fetchOptions = {
     method: 'POST',
     url: '/api/DynamicData/queryDynamicSingleData',
-    params: paramConverter.toDetailParams({
+    params: paramConverter.toSingleDataParams({
       dataSetKey,
       fields,
       primaryFieldKey,
@@ -56,7 +56,7 @@ export function fetchAddDataSetData(dataSetKey, fields, values) {
   const fetchOptions = {
     method: 'POST',
     url: '/api/DynamicData/insertDynamicData',
-    params: paramConverter.toAddParams({
+    params: paramConverter.toInsertParams({
       dataSetKey,
       values,
       fields,
@@ -79,7 +79,7 @@ export function fetchEditDataSetData(
   const fetchOptions = {
     method: 'POST',
     url: '/api/DynamicData/updateDynamicData',
-    params: paramConverter.toEditParams({
+    params: paramConverter.toUpdateParams({
       dataSetKey,
       fields,
       values,
@@ -94,15 +94,16 @@ export function fetchEditDataSetData(
   return apiService.fetchJsonApi(fetchOptions);
 }
 
-export function fetchDeleteDataSetData(dataSetKey, keys) {
+export function fetchDeleteDataSetData(dataSetKey, primaryFieldKey, primaryFieldValues) {
   const fetchOptions = {
     method: 'POST',
     url: '/api/DynamicData/deleteDynamicData',
-    params: {
+    params: paramConverter.toDeleteParams({
       dataSetKey,
-      keys,
-    },
-    mock: SCOPE_MOCK,
+      primaryFieldKey,
+      primaryFieldValues,
+    }),
+    // mock: SCOPE_MOCK,
     mockData: {},
   };
 

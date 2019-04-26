@@ -2,7 +2,7 @@ import moment from 'moment';
 import { generateListWhereDsl } from './helpers';
 
 export const paramConverter = {
-  toListPramas: ({ dataSetKey, params, fields, resourceKey }) => {
+  toPagingListPramas: ({ dataSetKey, params, fields, resourceKey }) => {
     const result = {
       pageSize: params.pageSize,
       pageNumber: params.pageNumber,
@@ -41,7 +41,7 @@ export const paramConverter = {
 
     return result;
   },
-  toAddParams: ({ dataSetKey, fields, values, resourceKey }) => {
+  toInsertParams: ({ dataSetKey, fields, values, resourceKey }) => {
     const result = {
       dataSetKey,
     };
@@ -68,7 +68,7 @@ export const paramConverter = {
 
     return result;
   },
-  toDetailParams: ({ dataSetKey, fields, primaryFieldKey, primaryFieldValue, resourceKey }) => {
+  toSingleDataParams: ({ dataSetKey, fields, primaryFieldKey, primaryFieldValue, resourceKey }) => {
     const result = {
       dataSetKey,
       whereExpression: `${primaryFieldKey} = '${primaryFieldValue}'`,
@@ -89,7 +89,7 @@ export const paramConverter = {
 
     return result;
   },
-  toEditParams: ({
+  toUpdateParams: ({
     dataSetKey,
     fields,
     values,
@@ -119,6 +119,29 @@ export const paramConverter = {
           originalValue: originalData[field.key],
         };
       });
+
+    if (resourceKey) {
+      result.resourceKey = resourceKey;
+    }
+
+    return result;
+  },
+  toDeleteParams: ({ dataSetKey, primaryFieldKey, primaryFieldValues, resourceKey }) => {
+    let inSets = '';
+
+    primaryFieldValues.forEach(value => {
+      inSets += `'${value}',`;
+    });
+
+    // 去掉最后一个逗号
+    if (inSets.length > 0) {
+      inSets = inSets.slice(0, inSets.length - 1);
+    }
+
+    const result = {
+      dataSetKey,
+      whereExpressions: [`${primaryFieldKey} IN (${inSets})`],
+    };
 
     if (resourceKey) {
       result.resourceKey = resourceKey;

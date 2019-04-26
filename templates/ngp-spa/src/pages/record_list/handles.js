@@ -85,7 +85,7 @@ export function setSelectedPrimaryKeys(props, selectedPrimaryKeys) {
 }
 
 export function* deleteData(props, selectedPrimaryKeys) {
-  const { dataSetKey } = props;
+  const { dataSetKey, primaryFieldKey } = props;
   try {
     if (!selectedPrimaryKeys || !selectedPrimaryKeys.length) {
       message.warning('请选择要操作的AAA数据');
@@ -114,7 +114,7 @@ export function* deleteData(props, selectedPrimaryKeys) {
 
     if (!confirmResult) return;
 
-    yield call(fetchDeleteDataSetData, dataSetKey, selectedPrimaryKeys);
+    yield call(fetchDeleteDataSetData, dataSetKey, primaryFieldKey, selectedPrimaryKeys);
     message.success('操作成功');
     return yield call(getListData, props);
   } catch (e) {

@@ -1,9 +1,6 @@
 import moment from 'moment';
 
 export function generateListWhereDsl(fields, values) {
-  console.log('fields', fields);
-  console.log('values', values);
-
   const dsls = [];
 
   fields.forEach(field => {
