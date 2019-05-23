@@ -117,7 +117,7 @@ export class ApiService {
       return new Promise(resolve => {
         setTimeout(() => {
           console.groupCollapsed(`mock request:${config.url}`);
-          console.info('fetch options:', fetchOptions);
+          console.info('fetch options:', { ...fetchOptions, params });
           console.info('mock data:', mockData);
           console.groupEnd(`mock request:${config.url}`);
           resolve(mockData);

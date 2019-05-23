@@ -30,7 +30,6 @@ class ListTable extends Component {
   };
 
   generateColumnRender = (field, value, record) => {
-    const { classes } = this.props;
     let component;
     switch (field.displayType) {
       case 'datetime':
@@ -72,22 +71,11 @@ class ListTable extends Component {
         );
     }
 
-    if (field.clickable) {
-      component = (
-        <span
-          className={classes.clickable}
-          onClick={() => {
-            this.handleClick(field, value, record);
-          }}
-        >
-          {component}
-        </span>
-      );
-    }
     return component;
   };
 
   generateColumn = field => {
+    const { classes } = this.props;
     const column = {
       ...field,
       title: field.text,
@@ -96,14 +84,28 @@ class ListTable extends Component {
       width: field.width,
     };
 
+    let render;
     if (field.render) {
-      column.render = field.render;
+      render = field.render;
     } else if (field.component) {
+      render = (value, record) => <field.component value={value} record={record} field={field} />;
+    } else {
+      render = (value, record) => this.generateColumnRender(field, value, record);
+    }
+
+    if (field.clickable) {
       column.render = (value, record) => (
-        <field.component value={value} record={record} field={field} />
+        <span
+          className={classes.clickable}
+          onClick={() => {
+            this.handleClick(field, value, record);
+          }}
+        >
+          {render(value, record)}
+        </span>
       );
     } else {
-      column.render = (value, record) => this.generateColumnRender(field, value, record);
+      column.render = render;
     }
 
     return column;

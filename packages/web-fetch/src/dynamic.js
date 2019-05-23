@@ -2,7 +2,7 @@ import moment from 'moment';
 import { generateListWhereDsl } from './helpers';
 
 export const paramConverter = {
-  toPagingListPramas: ({ dataSetKey, params, fields, resourceKey }) => {
+  toPagingListPramas: ({ dataSetKey, params, fields, paramFields, resourceKey }) => {
     const result = {
       pageSize: params.pageSize,
       pageNumber: params.pageNumber,
@@ -21,7 +21,7 @@ export const paramConverter = {
         .map(item => item.key),
     };
 
-    const whereExpression = generateListWhereDsl(fields, params);
+    const whereExpression = generateListWhereDsl(paramFields || fields, params);
 
     if (resourceKey) {
       requestData.resourceKey = resourceKey;
