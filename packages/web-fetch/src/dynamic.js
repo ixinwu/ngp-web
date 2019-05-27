@@ -41,6 +41,38 @@ export const paramConverter = {
 
     return result;
   },
+  toListPramas: ({ dataSetKey, params, fields, paramFields, resourceKey }) => {
+    const requestData = {
+      dataSetKey,
+      // 过滤掉名称生成的字段
+      queryFieldKeys: fields
+        .filter(item => {
+          const nameRegx = /__Name$/g;
+          const d = !nameRegx.test(item.key);
+
+          return d;
+        })
+        .map(item => item.key),
+    };
+
+    const whereExpression = generateListWhereDsl(paramFields || fields, params);
+
+    if (resourceKey) {
+      requestData.resourceKey = resourceKey;
+    }
+
+    if (params.sortField && params.sortDirection) {
+      requestData.sortExpression = `${
+        params.sortField
+      } ${params.sortDirection.toLocaleUpperCase()}`;
+    }
+
+    if (whereExpression) {
+      requestData.whereExpression = whereExpression;
+    }
+
+    return requestData;
+  },
   toInsertParams: ({ dataSetKey, fields, values, resourceKey }) => {
     const result = {
       dataSetKey,
