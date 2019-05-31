@@ -76,7 +76,7 @@ export class ApiService {
 
     // 补全请求路径
     let url = fetchUrl;
-    if (url.indexOf('//') === -1) {
+    if (HOST && url.indexOf('//') === -1) {
       url = HOST + url;
     }
 
