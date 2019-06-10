@@ -169,6 +169,18 @@ export class ApiService {
     }
     return this.token;
   }
+
+  mockFetch(params, mockData) {
+    return new Promise(resolve => {
+      console.log({
+        token: this.token,
+        params,
+      });
+      setTimeout(() => {
+        resolve(mockData);
+      }, 500);
+    });
+  }
 }
 
 const apiService = new ApiService();

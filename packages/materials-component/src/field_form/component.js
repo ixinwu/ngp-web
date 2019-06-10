@@ -138,7 +138,18 @@ class FieldForm extends Component {
   };
 
   render() {
-    const { fields, groups, fieldRelations, groupCascades } = this.props;
+    const {
+      fields,
+      groups,
+      fieldRelations,
+      groupCascades,
+      formLayout = 'vertical',
+      footer,
+      okText,
+      okType,
+      cancelText,
+      cancelType,
+    } = this.props;
     const { getFieldDecorator, getFieldsValue } = this.props.form;
     const values = getFieldsValue();
     this.fields = groupCascade(fields, groups, groupCascades, values);
@@ -158,7 +169,7 @@ class FieldForm extends Component {
       }));
     const Layout = this.props.layout || FieldGrid;
     return (
-      <Form layout="vertical">
+      <Form layout={formLayout}>
         <Layout fields={items} />
       </Form>
     );
