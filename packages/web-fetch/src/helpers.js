@@ -67,6 +67,11 @@ export function generateListWhereDsl(fields, values) {
           dsls.push(`${field.key} LIKE '${value}'`);
           break;
         }
+        case 'bool':
+        case 'boolean': {
+          dsls.push(`${field.key} = ${value}`);
+          break;
+        }
         default:
       }
     }
