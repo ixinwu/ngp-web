@@ -5,7 +5,7 @@ const styles = {};
 
 function NumberFormat({ value, format = '', inValid = '--' }) {
   let content;
-  const v = value * 1;
+  const v = Number.parseFloat(value);
   if (Number.isNaN(v)) {
     content = inValid;
   } else {
