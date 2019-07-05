@@ -3,13 +3,13 @@ import { withStyles } from '@ixinwu-ngp/web-styles';
 
 const styles = {};
 
-function NumberFormat({ value, format = '', inValid = '--' }) {
+function NumberFormat({ value, format = '', inValid = '--', prefix = '', suffix = '' }) {
   let content;
   const v = Number.parseFloat(value);
   if (Number.isNaN(v)) {
     content = inValid;
   } else {
-    content = numeral(value).format(format || '0,0');
+    content = `${prefix}${numeral(value).format(format || '0,0')}${suffix}`;
   }
 
   return content;
