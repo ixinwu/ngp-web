@@ -1,4 +1,5 @@
-import '@babel/polyfill';
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 import ngp, { createClient } from '@ixinwu-ngp/web-framework';
 import apiService from './lib/api_service';
 import { pageBundleLoaders, pageConfigLoaders } from './pages';

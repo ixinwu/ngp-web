@@ -8,7 +8,7 @@ export function fetchAuth(userName, password) {
     method: 'POST',
     url: '/OAuth/token',
     params: { loginName: userName, password },
-    // mock: SCOPE_MOCK,
+    mock: SCOPE_MOCK,
     mockData: {
       accessToken: `${userName}__${password}`,
       tokenType: 'Bearer',
