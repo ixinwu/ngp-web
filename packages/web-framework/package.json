@@ -1,6 +1,6 @@
 {
   "name": "@ixinwu-ngp/web-framework",
-  "version": "1.2.12",
+  "version": "1.2.13",
   "author": {
     "name": "zhuoluo-hq",
     "email": "zhuoluo.hq@gmail.com"
@@ -36,7 +36,7 @@
     "react-router-dom": "^4.3.1"
   },
   "dependencies": {
-    "@ixinwu-ngp/web-core": "1.1.4",
+    "@ixinwu-ngp/web-core": "1.1.5",
     "@ixinwu-ngp/web-styles": "^1.0.0",
     "@types/jss": "^9.5.6",
     "@types/react-transition-group": "^2.0.8",
