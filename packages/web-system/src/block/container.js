@@ -23,8 +23,7 @@ class BlockContainer extends Component {
       }
       if (block.status === 'ready') {
         if (block.comp) {
-          const Comp = block.comp;
-          content = <Comp {...rest} />;
+          content = <block.comp {...rest} />;
         } else {
           content = <Error message={block.tip} />;
         }

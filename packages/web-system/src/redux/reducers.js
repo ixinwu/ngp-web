@@ -19,7 +19,7 @@ function routeHistory(state = [], action) {
       ];
     case ROUTE_UPDATE:
       return state.map(route => {
-        if (route.id !== action.payload.id) {
+        if (route.id === action.payload.id) {
           return {
             ...route,
             ...action.payload,
@@ -45,7 +45,7 @@ function blocks(state = [], action) {
       ];
     case BLOCK_UPDATE:
       return state.map(block => {
-        if (block.identity !== action.payload.identity) {
+        if (block.identity === action.payload.identity) {
           return {
             ...block,
             ...action.payload,

@@ -93,6 +93,7 @@ function* blockMountSaga() {
 
 const getState = state => state;
 
+// 请求block配置
 function* blockConfigRequest(action) {
   const { identity, route } = action.payload;
   try {
