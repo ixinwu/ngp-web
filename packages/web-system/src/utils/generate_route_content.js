@@ -1,22 +1,22 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import RouteContainer from '../route_container';
+import RouteContainer from '../route/container';
 
-export default function generateRouteContent(pagePath, routes) {
-  return routes.map(routeConfig => (
-    <Route
-      exact={routeConfig.exact}
-      key={`${pagePath}${routeConfig.url}`}
-      path={`${pagePath}${routeConfig.url}`}
-      render={props => {
-        return (
-          <RouteContainer
-            routeConfig={routeConfig}
-            pagePath={`${pagePath}${routeConfig.url}`}
-            {...props}
-          />
-        );
-      }}
-    />
-  ));
+export default function generateRouteContent(parentRoute, childRoutes) {
+  const parentPath = parentRoute ? parentRoute.path : '';
+
+  return childRoutes.map(routeConfig => {
+    const path = `${parentPath}${routeConfig.url}`;
+
+    return (
+      <Route
+        exact={routeConfig.exact}
+        key={path}
+        path={path}
+        render={props => {
+          return <RouteContainer routeConfig={routeConfig} parentRoute={parentRoute} {...props} />;
+        }}
+      />
+    );
+  });
 }

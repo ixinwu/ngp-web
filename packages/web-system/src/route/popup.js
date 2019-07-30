@@ -78,7 +78,7 @@ const getPopupStyle = (screenWidth, screenHeight, propsStyle) => {
  * @class Popup
  * @extends {Component}
  */
-class Comp extends Component {
+class RoutePopup extends Component {
   constructor(props) {
     super(props);
     this.handleClickMask = this.handleClickMask.bind(this);
@@ -114,7 +114,7 @@ class Comp extends Component {
   }
 }
 
-Comp.propTypes = {
+RoutePopup.propTypes = {
   children: PropTypes.node,
   classes: PropTypes.object,
   maskClosable: PropTypes.bool,
@@ -122,4 +122,4 @@ Comp.propTypes = {
   style: PropTypes.object,
 };
 
-export default withStyles(styles)(Comp);
+export default withStyles(styles)(RoutePopup);

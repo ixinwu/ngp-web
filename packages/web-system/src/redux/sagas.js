@@ -1,22 +1,17 @@
 import warning from 'warning';
-import { takeEvery, takeLatest, put, call, select } from '@ixinwu-ngp/web-core';
+import { takeEvery, put, call, select } from '@ixinwu-ngp/web-core';
 import { withRouter } from 'react-router-dom';
 import ngp from '../ref';
-import mountBundle from '../bundle/mount';
 import mountBlock from '../block/mount';
 import {
-  ROUTE_MOUNT,
-  ROUTE_UNMOUNT,
-  ROUTE_ENTER,
-  ROUTE_LEAVE,
-  ROUTE_READY,
-  ROUTE_ERROR,
-  INIT_CLIENT_REQUEST,
-  INIT_CLIENT_SUCCESS,
-  INIT_CLIENT_FAILURE,
+  BLOCK_MOUNT,
+  BLOCK_ENTER,
+  BLOCK_UPDATE,
+  BLOCK_CONFIG_REQUEST,
+  ROUTE_UPDATE,
 } from './actions';
 
-function getPageBundle(loader) {
+function getBundle(loader) {
   return typeof loader === 'function'
     ? new Promise(resolve => {
         loader(module => {
@@ -30,133 +25,141 @@ function getPageBundle(loader) {
     : Promise.resolve(loader);
 }
 
-const getState = state => state;
+function getConfig(loader, identity, state, ...args) {
+  return typeof loader === 'function'
+    ? new Promise((resolve, reject) => {
+        loader(identity, state, ...args)
+          .then(config => {
+            resolve(config);
+          })
+          .catch(e => {
+            reject(e);
+          });
+      })
+    : Promise.resolve(loader);
+}
 
-function* routeMount(action) {
-  const { pathname, pageKey } = action.payload;
+function* blockMount(action) {
+  const { identity } = action.payload;
   try {
     yield put({
-      type: ROUTE_ENTER,
-      payload: action.payload,
+      type: BLOCK_ENTER,
+      payload: {
+        ...action.payload,
+        status: 'loading',
+        tip: '加载中...',
+      },
     });
-    let childRouteConfigs = [];
-    const { pages, pageBundleLoaders, pageConfigLoaders } = ngp.app;
-    const pageCache = pages[pageKey] || {};
-    // 加载page的代码bundle
-    const bundleLoader = pageBundleLoaders[pageKey];
-    let pageBundle = pageCache.bundle;
-    if (!pageBundle && bundleLoader) {
-      pageBundle = yield call(getPageBundle, bundleLoader);
-    }
-    // 添加子路由
-    if (pageBundle && pageBundle.routes) {
-      childRouteConfigs = childRouteConfigs.concat(pageBundle.routes);
-    }
-    // 获取page的配置config，纯自定义的页面是没有configLoader的
-    let pageConfig = pageCache.config;
-    const configLoader = pageConfigLoaders[pageKey];
-    if (!pageConfig && configLoader) {
-      const state = yield select(getState);
-      pageConfig = yield configLoader(pageKey, state);
-    }
-    // 添加子路由
-    if (pageConfig && pageConfig.routes) {
-      childRouteConfigs = childRouteConfigs.concat(pageConfig.routes);
+    let blockBundle = ngp.loadedBlocks[identity];
+    if (!blockBundle) {
+      const loader = ngp.blocks[identity];
+      blockBundle = yield call(getBundle, loader);
+      ngp.loadedBlocks[identity] = blockBundle;
     }
 
-    warning(pageBundle, 'page should hava a bundle');
-    if (!pageBundle) {
+    warning(blockBundle, 'block is empty');
+    if (!blockBundle) {
       yield put({
-        type: ROUTE_ERROR,
+        type: BLOCK_UPDATE,
         payload: {
-          pathname,
+          status: 'error',
+          tip: '加载失败',
         },
       });
       return;
     }
 
-    let pageComp;
-    if (pageConfig && pageBundle) {
-      pageComp = withRouter(mountBlock(pageConfig, pageBundle));
-    }
-    if (!pageConfig && pageBundle) {
-      pageComp = withRouter(mountBundle(pageBundle));
-    }
-
     yield put({
-      type: ROUTE_READY,
+      type: BLOCK_UPDATE,
       payload: {
-        pathname,
-        childRouteConfigs,
-        pageComp,
+        status: 'bundle_ready',
       },
     });
   } catch (e) {
-    warning(!e, e.message || 'Route mount Error');
+    warning(!e, e.message);
     yield put({
-      type: ROUTE_ERROR,
+      type: BLOCK_UPDATE,
       payload: {
-        pathname,
+        status: 'error',
+        tip: '加载失败',
       },
     });
   }
 }
 
-function* routeMountSaga() {
-  yield takeEvery(ROUTE_MOUNT, routeMount);
+function* blockMountSaga() {
+  yield takeEvery(BLOCK_MOUNT, blockMount);
 }
 
-function* routeUnmount(action) {
-  const { pathname, pageKey } = action.payload;
+const getState = state => state;
+
+function* blockConfigRequest(action) {
+  const { identity, route } = action.payload;
   try {
-    const pageCache = ngp.app.pages[pageKey] || {};
+    yield put({
+      type: BLOCK_UPDATE,
+      payload: {
+        ...action.payload,
+        status: 'config_loading',
+        tip: '获取配置中...',
+      },
+    });
 
-    const pageBundle = pageCache.bundle || {};
-    const pageConfig = pageCache.config || {};
-    const identity = pageConfig.identity || pageBundle.identity;
+    const blockBundle = ngp.loadedBlocks[identity];
+    const state = yield select(getState);
+    let config = yield call(getConfig, blockBundle.getConfig, identity, state);
 
-    ngp.app.unmount(identity);
+    if (!config) {
+      config = {
+        identity,
+      };
+    }
+
+    // 更新子路由
+    if (config.routes) {
+      const childRouteConfigs = route.childRouteConfigs;
+
+      config.routes.forEach(childRoute => {
+        if (!childRouteConfigs.find(childRouteConfig => childRouteConfig.url === childRoute.url)) {
+          childRouteConfigs.push(childRoute);
+        }
+      });
+
+      yield put({
+        type: ROUTE_UPDATE,
+        payload: {
+          id: route.id,
+          childRouteConfigs,
+        },
+      });
+    }
+
+    const comp = withRouter(mountBlock(config, blockBundle));
 
     yield put({
-      type: ROUTE_LEAVE,
+      type: BLOCK_UPDATE,
       payload: {
-        pathname,
+        status: 'ready',
+        comp,
       },
     });
   } catch (e) {
-    warning(!e, e.message || 'Route mount Error');
+    warning(!e, e.message);
     yield put({
-      type: ROUTE_LEAVE,
+      type: BLOCK_UPDATE,
       payload: {
-        pathname,
+        status: 'error',
+        tip: '加载失败',
       },
     });
   }
 }
 
-function* routeUnmountSaga() {
-  yield takeEvery(ROUTE_UNMOUNT, routeUnmount);
-}
-
-function* initClient(appKey) {
-  // TODO 调用实际的配置获取接口
-  if (appKey) {
-    yield put({
-      type: INIT_CLIENT_SUCCESS,
-    });
-  } else {
-    yield put({
-      type: INIT_CLIENT_FAILURE,
-    });
-  }
-}
-
-function* initClientSaga() {
-  yield takeLatest(INIT_CLIENT_REQUEST, initClient);
+function* blockConfigRequestSaga() {
+  yield takeEvery(BLOCK_CONFIG_REQUEST, blockConfigRequest);
 }
 
 export default {
-  routeMountSaga,
-  routeUnmountSaga,
-  initClientSaga,
+  blockMountSaga,
+  blockConfigRequestSaga,
 };

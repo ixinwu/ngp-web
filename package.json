@@ -17,6 +17,7 @@
     "packages/web-core",
     "packages/web-fetch",
     "packages/web-framework",
+    "packages/web-system",
     "packages/web-styles",
     "packages/web-utils"
   ],

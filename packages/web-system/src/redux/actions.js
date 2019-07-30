@@ -1,18 +1,16 @@
-export const ROUTE_ENTER = 'ROUTE_ENTER';
-export const ROUTE_LEAVE = 'ROUTE_LEAVE';
-export const ROUTE_READY = 'ROUTE_READY';
-export const ROUTE_ERROR = 'ROUTE_ERROR';
-
 export const ROUTE_MOUNT = 'ROUTE_MOUNT';
+export const ROUTE_UPDATE = 'ROUTE_UPDATE';
 export const ROUTE_UNMOUNT = 'ROUTE_UNMOUNT';
 
-// export const ROUTE_STATUS_UPDATE = 'ROUTE_STATUS_UPDATE';
-// export const ROUTE_TIP_UPDATE = 'ROUTE_TIP_UPDATE';
-
-export function routeMount(pathname, routeConfig, search) {
+export function routeMount(routeConfig, parentRoute, pathname, search) {
+  const path = `${parentRoute.path}${routeConfig.url}`;
+  const id = routeConfig.id || path;
   return {
     type: ROUTE_MOUNT,
     payload: {
+      id,
+      path,
+      parentRouteId: parentRoute ? parentRoute.id : null,
       pathname,
       search,
       ...routeConfig,
@@ -20,36 +18,57 @@ export function routeMount(pathname, routeConfig, search) {
   };
 }
 
-export function routeUnmount(pathname, routeConfig) {
+export function routeUpdate(route, obj) {
   return {
-    type: ROUTE_UNMOUNT,
+    type: ROUTE_UPDATE,
     payload: {
-      pathname,
-      ...routeConfig,
+      id: route.id,
+      ...obj,
     },
   };
 }
 
-export const INIT_CLIENT_REQUEST = 'INIT_CLIENT_REQUEST';
-export const INIT_CLIENT_SUCCESS = 'INIT_CLIENT_SUCCESS';
-export const INIT_CLIENT_FAILURE = 'INIT_CLIENT_FAILURE';
-
-export function initClient(appKey) {
+export function routeUnmount(route) {
   return {
-    type: INIT_CLIENT_REQUEST,
-    payload: { appKey },
+    type: ROUTE_UNMOUNT,
+    payload: {
+      id: route.id,
+    },
   };
 }
 
-export function initClientSuccess(data) {
+export const BLOCK_MOUNT = 'BLOCK_MOUNT';
+export const BLOCK_UPDATE = 'BLOCK_UPDATE';
+export const BLOCK_UNMOUNT = 'BLOCK_UNMOUNT';
+export const BLOCK_ENTER = 'BLOCK_ENTER';
+export const BLOCK_CONFIG_REQUEST = 'BLOCK_CONFIG_REQUEST';
+
+export function blockMount(identity) {
   return {
-    type: INIT_CLIENT_SUCCESS,
-    payload: data,
+    type: BLOCK_MOUNT,
+    payload: {
+      identity,
+      status: 'loading',
+    },
   };
 }
 
-export function initClientFailure() {
+export function blockUnmount(identity) {
   return {
-    type: INIT_CLIENT_FAILURE,
+    type: BLOCK_UNMOUNT,
+    payload: {
+      identity,
+    },
+  };
+}
+
+export function requestBlockConfig(identity, block, route) {
+  return {
+    type: BLOCK_CONFIG_REQUEST,
+    payload: {
+      identity,
+      block,
+      route,
+    },
   };
 }

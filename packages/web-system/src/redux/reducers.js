@@ -1,84 +1,60 @@
 import {
-  ROUTE_ENTER,
-  ROUTE_LEAVE,
-  ROUTE_READY,
-  ROUTE_ERROR,
-  INIT_CLIENT_REQUEST,
-  INIT_CLIENT_SUCCESS,
-  INIT_CLIENT_FAILURE,
+  ROUTE_MOUNT,
+  ROUTE_UPDATE,
+  ROUTE_UNMOUNT,
+  BLOCK_ENTER,
+  BLOCK_UPDATE,
+  BLOCK_UNMOUNT,
 } from './actions';
 
 function routeHistory(state = [], action) {
   switch (action.type) {
-    case ROUTE_ENTER:
+    case ROUTE_MOUNT:
+      return [
+        ...state,
+        {
+          childRouteConfigs: [],
+          ...action.payload,
+        },
+      ];
+    case ROUTE_UPDATE:
+      return state.map(route => {
+        if (route.id !== action.payload.id) {
+          return {
+            ...route,
+            ...action.payload,
+          };
+        }
+        return route;
+      });
+    case ROUTE_UNMOUNT:
+      return state.filter(route => route.id !== action.payload.id);
+    default:
+      return state;
+  }
+}
+
+function blocks(state = [], action) {
+  switch (action.type) {
+    case BLOCK_ENTER:
       return [
         ...state,
         {
           ...action.payload,
-          status: 'loading',
-          tip: '页面加载中...',
-          childRouteConfigs: [],
         },
       ];
-    case ROUTE_LEAVE:
-      return state.filter(route => route.pathname !== action.payload.pathname);
-    case ROUTE_READY:
-      return state.map(route => {
-        if (route.pathname === action.payload.pathname) {
+    case BLOCK_UPDATE:
+      return state.map(block => {
+        if (block.identity !== action.payload.identity) {
           return {
-            ...route,
-            pageComp: action.payload.pageComp,
-            childRouteConfigs: action.payload.childRouteConfigs,
-            status: 'ready',
-            tip: '',
+            ...block,
+            ...action.payload,
           };
         }
-        return route;
+        return block;
       });
-    case ROUTE_ERROR:
-      return state.map(route => {
-        if (route.pathname === action.payload.pathname) {
-          return {
-            ...route,
-            status: 'error',
-            tip: '页面加载失败',
-          };
-        }
-        return route;
-      });
-    default:
-      return state;
-  }
-}
-
-function clientLoading(state = true, action) {
-  switch (action.type) {
-    case INIT_CLIENT_REQUEST:
-      return true;
-    case INIT_CLIENT_SUCCESS:
-    case INIT_CLIENT_FAILURE:
-      return false;
-    default:
-      return state;
-  }
-}
-
-function clientError(state = false, action) {
-  switch (action.type) {
-    case INIT_CLIENT_REQUEST:
-    case INIT_CLIENT_SUCCESS:
-      return false;
-    case INIT_CLIENT_FAILURE:
-      return true;
-    default:
-      return state;
-  }
-}
-
-function appConfig(state = {}, action) {
-  switch (action.type) {
-    case INIT_CLIENT_SUCCESS:
-      return Object.assign({}, state, action.payload);
+    case BLOCK_UNMOUNT:
+      return state.filter(block => block.identity !== block.payload.identity);
     default:
       return state;
   }
@@ -92,9 +68,7 @@ function apiConfig(state = {}, action) {
 }
 
 export default {
-  clientLoading,
-  clientError,
   routeHistory,
-  appConfig,
+  blocks,
   apiConfig,
 };

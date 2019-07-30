@@ -21,7 +21,7 @@ const styles = {
   },
 };
 
-class Comp extends Component {
+class RouteSlide extends Component {
   handleClickOutside(e) {
     if (document.getElementById('root').contains(e.target)) {
       if (this.props.onClose) {
@@ -41,11 +41,11 @@ class Comp extends Component {
   }
 }
 
-Comp.propTypes = {
+RouteSlide.propTypes = {
   children: PropTypes.node,
   classes: PropTypes.object,
   onClose: PropTypes.func,
   style: PropTypes.object,
 };
 
-export default withStyles(styles)(enhanceWithClickOutside(Comp));
+export default withStyles(styles)(enhanceWithClickOutside(RouteSlide));
