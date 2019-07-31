@@ -7,9 +7,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { SheetsRegistry } from 'jss';
 import { NgpThemeProvider, createGenerateClassName } from '@ixinwu-ngp/web-styles';
 import CssBaseLine from '@ixinwu-ngp/materials-component/css_base_line';
-import BlockContainer from '../block/loader';
-import RouteContext from '../context/route';
-import ParentContext from '../context/parent';
+import Shell from './component';
 
 function getContent({
   sheetsRegistry,
@@ -20,18 +18,24 @@ function getContent({
   basename,
   appKey,
   identity,
+  init,
+  initConfig,
+  initComponent,
 }) {
+  const InitComponent = initComponent;
   return (
     <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
       <NgpThemeProvider theme={theme} sheetsManager={sheetsManager}>
         <CssBaseLine />
         <Provider store={store}>
           <Router basename={basename}>
-            <RouteContext.Provider value={{ path: basename }}>
-              <ParentContext.Provider value={() => {}}>
-                <BlockContainer identity={identity} appKey={appKey} />
-              </ParentContext.Provider>
-            </RouteContext.Provider>
+            <InitComponent
+              appKey={appKey}
+              basename={basename}
+              identity={identity}
+              init={init}
+              initConfig={initConfig}
+            />
           </Router>
         </Provider>
       </NgpThemeProvider>
@@ -46,7 +50,9 @@ export default class Client {
     this.store = options.store;
     this.appKey = options.appKey;
     this.basename = options.basename;
-    this.getAppConfig = options.getAppConfig;
+    this.init = options.init;
+    this.initConfig = options.initConfig || {};
+    this.initComponent = options.initComponent || Shell;
   }
 
   render(container, identity) {
@@ -70,6 +76,9 @@ export default class Client {
         basename: this.basename,
         appKey: this.appKey,
         identity,
+        init: this.init,
+        initConfig: this.initConfig,
+        initComponent: this.initComponent,
       }),
       this.container,
     );

@@ -2,7 +2,7 @@ import fetch from 'isomorphic-fetch';
 import { stringify } from 'qs';
 import warning from 'warning';
 
-class FetchError extends Error {
+export class FetchError extends Error {
   constructor(message, status) {
     super(message);
     this.name = 'FetchError';
@@ -10,7 +10,7 @@ class FetchError extends Error {
   }
 }
 
-class FetchDataError extends Error {
+export class FetchDataError extends Error {
   constructor(message, status) {
     super(message);
     this.name = 'FetchDataError';
@@ -126,6 +126,45 @@ export class ApiService {
     }
 
     return this.fetch(url, fetchOptions)
+      .then(this.fetchChecker)
+      .then(this.streamParser)
+      .then(this.dataParser)
+      .catch(this.errorHandler);
+  }
+
+  fetchByFormData(config) {
+    const { url: fetchUrl, formData } = config;
+    // 补全请求路径
+    let url = fetchUrl;
+    if (this.apiConfig.HOST && url.indexOf('//') === -1) {
+      url = this.apiConfig.HOST + url;
+    }
+
+    if (this.isMock(config.mock)) {
+      let mockData = config.mockData;
+
+      if (typeof config.mockData === 'function') {
+        mockData = config.mockData();
+      }
+
+      return new Promise(resolve => {
+        setTimeout(() => {
+          console.groupCollapsed(`mock request:${config.url}`);
+          console.info('fetch options:', { url, formData });
+          console.info('mock data:', mockData);
+          console.groupEnd(`mock request:${config.url}`);
+          resolve(mockData);
+        }, 100);
+      });
+    }
+
+    return this.fetch(url, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        Authorization: `Bearer ${this.token}`,
+      },
+    })
       .then(this.fetchChecker)
       .then(this.streamParser)
       .then(this.dataParser)

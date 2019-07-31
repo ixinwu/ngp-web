@@ -1,6 +1,19 @@
 import ngp from './ref';
 
-export { connect, mount, unmount } from '@ixinwu-ngp/web-core';
+export {
+  mount,
+  unmount,
+  connect,
+  modify,
+  takeEvery,
+  takeLatest,
+  call,
+  fork,
+  put,
+  select,
+  all,
+  delay,
+} from '@ixinwu-ngp/web-core';
 export { default as connectBlock } from './block/connect';
 export { default as mountBlock } from './block/mount';
 export { default as unmountBlock } from './block/unmount';
