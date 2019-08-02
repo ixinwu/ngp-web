@@ -22,7 +22,7 @@ class BlockLoader extends Component {
   }
 
   render() {
-    const { block, identity } = this.props;
+    const { block, identity, children } = this.props;
 
     let content = <Loading size="large" message="加载中..." />;
     if (block) {
@@ -42,8 +42,10 @@ class BlockLoader extends Component {
                     identity={identity}
                     route={route}
                     backToParent={backToParent}
-                    pagePath={route.path}
-                  />
+                    pagePath={route.pathname}
+                  >
+                    {children}
+                  </BlockContainer>
                 )}
               </ParentContext.Consumer>
             )}
@@ -71,7 +73,9 @@ const mapDispatchToProps = {
   blockUnmount,
 };
 
-export default withRouter(connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(BlockLoader));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )(BlockLoader),
+);
