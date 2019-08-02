@@ -10,7 +10,7 @@ import ParentContext from '../context/parent';
 
 class BlockLoader extends Component {
   componentDidMount() {
-    const { identity } = this.props;
+    const { identity, blockMount } = this.props;
     blockMount(identity);
   }
 

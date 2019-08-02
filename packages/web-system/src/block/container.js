@@ -6,7 +6,7 @@ import { requestBlockConfig } from '../redux/actions';
 
 class BlockContainer extends Component {
   componentDidMount() {
-    const { identity, block, route } = this.props;
+    const { identity, block, route, requestBlockConfig } = this.props;
     requestBlockConfig(identity, block, route);
   }
 
@@ -36,11 +36,19 @@ class BlockContainer extends Component {
   }
 }
 
+const mapStateToProps = (state, ownProps) => {
+  const block = state.blocks.find(block => block.identity === ownProps.identity);
+
+  return {
+    block,
+  };
+};
+
 const mapDispatchToProps = {
   requestBlockConfig,
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(BlockContainer);

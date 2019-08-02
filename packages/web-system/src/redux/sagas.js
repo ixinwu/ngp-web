@@ -13,14 +13,18 @@ import {
 
 function getBundle(loader) {
   return typeof loader === 'function'
-    ? new Promise(resolve => {
-        loader(module => {
-          const bundle = {};
-          Object.keys(module.default).forEach(key => {
-            bundle[key] = module.default[key].default || module.default[key];
+    ? new Promise((resolve, reject) => {
+        loader()
+          .then(m => {
+            const bundle = {};
+            Object.keys(m.default).forEach(key => {
+              bundle[key] = m.default[key].default || m.default[key];
+            });
+            resolve(bundle);
+          })
+          .catch(e => {
+            reject(e);
           });
-          resolve(bundle);
-        });
       })
     : Promise.resolve(loader);
 }
@@ -40,7 +44,9 @@ function getConfig(loader, identity, state, ...args) {
 }
 
 function* blockMount(action) {
+  console.log('blockMount--------------------------');
   const { identity } = action.payload;
+  console.log('blockMount------', identity);
   try {
     yield put({
       type: BLOCK_ENTER,
@@ -52,7 +58,7 @@ function* blockMount(action) {
     });
     let blockBundle = ngp.loadedBlocks[identity];
     if (!blockBundle) {
-      const loader = ngp.blocks[identity];
+      const loader = ngp.blocks[identity].loader;
       blockBundle = yield call(getBundle, loader);
       ngp.loadedBlocks[identity] = blockBundle;
     }
@@ -62,6 +68,7 @@ function* blockMount(action) {
       yield put({
         type: BLOCK_UPDATE,
         payload: {
+          identity,
           status: 'error',
           tip: '加载失败',
         },
@@ -72,6 +79,7 @@ function* blockMount(action) {
     yield put({
       type: BLOCK_UPDATE,
       payload: {
+        identity,
         status: 'bundle_ready',
       },
     });
@@ -80,6 +88,7 @@ function* blockMount(action) {
     yield put({
       type: BLOCK_UPDATE,
       payload: {
+        identity,
         status: 'error',
         tip: '加载失败',
       },
@@ -100,7 +109,7 @@ function* blockConfigRequest(action) {
     yield put({
       type: BLOCK_UPDATE,
       payload: {
-        ...action.payload,
+        identity,
         status: 'config_loading',
         tip: '获取配置中...',
       },
@@ -140,6 +149,7 @@ function* blockConfigRequest(action) {
     yield put({
       type: BLOCK_UPDATE,
       payload: {
+        identity,
         status: 'ready',
         comp,
       },
@@ -149,6 +159,7 @@ function* blockConfigRequest(action) {
     yield put({
       type: BLOCK_UPDATE,
       payload: {
+        identity,
         status: 'error',
         tip: '加载失败',
       },
