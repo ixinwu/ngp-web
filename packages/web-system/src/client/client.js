@@ -3,10 +3,12 @@ import warning from 'warning';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import JssProvider from 'react-jss/lib/JssProvider';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { withRouter, BrowserRouter as Router } from 'react-router-dom';
 import { SheetsRegistry } from 'jss';
 import { NgpThemeProvider, createGenerateClassName } from '@ixinwu-ngp/web-styles';
 import CssBaseLine from '@ixinwu-ngp/materials-component/css_base_line';
+import RouteContext from '../context/route';
+import ParentContext from '../context/parent';
 import Shell from './component';
 
 function getContent({
@@ -22,20 +24,23 @@ function getContent({
   initConfig,
   initComponent,
 }) {
-  const InitComponent = initComponent;
+  const InitComponent = withRouter(initComponent);
   return (
     <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
       <NgpThemeProvider theme={theme} sheetsManager={sheetsManager}>
         <CssBaseLine />
         <Provider store={store}>
           <Router basename={basename}>
-            <InitComponent
-              appKey={appKey}
-              basename={basename}
-              identity={identity}
-              init={init}
-              initConfig={initConfig}
-            />
+            <RouteContext.Provider value={{ path: basename }}>
+              <ParentContext.Provider value={() => {}}>
+                <InitComponent
+                  appKey={appKey}
+                  identity={identity}
+                  init={init}
+                  initConfig={initConfig}
+                />
+              </ParentContext.Provider>
+            </RouteContext.Provider>
           </Router>
         </Provider>
       </NgpThemeProvider>
@@ -49,7 +54,7 @@ export default class Client {
     this.container = options.container;
     this.store = options.store;
     this.appKey = options.appKey;
-    this.basename = options.basename;
+    this.basename = options.basename || '';
     this.init = options.init;
     this.initConfig = options.initConfig || {};
     this.initComponent = options.initComponent || Shell;

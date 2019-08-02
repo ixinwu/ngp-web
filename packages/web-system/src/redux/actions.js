@@ -3,7 +3,7 @@ export const ROUTE_UPDATE = 'ROUTE_UPDATE';
 export const ROUTE_UNMOUNT = 'ROUTE_UNMOUNT';
 
 export function routeMount(routeConfig, parentRoute, pathname, search) {
-  const path = `${parentRoute.path}${routeConfig.url}`;
+  const path = `${parentRoute ? parentRoute.path : ''}${routeConfig.url}`;
   const id = routeConfig.id || path;
   return {
     type: ROUTE_MOUNT,

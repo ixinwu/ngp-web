@@ -38,19 +38,19 @@ class RouteContainer extends Component {
   }
 
   backToParent = searchParam => {
-    const {
-      parentRoute: { pathname, search },
-      history,
-    } = this.props;
-    const parentSearch = searchParam || search;
+    const { parentRoute, history } = this.props;
+    if (!parentRoute) {
+      return;
+    }
+    const parentSearch = searchParam || parentRoute.search;
     if (parentSearch) {
       history.push({
-        pathname,
+        pathname: parentRoute.pathname,
         search: parentSearch,
       });
     } else {
       history.push({
-        pathname,
+        pathname: parentRoute.pathname,
       });
     }
   };
@@ -60,7 +60,7 @@ class RouteContainer extends Component {
   };
 
   render() {
-    const { location, parentRoute, current } = this.props;
+    const { location, current } = this.props;
 
     if (current) {
       const { childRouteConfigs = [] } = current;
@@ -86,7 +86,7 @@ class RouteContainer extends Component {
         );
       }
 
-      const childRoutes = generateRouteContent(parentRoute, childRouteConfigs);
+      const childRoutes = generateRouteContent(current, childRouteConfigs);
       if (current.type === 'SlideIn') {
         const style = {
           width: current.width || '30%',
