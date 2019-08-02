@@ -54,7 +54,7 @@ function blocks(state = [], action) {
         return block;
       });
     case BLOCK_UNMOUNT:
-      return state.filter(block => block.identity !== block.payload.identity);
+      return state.filter(block => block.identity !== action.payload.identity);
     default:
       return state;
   }

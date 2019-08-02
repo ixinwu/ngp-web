@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import Error from '@ixinwu-ngp/materials-component/error';
 import Loading from '@ixinwu-ngp/materials-component/loading';
 import { requestBlockConfig } from '../redux/actions';
@@ -48,7 +49,7 @@ const mapDispatchToProps = {
   requestBlockConfig,
 };
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(BlockContainer);
+)(BlockContainer));
