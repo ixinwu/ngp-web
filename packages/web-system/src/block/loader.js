@@ -4,7 +4,7 @@ import Error from '@ixinwu-ngp/materials-component/error';
 import Loading from '@ixinwu-ngp/materials-component/loading';
 import unmount from './unmount';
 import { blockMount, blockUnmount } from '../redux/actions';
-import RouteContainer from './container';
+import BlockContainer from './container';
 import RouteContext from '../context/route';
 import ParentContext from '../context/parent';
 
@@ -37,7 +37,7 @@ class BlockLoader extends Component {
             {route => (
               <ParentContext.Consumer>
                 {backToParent => (
-                  <RouteContainer
+                  <BlockContainer
                     identity={identity}
                     route={route}
                     backToParent={backToParent}

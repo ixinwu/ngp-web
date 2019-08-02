@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Error from '@ixinwu-ngp/materials-component/error';
 import Loading from '@ixinwu-ngp/materials-component/loading';
-import BlockContainer from '../block/loader';
+import BlockLoader from '../block/loader';
 import RouteContext from '../context/route';
 import ParentContext from '../context/parent';
 
@@ -49,7 +49,7 @@ class Shell extends Component {
       content = (
         <RouteContext.Provider value={{ path: basename }}>
           <ParentContext.Provider value={() => {}}>
-            <BlockContainer identity={identity} />
+            <BlockLoader identity={identity} />
           </ParentContext.Provider>
         </RouteContext.Provider>
       );
