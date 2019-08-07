@@ -23,7 +23,8 @@ class Shell extends Component {
             status: 'ready',
           }));
         })
-        .catch(() => {
+        .catch((e) => {
+          console.error(e);
           this.setState(prevState => ({
             ...prevState,
             status: 'error',
