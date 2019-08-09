@@ -13,8 +13,8 @@ import ParentContext from '../context/parent';
 
 class RouteContainer extends Component {
   componentDidMount() {
-    const { routeConfig, parentRoute, routeMount, location } = this.props;
-    routeMount(routeConfig, parentRoute, location.pathname, location.search);
+    const { routeConfig, parentRoute, routeMount, location, match } = this.props;
+    routeMount(routeConfig, parentRoute, match.url, location.search);
   }
 
   componentDidUpdate(prevProps) {
