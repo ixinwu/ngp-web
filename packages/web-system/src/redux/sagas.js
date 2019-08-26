@@ -117,7 +117,12 @@ function* blockConfigRequest(action) {
 
     const blockBundle = ngp.loadedBlocks[identity];
     const state = yield select(getState);
-    let config = yield call(getConfig, blockBundle.getConfig, identity, state);
+    let config = yield call(
+      getConfig,
+      blockBundle.config || blockBundle.getConfig,
+      identity,
+      state,
+    );
 
     if (!config) {
       config = {
