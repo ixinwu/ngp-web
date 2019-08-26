@@ -1,5 +1,6 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
+import ngp from '../ref';
 import RouteContainer from '../route/container';
 
 export default function generateRouteContent(parentRoute, childRoutes) {
@@ -14,7 +15,16 @@ export default function generateRouteContent(parentRoute, childRoutes) {
         key={path}
         path={path}
         render={props => {
-          return <RouteContainer routeConfig={routeConfig} parentRoute={parentRoute} {...props} />;
+          return routeConfig.isPublic || ngp.app.isAuthenticated ? (
+            <RouteContainer routeConfig={routeConfig} parentRoute={parentRoute} {...props} />
+          ) : (
+            <Redirect
+              to={{
+                pathname: '/login',
+                state: { from: props.location },
+              }}
+            />
+          );
         }}
       />
     );

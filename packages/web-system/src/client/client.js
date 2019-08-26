@@ -51,6 +51,7 @@ function getContent({
 export default class Client {
   constructor(options) {
     this.initialized = false;
+    this.isAuthenticated = false;
     this.container = options.container;
     this.store = options.store;
     this.appKey = options.appKey;

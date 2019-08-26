@@ -132,7 +132,7 @@ function* blockConfigRequest(action) {
 
     // 更新子路由
     if (config.routes) {
-      const childRouteConfigs = route.childRouteConfigs;
+      const childRouteConfigs = route.childRouteConfigs || [];
 
       config.routes.forEach(childRoute => {
         if (!childRouteConfigs.find(childRouteConfig => childRouteConfig.url === childRoute.url)) {

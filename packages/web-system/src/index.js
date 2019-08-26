@@ -25,7 +25,7 @@ export { default as RoutePopup } from './route/popup';
 export { default as RouteSlide } from './route/slide';
 export * from './client';
 export * from './utils';
-export { withRouter, BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+export { withRouter, BrowserRouter, Switch, Route, Link, Redirect } from 'react-router-dom';
 export { matchPath } from 'react-router';
 
 export default ngp;
