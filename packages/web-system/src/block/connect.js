@@ -7,8 +7,7 @@ function initMapStateToProps(mapState) {
   if (typeof mapState === 'function') {
     return mapState;
   }
-  // TODO实现映射配置解析
-  return () => {};
+  return () => ({});
 }
 
 export default function connectBlock(blockConfig) {

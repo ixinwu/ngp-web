@@ -20,7 +20,7 @@ export default function generateRouteContent(parentRoute, childRoutes) {
           ) : (
             <Redirect
               to={{
-                pathname: '/login',
+                pathname: ngp.app.loginPath,
                 state: { from: props.location },
               }}
             />
