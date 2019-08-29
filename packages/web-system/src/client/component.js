@@ -34,7 +34,7 @@ class Shell extends Component {
   }
 
   render() {
-    const { identity, initConfig } = this.props;
+    const { blockKey, initConfig } = this.props;
     const { status } = this.state;
 
     let content = <Loading size="large" message={initConfig.loadingTip || '加载中...'} />;
@@ -45,7 +45,7 @@ class Shell extends Component {
       content = <Error message={initConfig.errorTip || '加载失败...'} />;
     }
     if (status === 'ready') {
-      content = <BlockLoader identity={identity} />;
+      content = <BlockLoader key={blockKey} />;
     }
     return content;
   }

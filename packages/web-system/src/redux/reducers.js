@@ -45,7 +45,7 @@ function blocks(state = [], action) {
       ];
     case BLOCK_UPDATE:
       return state.map(block => {
-        if (block.identity === action.payload.identity) {
+        if (block.key === action.payload.key) {
           return {
             ...block,
             ...action.payload,
@@ -54,7 +54,7 @@ function blocks(state = [], action) {
         return block;
       });
     case BLOCK_UNMOUNT:
-      return state.filter(block => block.identity !== action.payload.identity);
+      return state.filter(block => block.key !== action.payload.key);
     default:
       return state;
   }

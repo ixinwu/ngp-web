@@ -17,7 +17,6 @@ export default function mount(blockConfig, bundle) {
   const { models: dataModels = {} } = data;
 
   warning(identity, 'block config need identity');
-  warning(bundle.view, 'block bundle need view');
 
   const modelReducers = {};
   const lastModels = {
@@ -39,6 +38,10 @@ export default function mount(blockConfig, bundle) {
     sagas: bundle.sagas,
     handles: bundle.handles,
   });
+
+  if (!bundle.view) {
+    return null;
+  }
 
   return connect({
     identity,

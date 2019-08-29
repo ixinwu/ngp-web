@@ -19,7 +19,7 @@ function getContent({
   store,
   basename,
   appKey,
-  identity,
+  blockKey,
   init,
   initConfig,
   initComponent,
@@ -35,7 +35,7 @@ function getContent({
               <ParentContext.Provider value={() => {}}>
                 <InitComponent
                   appKey={appKey}
-                  identity={identity}
+                  blockKey={blockKey}
                   init={init}
                   initConfig={initConfig}
                 />
@@ -62,8 +62,8 @@ export default class Client {
     this.initComponent = options.initComponent || Shell;
   }
 
-  render(container, identity) {
-    warning(identity, 'Can not start app without block!');
+  render(container, blockKey) {
+    warning(blockKey, 'Can not start app without block!');
     warning(!this.initialized, 'App has been initialized!');
 
     const sheetsRegistry = new SheetsRegistry();
@@ -82,7 +82,7 @@ export default class Client {
         store: this.store,
         basename: this.basename,
         appKey: this.appKey,
-        identity,
+        blockKey,
         init: this.init,
         initConfig: this.initConfig,
         initComponent: this.initComponent,

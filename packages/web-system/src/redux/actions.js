@@ -43,29 +43,30 @@ export const BLOCK_UNMOUNT = 'BLOCK_UNMOUNT';
 export const BLOCK_ENTER = 'BLOCK_ENTER';
 export const BLOCK_CONFIG_REQUEST = 'BLOCK_CONFIG_REQUEST';
 
-export function blockMount(identity) {
+export function blockMount(key) {
   return {
     type: BLOCK_MOUNT,
     payload: {
-      identity,
+      key,
       status: 'loading',
     },
   };
 }
 
-export function blockUnmount(identity) {
+export function blockUnmount(key) {
   return {
     type: BLOCK_UNMOUNT,
     payload: {
-      identity,
+      key,
     },
   };
 }
 
-export function requestBlockConfig(identity, block, route) {
+export function requestBlockConfig(key, identity, block, route) {
   return {
     type: BLOCK_CONFIG_REQUEST,
     payload: {
+      key,
       identity,
       block,
       route,
