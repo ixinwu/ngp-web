@@ -11,18 +11,18 @@ import ParentContext from '../context/parent';
 
 class BlockLoader extends Component {
   componentDidMount() {
-    const { key, blockMount } = this.props;
-    blockMount(key);
+    const { blockKey, blockMount } = this.props;
+    blockMount(blockKey);
   }
 
   componentWillUnmount() {
-    const { key, identity, blockUnmount } = this.props;
-    unmount(identity || key);
-    blockUnmount(key);
+    const { blockKey, identity, blockUnmount } = this.props;
+    unmount(identity || blockKey);
+    blockUnmount(blockKey);
   }
 
   render() {
-    const { block, key, identity, children } = this.props;
+    const { block, blockKey, identity, children } = this.props;
 
     let content = <Loading size="large" message="加载中..." />;
     if (block) {
@@ -39,7 +39,7 @@ class BlockLoader extends Component {
               <ParentContext.Consumer>
                 {backToParent => (
                   <BlockContainer
-                    key={key}
+                    blockKey={blockKey}
                     identity={identity}
                     route={route}
                     backToParent={backToParent}
@@ -62,7 +62,7 @@ class BlockLoader extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const block = state.blocks.find(block => block.key === ownProps.key);
+  const block = state.blocks.find(block => block.blockKey === ownProps.blockKey);
 
   return {
     block,

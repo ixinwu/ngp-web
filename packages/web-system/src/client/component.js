@@ -45,7 +45,7 @@ class Shell extends Component {
       content = <Error message={initConfig.errorTip || '加载失败...'} />;
     }
     if (status === 'ready') {
-      content = <BlockLoader key={blockKey} />;
+      content = <BlockLoader blockKey={blockKey} />;
     }
     return content;
   }

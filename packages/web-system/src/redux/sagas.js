@@ -17,8 +17,8 @@ function getBundle(loader) {
         loader()
           .then(m => {
             const bundle = {};
-            Object.keys(m.default).forEach(key => {
-              bundle[key] = m.default[key].default || m.default[key];
+            Object.keys(m.default).forEach(attrKey => {
+              bundle[attrKey] = m.default[attrKey].default || m.default[attrKey];
             });
             resolve(bundle);
           })
@@ -29,10 +29,10 @@ function getBundle(loader) {
     : Promise.resolve(loader);
 }
 
-function getConfig(loader, key, state, ...args) {
+function getConfig(loader, blockKey, state, ...args) {
   return typeof loader === 'function'
     ? new Promise((resolve, reject) => {
-        loader(key, state, ...args)
+        loader(blockKey, state, ...args)
           .then(config => {
             resolve(config);
           })
@@ -45,8 +45,8 @@ function getConfig(loader, key, state, ...args) {
 
 function* blockMount(action) {
   console.log('blockMount--------------------------');
-  const { key } = action.payload;
-  console.log('blockMount------', key);
+  const { blockKey } = action.payload;
+  console.log('blockMount------', blockKey);
   try {
     yield put({
       type: BLOCK_ENTER,
@@ -56,11 +56,11 @@ function* blockMount(action) {
         tip: '加载中...',
       },
     });
-    let blockBundle = ngp.loadedBlocks[key];
+    let blockBundle = ngp.loadedBlocks[blockKey];
     if (!blockBundle) {
-      const loader = ngp.blocks[key].loader;
+      const loader = ngp.blocks[blockKey].loader;
       blockBundle = yield call(getBundle, loader);
-      ngp.loadedBlocks[key] = blockBundle;
+      ngp.loadedBlocks[blockKey] = blockBundle;
     }
 
     warning(blockBundle, 'block is empty');
@@ -68,7 +68,7 @@ function* blockMount(action) {
       yield put({
         type: BLOCK_UPDATE,
         payload: {
-          key,
+          blockKey,
           status: 'error',
           tip: '加载失败',
         },
@@ -79,7 +79,7 @@ function* blockMount(action) {
     yield put({
       type: BLOCK_UPDATE,
       payload: {
-        key,
+        blockKey,
         status: 'bundle_ready',
       },
     });
@@ -88,7 +88,7 @@ function* blockMount(action) {
     yield put({
       type: BLOCK_UPDATE,
       payload: {
-        key,
+        blockKey,
         status: 'error',
         tip: '加载失败',
       },
@@ -104,29 +104,34 @@ const getState = state => state;
 
 // 请求block配置
 function* blockConfigRequest(action) {
-  const { key, identity, route } = action.payload;
+  const { blockKey, identity, route } = action.payload;
   try {
     yield put({
       type: BLOCK_UPDATE,
       payload: {
-        key,
+        blockKey,
         status: 'config_loading',
         tip: '获取配置中...',
       },
     });
 
-    const blockBundle = ngp.loadedBlocks[key];
+    const blockBundle = ngp.loadedBlocks[blockKey];
     const state = yield select(getState);
-    let config = yield call(getConfig, blockBundle.config || blockBundle.getConfig, key, state);
+    let config = yield call(
+      getConfig,
+      blockBundle.config || blockBundle.getConfig,
+      blockKey,
+      state,
+    );
 
     if (!config) {
       config = {
-        identity: key,
+        identity: blockKey,
       };
     }
 
     if (!config.identity) {
-      config.identity = key;
+      config.identity = blockKey;
     }
 
     if (identity) {
@@ -157,7 +162,7 @@ function* blockConfigRequest(action) {
     yield put({
       type: BLOCK_UPDATE,
       payload: {
-        key,
+        blockKey,
         status: 'ready',
         comp,
       },
@@ -167,7 +172,7 @@ function* blockConfigRequest(action) {
     yield put({
       type: BLOCK_UPDATE,
       payload: {
-        key,
+        blockKey,
         status: 'error',
         tip: '加载失败',
       },

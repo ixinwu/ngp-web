@@ -74,14 +74,14 @@ class RouteContainer extends Component {
         current.type !== 'Inside';
 
       let content = null;
-      const blockKey = current.key || current.blockKey || current.pageKey;
+      const blockKey = current.blockKey || current.key || current.pageKey;
       const identity = current.identity;
 
       if (!isCovered) {
         content = (
           <RouteContext.Provider value={current}>
             <ParentContext.Provider value={this.backToParent}>
-              <BlockLoader key={blockKey} identity={identity} />
+              <BlockLoader blockKey={blockKey} identity={identity} />
             </ParentContext.Provider>
           </RouteContext.Provider>
         );
@@ -116,7 +116,7 @@ class RouteContainer extends Component {
         return (
           <RouteContext.Provider value={current}>
             <ParentContext.Provider value={this.backToParent}>
-              <BlockLoader key={blockKey} identity={identity}>
+              <BlockLoader blockKey={blockKey} identity={identity}>
                 <Switch>{childRoutes}</Switch>
               </BlockLoader>
             </ParentContext.Provider>

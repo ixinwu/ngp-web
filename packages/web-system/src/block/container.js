@@ -7,12 +7,12 @@ import { requestBlockConfig } from '../redux/actions';
 
 class BlockContainer extends Component {
   componentDidMount() {
-    const { key, identity, block, route, requestBlockConfig } = this.props;
-    requestBlockConfig(key, identity, block, route);
+    const { blockKey, identity, block, route, requestBlockConfig } = this.props;
+    requestBlockConfig(blockKey, identity, block, route);
   }
 
   render() {
-    const { block, key, ...rest } = this.props;
+    const { block, blockKey, ...rest } = this.props;
 
     let content = <Loading size="large" message="初始化中..." />;
     if (block) {
@@ -38,7 +38,7 @@ class BlockContainer extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const block = state.blocks.find(block => block.key === ownProps.key);
+  const block = state.blocks.find(block => block.blockKey === ownProps.blockKey);
 
   return {
     block,
