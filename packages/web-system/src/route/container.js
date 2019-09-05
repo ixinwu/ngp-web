@@ -34,7 +34,9 @@ class RouteContainer extends Component {
 
   componentWillUnmount() {
     const { current, routeUnmount } = this.props;
-    routeUnmount(current);
+    if (current) {
+      routeUnmount(current);
+    }
   }
 
   backToParent = searchParam => {
