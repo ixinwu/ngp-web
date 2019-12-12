@@ -22,7 +22,7 @@ class BlockLoader extends Component {
   }
 
   render() {
-    const { block, blockKey, identity, children } = this.props;
+    const { block, blockKey, identity, children, ...rest } = this.props;
 
     let content = <Loading size="large" message="加载中..." />;
     if (block) {
@@ -39,6 +39,7 @@ class BlockLoader extends Component {
               <ParentContext.Consumer>
                 {backToParent => (
                   <BlockContainer
+                    {...rest}
                     blockKey={blockKey}
                     identity={identity}
                     route={route}
